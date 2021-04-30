@@ -1,0 +1,53 @@
+@import '../../styles/main.scss';
+
+.placecard-container{
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: var(--fm-montserrat);
+    border-radius: 10px;
+    margin: 2rem auto;
+    width: 600px;
+}
+.placecard-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+
+.user-placecard{
+    display: flex;
+    width: 40%;
+    column-gap: 0.6rem;
+    font-size: 1.1rem;
+    align-items: center;
+    font-weight: 600;
+}
+
+.placecard-image{
+    img{
+        width: 100%;
+    }
+}
+
+.placecard-footer{
+    display: flex;
+    column-gap: 2rem;
+    padding: 1rem 2rem;
+    .interaction{
+        display: flex;
+        align-items: center;
+        column-gap: 0.3rem;
+        cursor: pointer;
+        &:hover{
+            color: lighten($color: red, $amount: 1);
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .placecard-container{
+        width: 95%;
+    }
+}

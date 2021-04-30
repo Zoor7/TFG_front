@@ -1,0 +1,21 @@
+.nav-detalle{
+    padding: 2rem;
+    ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 2rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+
+    }
+    li{
+        flex-direction: row;
+        list-style: none;
+        text-decoration: none;
+        color: darken($color: #fff, $amount: 30%);
+        &:hover{
+            color: lighten($color: #fff, $amount: 1);
+        }
+    }
+}
