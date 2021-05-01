@@ -1,45 +1,52 @@
-import { useState,useEffect } from 'react'
+import { useState} from 'react'
 
-import { AiOutlineHome, AiFillHome, AiOutlineSetting, AiOutlineSearch } from 'react-icons/ai';
-import { GiHamburgerMenu, GiWoodenClogs } from 'react-icons/gi';
+import { AiOutlineHome, AiFillHome, AiOutlineSetting, AiOutlineSearch, AiFillSetting,AiOutlinePlus } from 'react-icons/ai';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 import Drawer from '@material-ui/core/Drawer';
 import useWindowDimensions from '../../hooks/useWindowDimension';
 import {
     NavLink,
-    useHistory
 } from "react-router-dom";
 
 import './header.scss'
 
 const Header = () => {
-    const [active, setActive] = useState(window.location.pathname)
+    const [active, setActive] = useState()
     const [isClosed, setIsClosed] = useState(false)
     const { width } = useWindowDimensions();
-    let url=window.location.pathname
 
-    useEffect(() => {
-        setActive(window.location.pathname)
-    }, [url])
+    const handleActiveUrl=(url)=>{
+        setActive(url)
+    }
+
 
 
     const header = () => {
         return (
             <div className="header-container">
 
-                <NavLink   activeClassName='item item-active' to='/'>
+                <NavLink isActive={(match,location)=>handleActiveUrl(location.pathname)}
+                  className={active==='/'?'item item-active':'item'}
+                   to={active==='/'?'#':'/'}>
                     {active==='/'?<AiFillHome size='1.8rem' />:<AiOutlineHome size='1.8rem' />}
-                    <p>Home</p>
+                    Home
                 </NavLink>
 
-                <NavLink onClick={()=>setActive()}   className="Explorar item" to='/explorar'>
+                <NavLink  activeClassName='item-active' className="item" to='/explorar'>
                     <AiOutlineSearch size='1.8rem'/>
-                    <p>Explorar</p>
+                    Explorar
                 </NavLink>
 
-                <NavLink className="config item" to='/config'>
-                    <AiOutlineSetting size='1.8rem' />
-                    <p>Configuración</p>
+                <NavLink  activeClassName='item-active' className="item" to='/create'>
+                    <AiOutlinePlus size='1.8rem'/>
+                    Create
+                </NavLink>
+
+                <NavLink activeClassName='item-active' className="item" to='/config'>
+                {active==='/config'?<AiFillSetting size='1.8rem' />:<AiOutlineSetting size='1.8rem' />}
+                    
+                    Configuración
                 </NavLink>
 
                 <hr style={{ width: '30%', alignSelf: 'center' }}></hr>

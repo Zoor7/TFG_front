@@ -1,21 +1,29 @@
 .nav-detalle{
-    padding: 2rem;
+    padding: 1rem;
+
     ul{
         display: flex;
         flex-direction: row;
         justify-content: center;
-        column-gap: 2rem;
-        font-weight: bold;
-        font-size: 1.1rem;
+        column-gap: 1.5rem;
+        font-weight: 600;
+        font-size: 0.9rem;
 
     }
-    li{
-        flex-direction: row;
-        list-style: none;
-        text-decoration: none;
-        color: darken($color: #fff, $amount: 30%);
-        &:hover{
-            color: lighten($color: #fff, $amount: 1);
-        }
+
+}
+.nav-link{
+    flex-direction: row;
+    list-style: none;
+    text-decoration: none;
+    color: darken($color: #fff, $amount: 30%);
+    &:hover{
+        color: lighten($color: #fff, $amount: 1);
     }
+}
+
+.nav-item-active{
+    color: lighten($color: #fff, $amount: 1);
+    border-bottom: 1px dotted #fff;
+    
 }

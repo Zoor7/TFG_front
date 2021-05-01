@@ -15,11 +15,9 @@ const initialState={
 export const PlacesProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(placeReducer, initialState);
-    console.log('AAAA')
     
     useEffect(() => {
         (async()=>{
-            console.log('BBB')
             const places= await getPlaces();
             dispatch({type: 'ADD_PLACES',payload:places})
         })()

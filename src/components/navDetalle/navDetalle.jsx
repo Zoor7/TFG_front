@@ -1,16 +1,28 @@
-import './navDetalle.scss'
-const NavDetalle = () => {
+import {
+    NavLink
+} from "react-router-dom";
 
-    return(
+
+import './navDetalle.scss'
+
+
+const NavDetalle = ({place}) => {
+
+    return (
         <div className="nav-detalle">
             <ul>
-                <li>Descripción</li>
-                <li>Comentarios</li>
-                <li>Ubicación</li>
+                    <NavLink activeClassName='nav-item-active' className='nav-link' to={{pathname:'/lugar/descripcion',state:{place}}}>
+                        Descripción
+                    </NavLink>
+                <NavLink activeClassName='nav-item-active' className='nav-link' to={{pathname:'/lugar/comentarios',state:{place}}}>
+                    Comentarios
+                </NavLink><NavLink activeClassName='nav-item-active' className='nav-link' to={{pathname:'/lugar/ubicacion',state:{place}}}>
+                    Ubicación
+                </NavLink>
             </ul>
         </div>
     )
-    
+
 }
 
 export default NavDetalle

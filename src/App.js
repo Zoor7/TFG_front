@@ -1,37 +1,48 @@
-import {useState,useEffect,useContext} from 'react'
-
+import { useState, useEffect, useContext } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
-import Home from './pages/Home/home.jsx'
-import './App.scss';
-import Header from "./components/header/Header.jsx";
-import Descripcion from "./pages/Detalle/descripcion.jsx";
-import PlacesContext from './context/placesContext/placesContext.jsx';
 
-const App=()=> {
+import Home from './pages/Home/home.jsx'
+import Header from "./components/header/Header.jsx";
+import PlacesContext from './context/placesContext/placesContext.jsx';
+import Detalle from './pages/Detalle/detalle'
+
+import CircleLoader from "react-spinners/CircleLoader";
+import { css } from "@emotion/react";
+
+import './App.scss';
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: #181818;
+`
+
+const App = () => {
   const [loading, setLoading] = useState(true)
 
   const { state } = useContext(PlacesContext)
 
   useEffect(() => {
-    if(state.places[0]){
-      setLoading(false)
+    if (state.places[0]) {
+        setLoading(false)
     }
   }, [state])
-  if(!loading){
+
+  if (!loading) {
     return (
-      <Router>
-        <Header/>
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route exact path="/place/descripcion/:id" component={Descripcion} />
-        </Switch>
-      </Router>
+        <Router>
+        <Header />
+          <Switch>
+            <Route  exact path="/" component={Home} />
+            <Route path="/lugar" component={Detalle} />
+          </Switch>
+        </Router>
     );
-  }else return <h1>Loading</h1>
-  }
+  } else return <CircleLoader css={override} size='4rem' />
+}
 
 export default App;
