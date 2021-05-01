@@ -1,39 +1,46 @@
-import { FaMapMarkedAlt,FaRegComment } from 'react-icons/fa';
+import { FaMapMarkedAlt, FaRegComment } from 'react-icons/fa';
 import { BsHeart } from 'react-icons/bs';
+import {
+    useLocation,
+    Route
+} from "react-router-dom";
 
 import Avatar from '../avatar/avatar'
 import './placecard.scss'
+import Descripcion from '../../pages/Detalle/descripcion';
 
-const PlaceCard = () => {
+
+const PlaceCard = ({ place, description }) => {
 
     return (
         <div className="placecard-container">
 
             <div className="placecard-header">
                 <div className="user-placecard">
-                    <Avatar  img='https://www.cinemascomics.com/wp-content/uploads/2020/09/teoria-one-piece-zoro-ronoa-960x720.jpg.webp' />
-                    <p>Adri</p>
+                    <Avatar img={place.image_url} />
+                    <p>{place.author.username}</p>
                 </div>
-                <FaMapMarkedAlt size='1.6rem' pointerEvents='true' />
+                <FaMapMarkedAlt size='1.6rem' />
             </div>
 
             <div className="placecard-image">
-                <img src="https://www.aerobusbcn.com/blog/wp-content/uploads/2019/02/sagrada-familia-exterior-700x500.jpg" alt="" />
+                <img src={place.image_url} alt="" />
             </div>
 
             <div className="placecard-footer">
-
-                <div className="interaction">
+                <div className=" like interaction">
                     <BsHeart size='1.3rem' />
                     54
                 </div>
-
-                <div className="interaction">
-                    <FaRegComment size='1.3rem'/>
+                <div className="comment interaction">
+                    <FaRegComment size='1.3rem' />
                     54
                 </div>
-
             </div>
+
+            <Route path='/lugar/descripcion'>
+                <Descripcion text={place.description} />
+            </Route>
 
         </div>
     )

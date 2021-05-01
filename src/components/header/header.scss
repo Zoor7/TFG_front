@@ -25,6 +25,12 @@
         }
 
 }
+.item-active{
+    color: lighten($color: #fff, $amount: 1);
+    
+}
+
+
 
 .header-title{
     font-size: 1.4rem;
@@ -49,6 +55,7 @@
         }
     }
 }
+
 
 
 @media (max-width: 900px) {

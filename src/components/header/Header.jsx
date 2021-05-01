@@ -1,47 +1,51 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 import { AiOutlineHome, AiFillHome, AiOutlineSetting, AiOutlineSearch } from 'react-icons/ai';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { GiHamburgerMenu, GiWoodenClogs } from 'react-icons/gi';
 
 import Drawer from '@material-ui/core/Drawer';
 import useWindowDimensions from '../../hooks/useWindowDimension';
 import {
-    Link
+    NavLink,
+    useHistory
 } from "react-router-dom";
 
 import './header.scss'
 
 const Header = () => {
-
+    const [active, setActive] = useState(window.location.pathname)
     const [isClosed, setIsClosed] = useState(false)
     const { width } = useWindowDimensions();
+    let url=window.location.pathname
+
+    useEffect(() => {
+        setActive(window.location.pathname)
+    }, [url])
 
 
     const header = () => {
         return (
             <div className="header-container">
 
-                <Link className="home item" to='/'>
-                    <AiOutlineHome size='1.8rem' />
+                <NavLink   activeClassName='item item-active' to='/'>
+                    {active==='/'?<AiFillHome size='1.8rem' />:<AiOutlineHome size='1.8rem' />}
                     <p>Home</p>
-                </Link>
+                </NavLink>
 
-                <Link className="Explorar item" to='/detalle/descripcion'>
+                <NavLink onClick={()=>setActive()}   className="Explorar item" to='/explorar'>
                     <AiOutlineSearch size='1.8rem'/>
                     <p>Explorar</p>
-                </Link>
+                </NavLink>
 
-                <div className="config item">
+                <NavLink className="config item" to='/config'>
                     <AiOutlineSetting size='1.8rem' />
                     <p>Configuración</p>
-                </div>
+                </NavLink>
 
                 <hr style={{ width: '30%', alignSelf: 'center' }}></hr>
             </div>
-
         )
     }
-
 
     return (
         <div>

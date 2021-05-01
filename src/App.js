@@ -1,3 +1,5 @@
+import {useState,useEffect,useContext} from 'react'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,20 +9,29 @@ import Home from './pages/Home/home.jsx'
 import './App.scss';
 import Header from "./components/header/Header.jsx";
 import Descripcion from "./pages/Detalle/descripcion.jsx";
-import NavDetalle from "./components/navDetalle/navDetalle.jsx";
+import PlacesContext from './context/placesContext/placesContext.jsx';
 
 const App=()=> {
-  return (
+  const [loading, setLoading] = useState(true)
 
-    <Router>
-      <Header/>
+  const { state } = useContext(PlacesContext)
+
+  useEffect(() => {
+    if(state.places[0]){
+      setLoading(false)
+    }
+  }, [state])
+  if(!loading){
+    return (
+      <Router>
+        <Header/>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/detalle/descripcion" component={Descripcion} />
+          <Route path="/" component={Home} />
+          <Route exact path="/place/descripcion/:id" component={Descripcion} />
         </Switch>
       </Router>
-    
-  );
-}
+    );
+  }else return <h1>Loading</h1>
+  }
 
 export default App;
