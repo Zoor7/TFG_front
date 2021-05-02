@@ -1,7 +1,7 @@
 import React,{useEffect,useReducer} from 'react'
 import {placeReducer} from '../reducers/placesreducer'
 
-import {getPlaces} from '../../services/placesinfo'
+import {getPlaces} from '../../services/placesService'
 
 const PlacesContext=React.createContext()
 

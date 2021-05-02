@@ -1,9 +1,19 @@
+import React,{useState,useEffect} from 'react'
+
+
 import './comentarios.scss'
 
-const Comentarios = () => {
+const Comentarios = ({comments}) => {
+
+    useEffect(() => {
+        
+    }, [])
+
     return(
         <div className="comentario-container">
-            <p>Comentarios</p>
+            {comments.map(comment=>{
+                <li></li>
+            })}
         </div>
     )
 }

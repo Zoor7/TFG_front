@@ -45,7 +45,6 @@ const Header = () => {
 
                 <NavLink activeClassName='item-active' className="item" to='/config'>
                 {active==='/config'?<AiFillSetting size='1.8rem' />:<AiOutlineSetting size='1.8rem' />}
-                    
                     Configuración
                 </NavLink>
 

@@ -1,7 +1,7 @@
 import { FaMapMarkedAlt, FaRegComment } from 'react-icons/fa';
 import { BsHeart } from 'react-icons/bs';
 import {
-    Route,useLocation
+    Route, useLocation, useHistory
 } from "react-router-dom";
 
 import Avatar from '../avatar/avatar'
@@ -13,16 +13,28 @@ import Ubicacion from '../../pages/Detalle/ubicacion/ubicacion';
 
 import './placecard.scss'
 
-const PlaceCard = ({place}) => {
+const PlaceCard = ({ place, urlTo }) => {
 
-    let url= useLocation().pathname
+    let url = useLocation().pathname
+    let history = useHistory()
+
+    const navigateTo = () => {
+        history.push({
+            pathname: urlTo,
+            state: { place }
+        })
+    }
+     function handleChildClick(e) {
+        e.stopPropagation();
+        console.log('child');
+      }
 
     return (
-        <div className="placecard-container">
+        <div className="placecard-container" onClick={navigateTo}>
 
             <div className="placecard-header">
                 <div className="user-placecard">
-                    <Avatar img={place.author.avatar? place.author.avatar : avatarPlaceholder } />
+                    <Avatar img={place.author.avatar ? place.author.avatar : avatarPlaceholder} />
                     <p>{place.author.username}</p>
                 </div>
                 <FaMapMarkedAlt size='1.6rem' />
@@ -33,25 +45,25 @@ const PlaceCard = ({place}) => {
             </div>
 
             <div className="placecard-footer">
-                <div className=" like interaction">
+                <div onClick={(e)=>handleChildClick(e)} className=" like interaction">
                     <BsHeart size='1.3rem' />
-                    54
+                    {place.likes.length}
                 </div>
                 <div className="comment interaction">
                     <FaRegComment size='1.3rem' />
-                    54
+                    {place.comments.length}
                 </div>
             </div>
-        	{url.includes('lugar')
-            ?<div>
-                <NavDetalle place={place}/>
-            </div>
-            :null}
+            {url.includes('lugar')
+                ? <div>
+                    <NavDetalle place={place} />
+                </div>
+                : null}
             <Route path='/lugar/descripcion'>
                 <Descripcion text={place.description} />
             </Route>
             <Route path='/lugar/comentarios'>
-                <Comentarios text={place.description} />
+                <Comentarios text={place.comments} />
             </Route>
             <Route path='/lugar/ubicacion'>
                 <Ubicacion text={place.description} />

@@ -13,15 +13,9 @@ const Home = () => {
     return (
         <div className="home-container">
             {state.places.map(place => (
-                <Link style={{ textDecoration: 'none' }}
-                    key={place.id}
-                    to={{
-                        pathname:`/lugar/descripcion`,
-                        state:{place}
-                    }} >
-                    <PlaceCard place={place} />
-                </Link>
-
+                <li key={place.id} style={{ listStyle: 'none' }}>
+                    <PlaceCard place={place} urlTo={`/lugar/descripcion`} />
+                </li>
             ))}
         </div>
     )
