@@ -16,20 +16,23 @@ export const addPlace=async(placeId)=>{
 export const addLike=async(placeId)=>{
 
     const res= await (await fetch(`${baseurl}/addplace`,{
-        method:'POST',
+        method:'PUT',
         body:placeId
-    })).json
+    })).json()
     console.log(res)
     return res
 
 }
 
-export const addComment=async(commentId)=>{
-
+export const addComment=async(comment_user)=>{
+    console.log(comment_user)
     const res= await (await fetch(`${baseurl}/addComment`,{
-        method:'POST',
-        body:commentId
-    })).json
+        method:'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify(comment_user)
+    })).json()
     console.log(res)
     return res
 

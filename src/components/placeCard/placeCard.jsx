@@ -5,7 +5,6 @@ import {
 } from "react-router-dom";
 
 import Avatar from '../avatar/avatar'
-import avatarPlaceholder from '../../assets/images/avatarPlaceholder.webp'
 import NavDetalle from '../navDetalle/navDetalle'
 import Descripcion from '../../pages/Detalle/descripcion/descripcion.jsx';
 import Comentarios from '../../pages/Detalle/comentarios/comentarios';
@@ -30,18 +29,18 @@ const PlaceCard = ({ place, urlTo }) => {
       }
 
     return (
-        <div className="placecard-container" onClick={navigateTo}>
+        <div className="placecard-container" onClick={url!=='/'?null:navigateTo}>
 
             <div className="placecard-header">
                 <div className="user-placecard">
-                    <Avatar img={place.author.avatar ? place.author.avatar : avatarPlaceholder} />
+                    <Avatar img={place.author.avatar} />
                     <p>{place.author.username}</p>
                 </div>
                 <FaMapMarkedAlt size='1.6rem' />
             </div>
 
             <div className="placecard-image">
-                <img src={place.image_url} alt="" />
+                <img src={place.image_url} alt=""/>
             </div>
 
             <div className="placecard-footer">
@@ -63,10 +62,10 @@ const PlaceCard = ({ place, urlTo }) => {
                 <Descripcion text={place.description} />
             </Route>
             <Route path='/lugar/comentarios'>
-                <Comentarios text={place.comments} />
+                <Comentarios place={place} />
             </Route>
             <Route path='/lugar/ubicacion'>
-                <Ubicacion text={place.description} />
+                <Ubicacion place={place}  />
             </Route>
 
         </div>

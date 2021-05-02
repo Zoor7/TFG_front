@@ -11,10 +11,23 @@ export const getPlaces=async ()=>{
 export const addLike=async(userId)=>{
 
     const res= await (await fetch(`${baseurl}/addLike`,{
-        method:'POST',
+        method:'PUT',
         body:userId
     })).json
-    console.log(res)
+    return res
+
+}
+export const addComment=async(comment)=>{
+
+    console.log(comment,"AAAAAAAAAAAAAAAAAAAAAA")
+    const res= await (await fetch(`${baseurl}/addComment`,{
+        method:'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body:JSON.stringify(comment)
+    })).json()
+    
     return res
 
 }
