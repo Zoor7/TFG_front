@@ -19,7 +19,6 @@ export const addLike=async(userId)=>{
 }
 export const addComment=async(comment)=>{
 
-    console.log(comment,"AAAAAAAAAAAAAAAAAAAAAA")
     const res= await (await fetch(`${baseurl}/addComment`,{
         method:'PUT',
         headers: {

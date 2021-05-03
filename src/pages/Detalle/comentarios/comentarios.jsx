@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { useHistory } from 'react-router'
 import Avatar from '../../../components/avatar/avatar'
 import PlacesContext from '../../../context/placesContext/placesContext'
-import {addComment as addComment_place} from '../../../services/placesService'
-import {addComment as addComment_user} from '../../../services/userService'
+import { addComment as addComment_place } from '../../../services/placesService'
+import { addComment as addComment_user } from '../../../services/userService'
 
 
 import './comentarios.scss'
@@ -10,36 +11,51 @@ import './comentarios.scss'
 const Comentarios = ({ place }) => {
 
     const [message, setMessage] = useState("")
-    const { state } = useContext(PlacesContext)
-
-
+    const { dispatch } = useContext(PlacesContext)
+    let history = useHistory()
 
     const handleComment = (str) => {
         setMessage(str)
     }
 
-    const makeComment = async() => {
+    const makeComment = async () => {
 
         const comment = {
             placeId: place.id,
             comment: {
-                author: "608d83e596ca301e70369ef8",
+                author: "608f3ec5acb6dd07b0bf0ad6",
                 text: message,
                 isResponse: false
             }
         }
         const res_place = await addComment_place(comment)
 
-        const newComment=res_place.comments[res_place.comments.length-1]
-        
-        const comment_user={
-            commentId:newComment._id,
-            userId:newComment.author
+        const newComment = res_place.comments[res_place.comments.length - 1]
+
+        const comment_user = {
+            commentId: newComment._id,
+            userId: newComment.author
         }
-        
+
         const res_user = await addComment_user(comment_user)
-        console.log(res_user)
-        
+
+        dispatch({
+            type: 'UPDATE_PLACE',
+            payload: {
+                ...res_place,
+                author: place.author
+            }
+        })
+        history.push({
+            to:'/lugar/comentarios',
+            state: {
+                place: {
+                    ...res_place,
+                    author: place.author
+                }
+            },
+        })
+
     }
 
     return (

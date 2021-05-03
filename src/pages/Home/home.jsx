@@ -1,7 +1,4 @@
 import { useContext } from 'react'
-import {
-    Link
-} from "react-router-dom";
 
 import PlaceCard from '../../components/placeCard/placeCard'
 import PlacesContext from '../../context/placesContext/placesContext';

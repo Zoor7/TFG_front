@@ -18,6 +18,7 @@ export const PlacesProvider = ({children}) => {
     
     useEffect(() => {
         (async()=>{
+            console.log('object')
             const places= await getPlaces();
             dispatch({type: 'ADD_PLACES',payload:places})
         })()
