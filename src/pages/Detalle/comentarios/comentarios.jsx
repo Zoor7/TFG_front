@@ -25,7 +25,7 @@ const Comentarios = ({ place }) => {
     setMessage(str)
   }
 
-  const makeComment = async () => {
+  const makeComment =useCallback(async() => {
 
     const comment = {
       author: "6091c207fe3ed61b10fde239",
@@ -64,7 +64,7 @@ const Comentarios = ({ place }) => {
     //     },
     // })
 
-  }
+  },[dispatch])
 
   return (
     <div className="comentario-container">

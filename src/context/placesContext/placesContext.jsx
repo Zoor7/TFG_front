@@ -27,7 +27,9 @@ export const PlacesProvider = ({ children }) => {
   };
 
   return (
-    <PlacesContext.Provider value={values}>{children}</PlacesContext.Provider>
+    <PlacesContext.Provider value={values}>
+      {children}
+      </PlacesContext.Provider>
   );
 };
 
