@@ -38,7 +38,7 @@ const App = () => {
         <Header />
           <Switch>
             <Route  exact path="/" component={Home} />
-            <Route path="/lugar" component={Detalle} />
+            <Route path="/lugar/:id" component={Detalle} />
           </Switch>
         </Router>
     );

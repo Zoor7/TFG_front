@@ -17,7 +17,7 @@ import "./comentarios.scss";
 
 const Comentarios = ({ place }) => {
   const [message, setMessage] = useState("");
-  const { dispatch } = useContext(PlacesContext);
+  const { state,dispatch } = useContext(PlacesContext);
   let history = useHistory();
 
 
@@ -25,7 +25,7 @@ const Comentarios = ({ place }) => {
     setMessage(str)
   }
 
-  const makeComment =useCallback(async() => {
+  const makeComment =async() => {
 
     const comment = {
       author: "6091c207fe3ed61b10fde239",
@@ -35,7 +35,6 @@ const Comentarios = ({ place }) => {
       place: place.id
     }
     const newComment = await createComment(comment)
-    console.log(newComment)
 
     if (newComment.error) {
       return
@@ -46,7 +45,6 @@ const Comentarios = ({ place }) => {
     }
 
     const updatedPlace = await addComment_place(commentPlaceIds)
-    console.log(updatedPlace)
 
 
     dispatch({
@@ -64,7 +62,7 @@ const Comentarios = ({ place }) => {
     //     },
     // })
 
-  },[dispatch])
+  }
 
   return (
     <div className="comentario-container">

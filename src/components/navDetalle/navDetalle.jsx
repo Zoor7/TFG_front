@@ -9,21 +9,21 @@ const NavDetalle = ({ place }) => {
         <NavLink
           activeClassName="nav-item-active"
           className="nav-link"
-          to={{ pathname: `/lugar/descripcion/${place.id}`, state: { place } }}
+          to={{ pathname: `/lugar/${place.id}/descripcion` }}
         >
           Descripción
         </NavLink>
         <NavLink
           activeClassName="nav-item-active"
           className="nav-link"
-          to={{ pathname: `/lugar/comentarios/${place.id}`, state: { place } }}
+          to={{ pathname: `/lugar/${place.id}/comentarios` }}
         >
           Comentarios
         </NavLink>
         <NavLink
           activeClassName="nav-item-active"
           className="nav-link"
-          to={{ pathname: `/lugar/ubicacion/${place.id}`, state: { place } }}
+          to={{ pathname: `/lugar/${place.id}/ubicacion` }}
         >
           Ubicación
         </NavLink>

@@ -23,19 +23,15 @@ const PlaceCard = ({ place, urlTo }) => {
         if(url==='/'){
             history.push({
                 pathname: urlTo,
-                state: { place },
             })
             return
         }
         history.replace({
             pathname: urlTo,
-            state: { place },
         })
-        console.log(history)
     }
      function handleChildClick(e) {
         e.stopPropagation();
-        console.log('child');
       }
 
     return (
@@ -68,13 +64,13 @@ const PlaceCard = ({ place, urlTo }) => {
                     <NavDetalle place={place} />
                 </div>
                 : null}
-            <Route path='/lugar/descripcion/:id'>
+            <Route path='/lugar/:id/descripcion'>
                 <Descripcion text={place.description} />
             </Route>
-            <Route path='/lugar/comentarios/:id'>
+            <Route path='/lugar/:id/comentarios'>
                 <Comentarios place={place} />
             </Route>
-            <Route path='/lugar/ubicacion/:id'>
+            <Route path='/lugar/:id/ubicacion'>
                 <Ubicacion place={place}  />
             </Route>
 
