@@ -27,10 +27,10 @@ const App = () => {
   const { state } = useContext(PlacesContext)
 
   useEffect(() => {
-    if (state.places[0]) {
+    if (state.places) {
         setLoading(false)
     }
-  }, [state])
+  }, [])
 
   if (!loading) {
     return (

@@ -18,6 +18,7 @@ export const addLike=async(userId)=>{
 
 }
 export const addComment=async(comment)=>{
+    console.log(comment)
 
     const res= await (await fetch(`${baseurl}/addComment`,{
         method:'PUT',
@@ -26,7 +27,7 @@ export const addComment=async(comment)=>{
           },
         body:JSON.stringify(comment)
     })).json()
-    
+
     return res
 
 }

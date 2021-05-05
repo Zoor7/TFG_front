@@ -4,7 +4,7 @@ export function placeReducer(state,action){
           return {places:action.payload};
           case 'UPDATE_PLACE':
             const updatedPlaces= state.places.filter(place=>place.id!==action.payload.id)
-            return {places:[...updatedPlaces,action.payload]};
+            return {...state,places:[...updatedPlaces,action.payload]};
         
         default:
           throw new Error();

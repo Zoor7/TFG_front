@@ -1,8 +1,8 @@
-import { FaMapMarkedAlt, FaRegComment } from 'react-icons/fa';
-import { BsHeart } from 'react-icons/bs';
 import {
     Route, useLocation, useHistory
 } from "react-router-dom";
+import { FaMapMarkedAlt, FaRegComment } from 'react-icons/fa';
+import { BsHeart } from 'react-icons/bs';
 
 import Avatar from '../avatar/avatar'
 import NavDetalle from '../navDetalle/navDetalle'
@@ -11,17 +11,28 @@ import Comentarios from '../../pages/Detalle/comentarios/comentarios';
 import Ubicacion from '../../pages/Detalle/ubicacion/ubicacion';
 
 import './placecard.scss'
+import avatarPlaceholder from '../../assets/images/avatarPlaceholder.webp'
+
 
 const PlaceCard = ({ place, urlTo }) => {
+
 
     let url = useLocation().pathname
     let history = useHistory()
 
     const navigateTo = () => {
-        history.push({
+        if(url==='/'){
+            history.push({
+                pathname: urlTo,
+                state: { place },
+            })
+            return
+        }
+        history.replace({
             pathname: urlTo,
-            state: { place }
+            state: { place },
         })
+        console.log(history)
     }
      function handleChildClick(e) {
         e.stopPropagation();
@@ -29,11 +40,11 @@ const PlaceCard = ({ place, urlTo }) => {
       }
 
     return (
-        <div className="placecard-container" onClick={url!=='/'?null:navigateTo}>
+        <div className="placecard-container" onClick={navigateTo}>
 
             <div className="placecard-header">
                 <div className="user-placecard">
-                    <Avatar img={place.author.avatar} />
+                    <Avatar img={place.author.avatar?place.author.avatar:avatarPlaceholder} />
                     <p>{place.author.username}</p>
                 </div>
                 <FaMapMarkedAlt size='1.6rem' />
@@ -58,13 +69,13 @@ const PlaceCard = ({ place, urlTo }) => {
                     <NavDetalle place={place} />
                 </div>
                 : null}
-            <Route path='/lugar/descripcion'>
+            <Route path='/lugar/descripcion/:id'>
                 <Descripcion text={place.description} />
             </Route>
-            <Route path='/lugar/comentarios'>
+            <Route path='/lugar/comentarios/:id'>
                 <Comentarios place={place} />
             </Route>
-            <Route path='/lugar/ubicacion'>
+            <Route path='/lugar/ubicacion/:id'>
                 <Ubicacion place={place}  />
             </Route>
 
