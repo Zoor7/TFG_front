@@ -4,21 +4,20 @@ import {
 import { FaMapMarkedAlt, FaRegComment } from 'react-icons/fa';
 import { BsHeart } from 'react-icons/bs';
 
-import Avatar from '../avatar/avatar'
-import NavDetalle from '../navDetalle/navDetalle'
-import Descripcion from '../../pages/Detalle/descripcion/descripcion.jsx';
-import Comentarios from '../../pages/Detalle/comentarios/comentarios';
-import Ubicacion from '../../pages/Detalle/ubicacion/ubicacion';
+import Avatar from "../avatar/avatar";
+import NavDetalle from "../navDetalle/navDetalle";
+import Descripcion from "../../pages/Detalle/descripcion/descripcion.jsx";
+import Comentarios from "../../pages/Detalle/comentarios/comentarios";
+import Ubicacion from "../../pages/Detalle/ubicacion/ubicacion";
 
 import './placecard.scss'
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.webp'
 
 
 const PlaceCard = ({ place, urlTo }) => {
+  let url = useLocation().pathname;
+  let history = useHistory();
 
-
-    let url = useLocation().pathname
-    let history = useHistory()
 
     const navigateTo = () => {
         if(url==='/'){
@@ -79,9 +78,8 @@ const PlaceCard = ({ place, urlTo }) => {
                 <Ubicacion place={place}  />
             </Route>
 
-        </div>
-    )
+    </div>
+  );
+};
 
-}
-
-export default PlaceCard
+export default PlaceCard;

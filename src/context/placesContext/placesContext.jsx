@@ -1,41 +1,34 @@
-import React,{useEffect,useReducer} from 'react'
-import {placeReducer} from '../reducers/placesreducer'
+import React, { useEffect, useReducer } from "react";
+import { placeReducer } from "../reducers/placesreducer";
 
-import {getPlaces} from '../../services/placesService'
+import { getPlaces } from "../../services/placesService";
 
-const PlacesContext=React.createContext()
+const PlacesContext = React.createContext();
 
+const initialState = {
+  places: [],
+  rangePlaces: [],
+};
 
-const initialState={
-    places:[],
-    rangePlaces:[]
+export const PlacesProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(placeReducer, initialState);
 
-}
+  useEffect(() => {
+    (async () => {
+      // console.log('object')
+      const places = await getPlaces();
+      dispatch({ type: "ADD_PLACES", payload: places });
+    })();
+  }, []);
 
-export const PlacesProvider = ({children}) => {
+  const values = {
+    state,
+    dispatch,
+  };
 
-    const [state, dispatch] = useReducer(placeReducer, initialState);
-    console.log('holaa')
-    
-    useEffect(() => {
-        (async()=>{
-            const places= await getPlaces();
-            dispatch({type: 'ADD_PLACES',payload:places})
-        })()
-    }, [])
+  return (
+    <PlacesContext.Provider value={values}>{children}</PlacesContext.Provider>
+  );
+};
 
-
-    const values={
-        state,
-        dispatch
-    }
-
-    return(
-        <PlacesContext.Provider value={values}>
-            {children}
-        </PlacesContext.Provider>
-    )
-    
-}
-
-export default PlacesContext
+export default PlacesContext;
