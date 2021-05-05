@@ -7,6 +7,8 @@ import "./home.scss";
 
 const Home = () => {
   const { state } = useContext(PlacesContext);
+
+  console.log(state.places);
   return (
     <div className="home-container">
       {state.places.map((place) => (
