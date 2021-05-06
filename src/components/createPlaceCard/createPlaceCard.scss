@@ -1,0 +1,57 @@
+@import "../../styles/main.scss";
+
+.createPlaceCard-container {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  font-family: var(--fm-montserrat);
+  border-radius: 10px;
+  margin: 2rem auto;
+  width: 600px;
+}
+.createPlaceCard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.user-createPlaceCard {
+  display: flex;
+  width: 40%;
+  column-gap: 0.6rem;
+  font-size: 1.1rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.createPlaceCard-image {
+  img {
+    width: 100%;
+  }
+}
+.createPlacecard-descripcion {
+  padding: 2rem;
+}
+.description-textarea {
+  margin-top: 2rem !important;
+  border: 1px solid #888;
+  font-family: var(--fm-montserrat);
+  resize: none;
+  width: 100%;
+  align-self: center;
+  font-size: 1.1rem;
+  background-color: darken($color: #fff, $amount: 80%);
+  padding: 0.2rem;
+  color: #fff;
+}
+
+.sendInfoSubmit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.createPlacecard-btn {
+  padding: 2rem;
+  border-radius: 5px;
+}
