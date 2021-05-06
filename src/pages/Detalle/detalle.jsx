@@ -7,8 +7,8 @@ import './detalle.scss'
 
 const Detalle = () => {
     const [currentPlace, setCurrentPlace] = useState()
-    const location = useLocation()
-    const history = useHistory()
+    // const location = useLocation()
+    // const history = useHistory()
     const { state } = useContext(PlacesContext)
     let params = useParams()
 
