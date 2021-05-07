@@ -63,7 +63,11 @@ export default function InputSelect(props) {
         }}
       >
         {selectOptions.map((myOption) => {
-          return <option style={styles.cssoptions} value={myOption.name}>{myOption.name}</option>;
+          return (
+            <option key={myOption.id} value={myOption.name}>
+              {myOption.name}
+            </option>
+          );
         })}
       </NativeSelect>
       <FormHelperText style={{color:'white'}}>Seleccione un tipo</FormHelperText>

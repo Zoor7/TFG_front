@@ -23,9 +23,9 @@ const CreatePlaceCard = () => {
   };
 
   const myOptions = [
-    { name: "Primero" },
-    { name: "Segundo" },
-    { name: "Tercero" },
+    { name: "Primero", id: 1 },
+    { name: "Segundo", id: 2 },
+    { name: "Tercero", id: 3 },
   ];
 
   const handleComment = (str) => {
@@ -62,7 +62,7 @@ const CreatePlaceCard = () => {
         <img src={cameraPlaceholder} alt="addPhoto" />
       </div>
 
-      <div className="createPlacecard-descripcion">
+      <div className="createPlaceCard-descripcion">
         <textarea
           className="description-textarea"
           onChange={(e) => handleComment(e.target.value)}
@@ -75,11 +75,9 @@ const CreatePlaceCard = () => {
       </div>
       <div className="createPlaceCard-web"></div>
       <div className="sendInfoSubmit">
-        <button
-          className="createPlaceCard-btn"
-          value="Enviar"
-          onClick={() => ""}
-          >Enviar</button>
+        <button className="createPlaceCard-btn" onClick={() => ""}>
+          Enviar
+        </button>
       </div>
     </div>
   );
