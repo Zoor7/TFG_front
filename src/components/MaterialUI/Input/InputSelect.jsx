@@ -43,7 +43,11 @@ export default function InputSelect(props) {
         }}
       >
         {selectOptions.map((myOption) => {
-          return <option value={myOption.name}>{myOption.name}</option>;
+          return (
+            <option key={myOption.id} value={myOption.name}>
+              {myOption.name}
+            </option>
+          );
         })}
       </NativeSelect>
       <FormHelperText>Seleccione un tipo</FormHelperText>

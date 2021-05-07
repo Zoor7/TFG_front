@@ -29,7 +29,7 @@
     width: 100%;
   }
 }
-.createPlacecard-descripcion {
+.createPlaceCard-descripcion {
   padding: 2rem;
 }
 .description-textarea {
@@ -51,7 +51,20 @@
   align-items: center;
   padding-bottom: 1rem;
 }
-.createPlacecard-btn {
-  padding: 2rem;
+.createPlaceCard-btn {
+  padding: 0.5rem 3rem;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-background);
   border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    transform: translateY(-0.2rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .createPlaceCard-container {
+    width: 100%;
+    border-radius: 0;
+  }
 }
