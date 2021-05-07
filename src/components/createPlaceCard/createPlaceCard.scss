@@ -30,10 +30,9 @@
   }
 }
 .createPlacecard-descripcion {
-  padding: 2rem;
+  padding: 1rem 2rem;
 }
 .description-textarea {
-  margin-top: 2rem !important;
   border: 1px solid #888;
   font-family: var(--fm-montserrat);
   resize: none;
@@ -43,15 +42,31 @@
   background-color: darken($color: #fff, $amount: 80%);
   padding: 0.2rem;
   color: #fff;
+
 }
 
 .sendInfoSubmit {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
 }
-.createPlacecard-btn {
-  padding: 2rem;
-  border-radius: 5px;
+.createPlaceCard-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: 1px solid #7DC2AD;
+  background-color: #181818;
+  width: 30%;
+  color: #7DC2AD;
+  font-family: var(--fs-montserrat);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  // box-shadow: #FFF 0 -1px 4px, #ff0 0 -2px 10px, #ff8000 0 -10px 20px, red 0 -18px 40px, 5px 5px 15px 5px rgba(0,0,0,0);
+  // box-shadow: 10px 0 0 #F0F0F0, 20px 0 0 #000, 30px 0 0 #F0F0F0, 0 10px 0 #F0F0F0, 10px 10px 0 #000, 20px 10px 0 #F0F0F0, 30px 10px 0 #000, 0 20px 0 #000, 10px 20px 0 #F0F0F0, 20px 20px 0 #000, 30px 20px 0 #F0F0F0, 0 30px 0 #F0F0F0, 10px 30px 0 #000, 20px 30px 0 #F0F0F0, 30px 30px 0 #000, 5px 5px 15px 5px rgba(0,0,0,0);
+  // box-shadow: 0px 3px 0px 2px rgba(0,0,0,0.1), 0px 6px 0px 4px rgba(0,0,0,0.1), 0px 9px 0px 6px rgba(0,0,0,0.1), 0px 12px 0px 8px rgba(0,0,0,0.1), 0px 15px 0px 10px rgba(0,0,0,0.1), 0px 18px 0px 12px rgba(0,0,0,0.1), 0px 21px 0px 14px rgba(0,0,0,0.1), 0px 24px 0px 16px rgba(0,0,0,0.1), 0px 27px 0px 18px rgba(0,0,0,0.1), 0px 30px 0px 20px rgba(0,0,0,0.1), 5px 5px 15px 5px rgba(0,0,0,0);
+  // box-shadow: 5px 5px 0px 0px #289FED, 10px 10px 0px 0px #5FB8FF, 15px 15px 0px 0px #A1D8FF, 20px 20px 0px 0px #CAE6FF, 25px 25px 0px 0px #E1EEFF, 5px 5px 15px 5px rgba(0,0,0,0);
+  &:hover{
+    transform: translateY(0.2rem);
+  }
 }

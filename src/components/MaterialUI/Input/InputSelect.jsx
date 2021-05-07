@@ -16,6 +16,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const styles={
+
+  styles:{
+    color:'white'
+  },
+  container:{
+    display:'flex',
+    padding:'0 3rem'
+  },
+  cssoptions:{
+    backgroundColor:'#181818',
+    border:'0 solid #181818' ,
+    color:'white',
+
+  }
+}
+
 export default function InputSelect(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
@@ -32,9 +49,12 @@ export default function InputSelect(props) {
     });
   };
   return (
-    <FormControl className={classes.formControl}>
-      <InputLabel htmlFor="age-native-helper">Tipo de lugar</InputLabel>
+    <div style={styles.container}>
+
+    <FormControl className={classes.formControl} style={{color:'white'}}>
+      <InputLabel htmlFor="age-native-helper" style={{color:'white'}}>Tipo de lugar</InputLabel>
       <NativeSelect
+        style={{color:'white'}}
         value={state.age}
         onChange={handleChange}
         inputProps={{
@@ -43,10 +63,12 @@ export default function InputSelect(props) {
         }}
       >
         {selectOptions.map((myOption) => {
-          return <option value={myOption.name}>{myOption.name}</option>;
+          return <option style={styles.cssoptions} value={myOption.name}>{myOption.name}</option>;
         })}
       </NativeSelect>
-      <FormHelperText>Seleccione un tipo</FormHelperText>
+      <FormHelperText style={{color:'white'}}>Seleccione un tipo</FormHelperText>
     </FormControl>
+    </div>
+
   );
 }

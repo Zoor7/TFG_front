@@ -75,12 +75,11 @@ const CreatePlaceCard = () => {
       </div>
       <div className="createPlaceCard-web"></div>
       <div className="sendInfoSubmit">
-        <input
+        <button
           className="createPlaceCard-btn"
-          type="button"
           value="Enviar"
           onClick={() => ""}
-        />
+          >Enviar</button>
       </div>
     </div>
   );
