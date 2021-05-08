@@ -1,23 +1,22 @@
 import React, {
   useState,
-  useEffect,
   useContext,
-  useCallback,
-  useMemo,
 } from "react";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 import Avatar from "../../../components/avatar/avatar";
 import PlacesContext from "../../../context/placesContext/placesContext";
 import { addComment as addComment_place } from "../../../services/placesService";
-import { addComment as addComment_user } from "../../../services/userService";
+// import { addComment as addComment_user } from "../../../services/userService";
 import { createComment } from "../../../services/commentService";
+
+
 
 import "./comentarios.scss";
 
 const Comentarios = ({ place }) => {
   const [message, setMessage] = useState("");
   const { state, dispatch } = useContext(PlacesContext);
-  let history = useHistory();
+  // let history = useHistory();
 
   const handleComment = (str) => {
     setMessage(str);
@@ -62,13 +61,13 @@ const Comentarios = ({ place }) => {
   return (
     <div className="comentario-container">
       {place.comments.map((comment) => (
-        <li key={comment.id}>
+        <li style={{padding:'0.7rem 0'}} key={comment.id}>
           <div className="comment">
             {/* <Avatar img={comment.author.avatar}/> */}
             <p style={{ fontWeight: 600, fontSize: "0.9rem" }}>
               {comment.author_username}
             </p>
-            <p>{comment.text}</p>
+            <p className='comentario-comentario'>{comment.text}</p>
           </div>
           <p className="fancy">
             <span>Respuestas: {comment.responses.length}</span>
@@ -76,13 +75,17 @@ const Comentarios = ({ place }) => {
         </li>
       ))}
       <div className="textarea-container">
+        <Avatar img={place.author.avatar} />
         <textarea
           className="comment-textarea"
           onChange={(e) => handleComment(e.target.value)}
           maxLength="200"
           placeholder="Comenta aqui...."
         ></textarea>
-        <button className="textarea-btn" onClick={makeComment}>
+        <p>&#x2139;&#xFE0F; Minimo 10 caracteres</p>
+      </div>
+      <div className="btn-container">
+        <button onClick={makeComment}>
           Enviar
         </button>
       </div>

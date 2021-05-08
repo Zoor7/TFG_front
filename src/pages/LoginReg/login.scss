@@ -1,0 +1,79 @@
+@import "../../styles/main.scss";
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid white;
+  font-family: var(--fm-montserrat);
+  margin: 2rem auto;
+  width: 500px;
+  padding: 4rem 0;
+  h1 {
+    margin-top: 5rem;
+    text-align: center;
+    color: white;
+  }
+  button {
+    background-color: var(--color-background);
+    padding: 0.5rem 2rem;
+    border: 0px solid #181818;
+    color: #fff;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-family: var(--fm-montserrat);
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+}
+.inputs-login {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+
+  input {
+    font-size: 1rem;
+    width: 70%;
+    margin: 0 auto;
+    font-family: var(--fm-montserrat);
+    padding: 1rem;
+    border: 1px solid rgba($color: #fff, $alpha: 0.4);
+    background-color: rgba($color: #fff, $alpha: 0.4);
+    outline: none;
+  }
+  p {
+    position: relative;
+    bottom: 1.6rem;
+    font-weight: 400;
+    color: #fff;
+    width: 70%;
+    margin:0 auto;
+    text-decoration: solid underline;
+    cursor: pointer;
+  }
+}
+
+.help-login {
+  width: 70%;
+  margin: 0 auto;
+  background-color: #181818;
+  color: #fff;
+  padding: 1.1rem 0;
+  border-radius: 20px;
+  text-align: center;
+  .login-toRegister {
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .login-container {
+    width: 95%;
+    overflow: hidden;
+  }
+}

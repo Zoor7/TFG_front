@@ -1,19 +1,20 @@
-import { useContext, useState } from "react";
+import {  useState } from "react";
 
-import { useLocation, useHistory } from "react-router-dom";
+// import { useLocation, useHistory } from "react-router-dom";
 
 import Avatar from "../avatar/avatar";
-import InputSelect from "../MaterialUI/Input/InputSelect";
+
 
 import "./createPlaceCard.scss";
 import avatarPlaceholder from "../../assets/images/avatarPlaceholder.webp";
 import cameraPlaceholder from "../../assets/images/camera.jpg";
+import { InputBase} from "@material-ui/core";
 
 const CreatePlaceCard = () => {
   const [message, setMessage] = useState("");
 
-  let url = useLocation().pathname;
-  let history = useHistory();
+  // let url = useLocation().pathname;
+  // let history = useHistory();
 
   const state = {
     name: "hector",
@@ -21,12 +22,6 @@ const CreatePlaceCard = () => {
     username: "zoor",
     id: "6091c207fe3ed61b10fde239",
   };
-
-  const myOptions = [
-    { name: "Primero", id: 1 },
-    { name: "Segundo", id: 2 },
-    { name: "Tercero", id: 3 },
-  ];
 
   const handleComment = (str) => {
     setMessage(str);
@@ -45,9 +40,7 @@ const CreatePlaceCard = () => {
   //       pathname: urlTo,
   //     });
   //   };
-  function handleChildClick(e) {
-    e.stopPropagation();
-  }
+
 
   return (
     <div className="createPlaceCard-container">
@@ -63,20 +56,34 @@ const CreatePlaceCard = () => {
       </div>
 
       <div className="createPlaceCard-descripcion">
-        <textarea
-          className="description-textarea"
-          onChange={(e) => handleComment(e.target.value)}
-          maxLength="200"
-          placeholder="La descripción debe tener mínimo 10 carácteres"
-        ></textarea>
+        <p style={{ marginBottom: '0.5rem' }}>Descripción</p>
+        <InputBase
+          className='textarea'
+          placeholder="Añade la descripción aquí..."
+          onChange={e=>handleComment(e.target.value)}
+          multiline
+        />
       </div>
       <div className="createPlaceCard-type">
-        <InputSelect selectOptions={myOptions} />
+        <p style={{alignSelf:'flex-start',marginBottom:'0.5rem'}}>Tipo de lugar</p>
+        <select>
+          <option>Monumento</option>
+          <option>Naturaleza</option>
+          <option>Tipo 3</option>
+          <option>Tipo 4</option>
+        </select>
       </div>
-      <div className="createPlaceCard-web"></div>
+      <div className="createPlaceCard-web">
+        Página Web
+      <InputBase
+          className='textarea'
+          placeholder="Añade la página web del lugar si tiene..."
+          multiline
+        />
+      </div>
       <div className="sendInfoSubmit">
         <button className="createPlaceCard-btn" onClick={() => ""}>
-          Enviar
+          Siguiente
         </button>
       </div>
     </div>

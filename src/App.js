@@ -11,6 +11,7 @@ import CircleLoader from "react-spinners/CircleLoader";
 import { css } from "@emotion/react";
 
 import "./App.scss";
+import Login from "./pages/LoginReg/Login.jsx";
 
 const override = css`
   display: block;
@@ -36,6 +37,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/lugar/:id" component={Detalle} />
+          <Route path="/login" component={Login} />
+
           <Route path="/create" component={CreatePlace} />
         </Switch>
       </Router>

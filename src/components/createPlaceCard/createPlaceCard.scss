@@ -30,20 +30,42 @@
   }
 }
 .createPlaceCard-descripcion {
-  padding: 2rem;
+  padding:1.5rem 3rem;
+  .textarea{
+    color: white;
+    border-bottom: 1px solid white;
+    padding:0.5rem 1rem;
+    width: 100%;
+  }
 }
-.description-textarea {
-  border: 1px solid #888;
-  font-family: var(--fm-montserrat);
-  resize: none;
-  width: 100%;
-  align-self: center;
-  font-size: 1.1rem;
-  background-color: darken($color: #fff, $amount: 80%);
-  padding: 0.2rem;
-  color: #fff;
+.createPlaceCard-type{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding:1.5rem 3rem;
 
+  select{
+    background-color: #181818;
+    border:none;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+    font-family: var(--fm-montserrat);
+    border-bottom: 1px solid white;
+    padding: 0.5rem 1rem;
+  }
 }
+.createPlaceCard-web{
+  padding: 1.5rem 3rem;
+  .textarea{
+    color: white;
+    border-bottom: 1px solid white;
+    padding:0.5rem 1rem;
+    width: 100%;
+  }
+}
+
 
 .sendInfoSubmit {
   display: flex;
@@ -53,8 +75,10 @@
 }
 .createPlaceCard-btn {
   padding: 0.5rem 3rem;
-  background-color: var(--color-background);
-  border: 1px solid var(--color-background);
+  margin-top: 1rem;
+  background-color: #181818;
+  border: 1px solid #51AC90;
+  color: white;
   border-radius: 5px;
   cursor: pointer;
   &:hover {

@@ -4,7 +4,7 @@ import CreatePlaceCard from "../../components/createPlaceCard/CreatePlaceCard";
 
 const CreatePlace = () => {
   return (
-    <div>
+    <div className='create-container'>
       <CreatePlaceCard />
     </div>
   );
