@@ -12,15 +12,16 @@ import Ubicacion from "../../pages/Detalle/ubicacion/ubicacion";
 
 import './placecard.scss'
 import avatarPlaceholder from '../../assets/images/avatarPlaceholder.webp'
+import Mapa from "../Mapa/Mapa";
 
 
 const PlaceCard = ({ place, urlTo }) => {
-  let url = useLocation().pathname;
-  let history = useHistory();
+    let url = useLocation().pathname;
+    let history = useHistory();
 
 
     const navigateTo = () => {
-        if(url==='/'){
+        if (url === '/') {
             history.push({
                 pathname: urlTo,
             })
@@ -30,27 +31,30 @@ const PlaceCard = ({ place, urlTo }) => {
             pathname: urlTo,
         })
     }
-     function handleChildClick(e) {
+    function handleChildClick(e) {
         e.stopPropagation();
-      }
+    }
 
     return (
         <div className="placecard-container" onClick={navigateTo}>
 
             <div className="placecard-header">
                 <div className="user-placecard">
-                    <Avatar img={place.author.avatar?place.author.avatar:avatarPlaceholder} />
+                    <Avatar img={place.author.avatar ? place.author.avatar : avatarPlaceholder} />
                     <p>{place.author.username}</p>
                 </div>
-                <FaMapMarkedAlt size='1.6rem' />
+                {url.includes('ubicacion') ? null :
+                    <FaMapMarkedAlt size='1.6rem' />}
             </div>
 
             <div className="placecard-image">
-                <img src={place.image_url} alt=""/>
+                {url.includes('ubicacion') ? <Mapa place={place}/> :
+                    <img src={place.image_url} alt="" />
+                }
             </div>
 
             <div className="placecard-footer">
-                <div onClick={(e)=>handleChildClick(e)} className=" like interaction">
+                <div onClick={(e) => handleChildClick(e)} className=" like interaction">
                     <BsHeart size='1.3rem' />
                     {place.likes.length}
                 </div>
@@ -71,11 +75,11 @@ const PlaceCard = ({ place, urlTo }) => {
                 <Comentarios place={place} />
             </Route>
             <Route path='/lugar/:id/ubicacion'>
-                <Ubicacion place={place}  />
+                <Ubicacion place={place} />
             </Route>
 
-    </div>
-  );
+        </div>
+    );
 };
 
 export default PlaceCard;

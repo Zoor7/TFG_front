@@ -7,8 +7,6 @@ import './detalle.scss'
 
 const Detalle = () => {
     const [currentPlace, setCurrentPlace] = useState()
-    // const location = useLocation()
-    // const history = useHistory()
     const { state } = useContext(PlacesContext)
     let params = useParams()
 
@@ -20,15 +18,8 @@ const Detalle = () => {
         })()
     }, [state])
 
-    if(currentPlace){
-
-        return (
-            <PlaceCard place={currentPlace} />
-            )
-        }
-    else{
-        return<h1>Loading</h1>
-    }
+    if(currentPlace) return <PlaceCard place={currentPlace} />
+    else return<h1>Loading</h1>
 
 
 }
