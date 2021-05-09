@@ -6,12 +6,9 @@
 
 body{
     position: absolute;
-    left: 15vw;
-    right: 0;
     height: 100vh;
-    max-width: 60vw;
-    min-width: 60vw;
-    margin: 0 auto;
+    right: 0;
+    left: 15vw;
     background-color: var(--color-background);
     
 }
@@ -22,7 +19,7 @@ body{
         width: 100%;
         max-width: 100%;
         min-width: 100%;
-        padding: 3rem 0;
+        margin: 2rem 0;
 
     }
 }
