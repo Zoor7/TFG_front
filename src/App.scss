@@ -6,9 +6,12 @@
 
 body{
     position: absolute;
-    height: 100vh;
-    right: 0;
     left: 15vw;
+    right: 0;
+    height: 100vh;
+    max-width: 60vw;
+    min-width: 60vw;
+    margin: 0 auto;
     background-color: var(--color-background);
     
 }
@@ -19,7 +22,7 @@ body{
         width: 100%;
         max-width: 100%;
         min-width: 100%;
-        margin: 2rem 0;
+        padding: 3rem 0;
 
     }
 }
