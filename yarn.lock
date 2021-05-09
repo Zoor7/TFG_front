@@ -9706,6 +9706,11 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.9.tgz"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
+react-hook-form@^7.5.0:
+  version "7.5.0"
+  resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.5.0.tgz"
+  integrity sha512-npbxmzegSmnc6tU7oEJTVo7Yp+TNf/buFgbWhXibdYz+cDyb0f0Zj3oTMxGi+O86KgoJekipeXW+266TMo7prA==
+
 react-icons@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.2.0.tgz"

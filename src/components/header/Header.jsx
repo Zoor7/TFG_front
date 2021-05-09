@@ -50,7 +50,7 @@ const Header = () => {
                         {active === '/login' ? <RiUser3Fill size='1.8rem' /> : <RiUser3Line size='1.8rem' />}
                              Login
                         </NavLink>
-                    : <div>
+                    : <div  style={{display:'flex', flexDirection:'column',rowGap:'1rem'}}>
                         <NavLink onClick={width <= 900? () => setIsClosed(!isClosed):()=>''} activeClassName='item-active' className="item" replace={goTo('/explorar')} to='/explorar'>
                             <AiOutlineSearch size='1.8rem' />
                              Explorar

@@ -1,20 +1,21 @@
-import {  useState } from "react";
+import { useState } from "react";
 
 // import { useLocation, useHistory } from "react-router-dom";
 
 import Avatar from "../avatar/avatar";
 
-
-import "./createPlaceCard.scss";
 import avatarPlaceholder from "../../assets/images/avatarPlaceholder.webp";
 import cameraPlaceholder from "../../assets/images/camera.jpg";
-import { InputBase} from "@material-ui/core";
+import { useForm } from "react-hook-form";
+
+
+import "./createPlaceCard.scss";
 
 const CreatePlaceCard = () => {
-  const [message, setMessage] = useState("");
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  // let url = useLocation().pathname;
-  // let history = useHistory();
+  
+  // const {state} = useContext(); //user context
 
   const state = {
     name: "hector",
@@ -23,23 +24,8 @@ const CreatePlaceCard = () => {
     id: "6091c207fe3ed61b10fde239",
   };
 
-  const handleComment = (str) => {
-    setMessage(str);
-  };
+  const onSubmit = data => console.log(data);
 
-  //   const {state} = useContext(); //user context
-
-  //   const navigateTo = () => {
-  //     if (url === "/") {
-  //       history.push({
-  //         pathname: urlTo,
-  //       });
-  //       return;
-  //     }
-  //     history.replace({
-  //       pathname: urlTo,
-  //     });
-  //   };
 
 
   return (
@@ -55,37 +41,42 @@ const CreatePlaceCard = () => {
         <img src={cameraPlaceholder} alt="addPhoto" />
       </div>
 
-      <div className="createPlaceCard-descripcion">
-        <p style={{ marginBottom: '0.5rem' }}>Descripción</p>
-        <InputBase
-          className='textarea'
-          placeholder="Añade la descripción aquí..."
-          onChange={e=>handleComment(e.target.value)}
-          multiline
-        />
-      </div>
-      <div className="createPlaceCard-type">
-        <p style={{alignSelf:'flex-start',marginBottom:'0.5rem'}}>Tipo de lugar</p>
-        <select>
-          <option>Monumento</option>
-          <option>Naturaleza</option>
-          <option>Tipo 3</option>
-          <option>Tipo 4</option>
-        </select>
-      </div>
-      <div className="createPlaceCard-web">
-        Página Web
-      <InputBase
-          className='textarea'
-          placeholder="Añade la página web del lugar si tiene..."
-          multiline
-        />
-      </div>
-      <div className="sendInfoSubmit">
-        <button className="createPlaceCard-btn" onClick={() => ""}>
-          Siguiente
-        </button>
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="createPlaceCard-descripcion">
+          <p style={{ marginBottom: '0.5rem' }}>Descripción</p>
+          <input
+            {...register('Description', { required: true, minLength: 10, maxLength: 200 })}
+            placeholder="Añade la descripción aquí..."
+          />
+          {errors?.Description?.type==='required' && <span style={{ color: 'red' }}>This field is required</span>}
+          {errors?.Description?.type==='minLength' && <span style={{ color: 'red' }}>Minimo 10 caracteres</span>}
+          {errors?.Description?.type==='maxLength' && <span style={{ color: 'red' }}>Maximo 200 caracteres</span>}
+
+        </div>
+        <div className="createPlaceCard-type">
+          <p style={{ alignSelf: 'flex-start', marginBottom: '0.5rem' }}>Tipo de lugar</p>
+          <select {...register('Tipo', { required: true })} >
+            <option>Monumento</option>
+            <option>Naturaleza</option>
+            <option>Tipo 3</option>
+            <option>Tipo 4</option>
+          </select>
+          {errors?.Tipo?.type==='required' && <span style={{ color: 'red' }}>This field is required</span>}
+
+        </div>
+        <div className="createPlaceCard-web">
+          <p style={{ marginBottom: '0.5rem' }}>Pagina Web</p>
+
+          <input
+            {...register('Web')}
+            placeholder="Añade la página web del lugar si tiene..."
+          />
+        </div>
+        <div className="sendInfoSubmit">
+          <input type="submit" className="createPlaceCard-btn" />
+        </div>
+      </form>
+
     </div>
   );
 };

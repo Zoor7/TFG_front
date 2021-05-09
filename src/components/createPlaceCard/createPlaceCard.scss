@@ -29,13 +29,17 @@
     width: 100%;
   }
 }
-.createPlaceCard-descripcion {
+.createPlaceCard-descripcion,.createPlaceCard-web  {
   padding:1.5rem 3rem;
-  .textarea{
+  input{
     color: white;
+    background-color: #181818;
+    border: 0px solid black;
     border-bottom: 1px solid white;
     padding:0.5rem 1rem;
-    width: 100%;
+    width: 93%;
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
   }
 }
 .createPlaceCard-type{
@@ -56,17 +60,6 @@
     padding: 0.5rem 1rem;
   }
 }
-.createPlaceCard-web{
-  padding: 1.5rem 3rem;
-  .textarea{
-    color: white;
-    border-bottom: 1px solid white;
-    padding:0.5rem 1rem;
-    width: 100%;
-  }
-}
-
-
 .sendInfoSubmit {
   display: flex;
   justify-content: center;
