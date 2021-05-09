@@ -20,20 +20,22 @@
 }
 .textarea-container {
   display: flex;
-  column-gap: 1.5rem;
   padding: 2rem 0;
   align-items: center;
+  column-gap: 1.5rem;
+  justify-content: center;
   p {
     position: absolute;
     bottom: 2.5rem;
-    left: 6.4rem;
+    left: 6rem;
     font-size: 0.9rem;
     line-height: normal;
   }
   textarea {
     color: white;
     border: 1px solid white;
-    width: 70%;
+    width: 90%;
+    overflow: hidden;
     padding: 1rem;
     background-color: #181818;
     resize: none;

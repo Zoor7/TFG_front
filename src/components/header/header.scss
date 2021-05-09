@@ -34,8 +34,9 @@
 }
 
 .header-title{
-    font-size: 1.4rem;
-    font-weight: bolder ;
+    font-size: 2rem;
+    font-weight: 100;
+    font-family: var(--fm-montserrat);
 }
 
 .mobile-header{
@@ -49,15 +50,17 @@
     div{
         display: flex;
         justify-content: space-between;
+        align-self: center;
+        align-items: center;
         padding: 1rem 1rem;
-        img{
-            width: 100px;
-            height: 100px;
-        }
     }
 }
 
 
 
 @media (max-width: 900px) {
+    .header-container{
+        width:100vw;
+    }
+
 }

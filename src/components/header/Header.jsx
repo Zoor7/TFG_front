@@ -37,6 +37,7 @@ const Header = () => {
             <div className="header-container">
 
                 <NavLink
+                    onClick={width <= 900? () => setIsClosed(!isClosed):()=>''}
                     className={active === '/' ? 'item item-active' : 'item'}
                     to={'/'}
                     replace={goTo('/')}
@@ -45,22 +46,22 @@ const Header = () => {
                     Home
                 </NavLink>
                 {state
-                    ? <NavLink activeClassName='item-active' className="item" replace={goTo('/login')} to='/login'>
+                    ? <NavLink onClick={width <= 900? () => setIsClosed(!isClosed):()=>''} activeClassName='item-active' className="item" replace={goTo('/login')} to='/login'>
                         {active === '/login' ? <RiUser3Fill size='1.8rem' /> : <RiUser3Line size='1.8rem' />}
                              Login
                         </NavLink>
                     : <div>
-                        <NavLink activeClassName='item-active' className="item" replace={goTo('/explorar')} to='/explorar'>
+                        <NavLink onClick={width <= 900? () => setIsClosed(!isClosed):()=>''} activeClassName='item-active' className="item" replace={goTo('/explorar')} to='/explorar'>
                             <AiOutlineSearch size='1.8rem' />
                              Explorar
                         </NavLink>
 
-                        <NavLink activeClassName='item-active' className="item" replace={goTo('/create')} to='/create'>
+                        <NavLink onClick={width <= 900? () => setIsClosed(!isClosed):()=>''} activeClassName='item-active' className="item" replace={goTo('/create')} to='/create'>
                             <AiOutlinePlus size='1.8rem' />
                              Create
                         </NavLink>
 
-                        <NavLink activeClassName='item-active' className="item" replace={goTo('/config')} to='/config'>
+                        <NavLink onClick={width <= 900? () => setIsClosed(!isClosed):()=>''} activeClassName='item-active' className="item" replace={goTo('/config')} to='/config'>
                             {active === '/config' ? <AiFillSetting size='1.8rem' /> : <AiOutlineSetting size='1.8rem' />}
                             Configuración
                         </NavLink>
@@ -77,8 +78,8 @@ const Header = () => {
 
             {width >= 900 ? header()
                 : (<div className="mobile-header">
-                    <div className=''>
-                        <p className='header-title'>bcurious</p>
+                    <div>
+                        <p className='header-title'>BCURIOUS</p>
                         <GiHamburgerMenu size='1.5rem' onClick={() => setIsClosed(!isClosed)} />
                     </div>
                     <Drawer anchor={'right'} open={isClosed} onClose={() => setIsClosed(!isClosed)}>
