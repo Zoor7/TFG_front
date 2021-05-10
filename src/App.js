@@ -12,6 +12,7 @@ import { css } from "@emotion/react";
 
 import "./App.scss";
 import Login from "./pages/LoginReg/Login.jsx";
+import Register from "./pages/LoginReg/Register.jsx";
 
 const override = css`
   display: block;
@@ -22,13 +23,13 @@ const override = css`
 const App = () => {
   const [loading, setLoading] = useState(true);
 
-  const { state } = useContext(PlacesContext);
+  const { placesState } = useContext(PlacesContext);
 
   useEffect(() => {
-    if (state.places) {
+    if (placesState.places) {
       setLoading(false);
     }
-  }, []);
+  }, [placesState]);
 
   if (!loading) {
     return (
@@ -38,7 +39,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/lugar/:id" component={Detalle} />
           <Route path="/login" component={Login} />
-
+          <Route path="/register" component={Register} />
           <Route path="/create" component={CreatePlace} />
         </Switch>
       </Router>

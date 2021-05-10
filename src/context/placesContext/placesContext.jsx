@@ -11,19 +11,19 @@ const initialState = {
 };
 
 export const PlacesProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(placeReducer, initialState);
+  const [placesState, placesDispatch] = useReducer(placeReducer, initialState);
 
   useEffect(() => {
     (async () => {
       // console.log('object')
       const places = await getPlaces();
-      dispatch({ type: "ADD_PLACES", payload: places });
+      placesDispatch({ type: "ADD_PLACES", payload: places });
     })();
   }, []);
 
   const values = {
-    state,
-    dispatch,
+    placesState,
+    placesDispatch,
   };
 
   return (

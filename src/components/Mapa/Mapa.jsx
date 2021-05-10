@@ -1,65 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import { Circle, GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React, { useEffect, useState } from "react";
+import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-
-const GM_KEY = process.env.REACT_APP_GOOGLE_API_KEY
+const GM_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const containerStyle = {
-    width: '100%',
-    height: '40vh'
+  width: "100%",
+  height: "40vh",
 };
 
-
 const Mapa = ({ place, explorar }) => {
+  const [position, setPosition] = useState();
+  // const url=window.location.pathname
 
-    const [position, setPosition] = useState()
-    // const url=window.location.pathname
-
-    useEffect(() => {
-        if (place) {
-            const position = {
-                lat: place.location.coordinates[0],
-                lng: place.location.coordinates[1]
-            }
-            setPosition(position)
-        }
-
-    }, [])
-
-    const setNewPositionMarker = (marker) => {
-        console.log(marker);
+  useEffect(() => {
+    if (place) {
+      const position = {
+        lat: place.location.coordinates[0],
+        lng: place.location.coordinates[1],
+      };
+      setPosition(position);
     }
+  }, [place]);
 
-    const getCurrentPosition=()=>{
-        navigator.geolocation.getCurrentPosition(res => {
-            console.log(res)
-        })
-    }
+  const setNewPositionMarker = (marker) => {
+    console.log(marker);
+  };
 
-    return (
-        <LoadScript
-            googleMapsApiKey={GM_KEY}
-        >
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={position}
-                zoom={15}
-            >
-                {place ? <Marker
-                    position={position}
-                /> : null}
+  const getCurrentPosition = () => {
+    navigator.geolocation.getCurrentPosition((res) => {
+      console.log(res);
+    });
+  };
 
-                {explorar ? <Circle
-                    radius={1000}
+  return (
+    <LoadScript googleMapsApiKey={GM_KEY}>
+      <GoogleMap mapContainerStyle={containerStyle} center={position} zoom={15}>
+        {place ? <Marker position={position} /> : null}
 
-                    center={position}
-                 />
-                  : null}
+        {explorar ? <Circle radius={1000} center={position} /> : null}
 
-                <></>
-            </GoogleMap>
-        </LoadScript>
-    )
-}
+        <></>
+      </GoogleMap>
+    </LoadScript>
+  );
+};
 
-export default React.memo(Mapa)
+export default React.memo(Mapa);

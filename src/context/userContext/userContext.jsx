@@ -12,13 +12,13 @@ const initialState = {
 };
 
 export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, initialState);
+  const [userState, userDispatch] = useReducer(userReducer, initialState);
 
   useEffect(() => {}, []);
 
   const values = {
-    state,
-    dispatch,
+    userState,
+    userDispatch,
   };
 
   return <UserContext.Provider value={values}>{children}</UserContext.Provider>;

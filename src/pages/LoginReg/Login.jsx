@@ -1,40 +1,82 @@
+import { useContext } from "react";
+
 import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import UserContext from "../../context/userContext/userContext";
+import { login } from "../../services/authService";
 
-
-import './login.scss'
+import "./login.scss";
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+  const { userDispatch } = useContext(UserContext);
 
-    const onSubmit = data => console.log(data);
+  const history = useHistory();
 
+  const onSubmit = async (data) => {
+    console.log(data);
 
-    
-    return(
-        <div className="login-container">
-            <h1>Iniciar Sesion</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
 
-            <div className="inputs-login">
-                <input {...register('email',{required:true})} placeholder='Email...' type="email" />
-                {errors?.email?.type==='required' && <span style={{ color: 'red' }}>This field is required</span>}
+    const user = await login(userInfo);
 
-                <input {...register('password',{required:true})} placeholder='Contraseña...' type="password" />
-                {errors?.password?.type==='required' && <span style={{ color: 'red' }}>This field is required</span>}
+    console.log(user[0]);
+    if (user[0]) {
+      console.log("HEYYYYYYYYYYYYY");
+      userDispatch({ type: "ADD_USER", payload: user[0] });
+      history.replace("/");
+      return;
+    }
+  };
 
-                <p>Olvidaste tu contraseña?</p>
-            </div>
-            <input className='login-btn' type='submit'/>
-            </form>
+  const goToRegister = () => {
+    history.push("/register");
+  };
 
-            <div className="help-login">
-                <p>No tienes cuenta?</p>
-                <p className='login-toRegister'>Registrate</p>
-            </div>
+  return (
+    <div className="login-container">
+      <h1>Iniciar Sesion</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="inputs-login">
+          <input
+            {...register("email", { required: true })}
+            placeholder="Email..."
+            type="email"
+          />
+          {errors?.email?.type === "required" && (
+            <span style={{ color: "red" }}>This field is required</span>
+          )}
+
+          <input
+            {...register("password", { required: true })}
+            placeholder="Contraseña..."
+            type="password"
+          />
+          {errors?.password?.type === "required" && (
+            <span style={{ color: "red" }}>This field is required</span>
+          )}
+
+          <p>Olvidaste tu contraseña?</p>
         </div>
-    )
-    
-}
+        <input value="Enviar" className="login-btn" type="submit" />
+      </form>
 
-export default Login
+      <div className="help-login">
+        <p>No tienes cuenta?</p>
+        <p className="login-toRegister" onClick={goToRegister}>
+          Registrate
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
