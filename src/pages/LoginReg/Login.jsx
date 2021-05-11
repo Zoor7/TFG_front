@@ -1,9 +1,10 @@
 import { useContext } from "react";
-import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext/userContext";
+
 import { login } from "../../services/authService";
+import { errorToast, successToast } from "../../components/toast/customToast";
 
 import "./login.scss";
 
@@ -30,29 +31,19 @@ const Login = () => {
 
     console.log(user[0]);
     if (user[0]) {
-      console.log("HEYYYYYYYYYYYYY");
+      successToast("Bienvenido bro");
       userDispatch({ type: "ADD_USER", payload: user[0] });
       history.replace("/");
       return;
     }
 
-    warning("Email y/o contraseña incorrectos!");
+    errorToast("Email y/o contraseña incorrectos!");
   };
 
   const goToRegister = () => {
     history.push("/register");
   };
 
-  const warning = (message) =>
-    toast.error(message, {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   return (
     <div className="login-container">
       <h1>Iniciar Sesion</h1>

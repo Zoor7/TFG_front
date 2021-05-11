@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
 import App from "./App";
+import { ToastContainer } from "react-toastify";
+
 import { PlacesProvider } from "./context/placesContext/placesContext.jsx";
 import { UserProvider } from "./context/userContext/userContext";
-import { ToastContainer } from "react-toastify";
+
+import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <PlacesProvider>

@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import { useHistory } from "react-router-dom";
-
-import "react-toastify/dist/ReactToastify.css";
 
 import Avatar from "../avatar/avatar";
 import { uploadPhoto } from "../../services/firebaseStorageService";
@@ -11,6 +8,7 @@ import avatarPlaceholder from "../../assets/images/avatarPlaceholder.webp";
 import cameraPlaceholder from "../../assets/images/camera.jpg";
 
 import "./createPlaceCard.scss";
+import { successToast } from "../toast/customToast";
 
 const CreatePlaceCard = () => {
   const {
@@ -34,27 +32,14 @@ const CreatePlaceCard = () => {
     console.log(data.image[0]);
     const foto = await uploadPhoto(data.image[0]);
     console.log(foto);
-    notify();
-    setTimeout(() => {
-      history.replace("/");
-    }, 2000);
+    successToast("Lugar creado!", 3000);
+    history.replace("/");
   };
 
   const previewFile = (event) => {
     const img = URL.createObjectURL(event.target.files[0]);
     setLoadImage(img);
   };
-
-  const notify = () =>
-    toast.success("Lugar creado!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
   return (
     <div className="createPlaceCard-container">

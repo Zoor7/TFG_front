@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import { errorToast, successToast } from "../../components/toast/customToast";
 
 import { registeServ } from "../../services/authService";
 
@@ -26,12 +28,12 @@ const Register = () => {
     const newUser = await registeServ(userInfo);
 
     if (newUser) {
-      //CREAR ALERTA OK
+      successToast("Registro completado!", 3000);
       history.replace("/login");
       return;
     }
-
-    //CREAR ERROR
+    errorToast("Email ya en uso");
+    // return;
   };
 
   const goToLogin = () => {
@@ -70,7 +72,7 @@ const Register = () => {
             <span style={{ color: "red" }}>This field is required</span>
           )}
         </div>
-        <input className="register-btn" type="submit" />
+        <input className="register-btn" type="submit" value="Regístrate" />
       </form>
 
       <div className="help-register">
