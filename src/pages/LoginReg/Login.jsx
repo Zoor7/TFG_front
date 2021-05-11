@@ -1,5 +1,5 @@
 import { useContext } from "react";
-
+import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext/userContext";
@@ -35,12 +35,24 @@ const Login = () => {
       history.replace("/");
       return;
     }
+
+    warning("Email y/o contraseña incorrectos!");
   };
 
   const goToRegister = () => {
     history.push("/register");
   };
 
+  const warning = (message) =>
+    toast.error(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   return (
     <div className="login-container">
       <h1>Iniciar Sesion</h1>
