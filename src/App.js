@@ -33,15 +33,17 @@ const App = () => {
 
   if (!loading) {
     return (
-      <Router>
+      <Router >
+        <div className='main-container'>
         <Header />
-        <Switch>
+        <Switch >
           <Route exact path="/" component={Home} />
           <Route path="/lugar/:id" component={Detalle} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/create" component={CreatePlace} />
         </Switch>
+      </div>
       </Router>
     );
   } else return <CircleLoader css={override} size="4rem" />;
