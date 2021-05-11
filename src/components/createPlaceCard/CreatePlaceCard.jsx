@@ -1,20 +1,21 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 // import { useLocation, useHistory } from "react-router-dom";
 
 import Avatar from "../avatar/avatar";
-
+import {uploadPhoto} from '../../services/firebaseStorageService' 
 import avatarPlaceholder from "../../assets/images/avatarPlaceholder.webp";
 import cameraPlaceholder from "../../assets/images/camera.jpg";
-import { useForm } from "react-hook-form";
 
 
 import "./createPlaceCard.scss";
 
 const CreatePlaceCard = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [loadImage, setLoadImage] = useState()
 
-  
+
   // const {state} = useContext(); //user context
 
   const state = {
@@ -24,7 +25,19 @@ const CreatePlaceCard = () => {
     id: "6091c207fe3ed61b10fde239",
   };
 
-  const onSubmit = data => console.log(data);
+  const onSubmit = async(data) => {
+    console.log(data.image[0]);
+    const foto=await uploadPhoto(data.image[0]) 
+    console.log(foto)
+
+  }
+
+
+
+  const previewFile = (event) => {
+    const img = URL.createObjectURL(event.target.files[0]);
+    setLoadImage(img)
+  };
 
 
 
@@ -38,7 +51,9 @@ const CreatePlaceCard = () => {
       </div>
 
       <div className="createPlaceCard-image">
-        <img src={cameraPlaceholder} alt="addPhoto" />
+        <img src={loadImage || cameraPlaceholder} alt="addPhoto" />
+        <input {...register('image', { required: true })} type="file" accept="image/png, image/jpeg" onChange={(e) => previewFile(e)} />
+        {errors?.image?.type === 'required' && <span style={{ color: 'red' }}>This field is required</span>}
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,9 +63,9 @@ const CreatePlaceCard = () => {
             {...register('Description', { required: true, minLength: 10, maxLength: 200 })}
             placeholder="Añade la descripción aquí..."
           />
-          {errors?.Description?.type==='required' && <span style={{ color: 'red' }}>This field is required</span>}
-          {errors?.Description?.type==='minLength' && <span style={{ color: 'red' }}>Minimo 10 caracteres</span>}
-          {errors?.Description?.type==='maxLength' && <span style={{ color: 'red' }}>Maximo 200 caracteres</span>}
+          {errors?.Description?.type === 'required' && <span style={{ color: 'red' }}>This field is required</span>}
+          {errors?.Description?.type === 'minLength' && <span style={{ color: 'red' }}>Minimo 10 caracteres</span>}
+          {errors?.Description?.type === 'maxLength' && <span style={{ color: 'red' }}>Maximo 200 caracteres</span>}
 
         </div>
         <div className="createPlaceCard-type">
@@ -61,7 +76,7 @@ const CreatePlaceCard = () => {
             <option>Tipo 3</option>
             <option>Tipo 4</option>
           </select>
-          {errors?.Tipo?.type==='required' && <span style={{ color: 'red' }}>This field is required</span>}
+          {errors?.Tipo?.type === 'required' && <span style={{ color: 'red' }}>This field is required</span>}
 
         </div>
         <div className="createPlaceCard-web">
