@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Circle, GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
-const GM_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
-
 const containerStyle = {
   width: "100%",
   height: "40vh",
 };
 
-const Mapa = ({ place, explorar }) => {
+const Mapa = ({ place, explorar, create, getPos }) => {
+  const GM_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
   const [position, setPosition] = useState();
-  // const url=window.location.pathname
 
   useEffect(() => {
     if (place) {
@@ -22,13 +20,29 @@ const Mapa = ({ place, explorar }) => {
     }
   }, [place]);
 
+  useEffect(() => {
+    if (create) {
+      getCurrentPosition();
+    }
+  }, []);
+
   const setNewPositionMarker = (marker) => {
-    console.log(marker);
+    const coords = {
+      lat: marker.latLng.lat(),
+      lng: marker.latLng.lng(),
+    };
+    getPos(coords);
+    setPosition(coords);
   };
 
-  const getCurrentPosition = () => {
+  const getCurrentPosition = async () => {
     navigator.geolocation.getCurrentPosition((res) => {
-      console.log(res);
+      const coords = {
+        lat: res.coords.latitude,
+        lng: res.coords.longitude,
+      };
+      getPos(coords);
+      setPosition(coords);
     });
   };
 
@@ -38,6 +52,14 @@ const Mapa = ({ place, explorar }) => {
         {place ? <Marker position={position} /> : null}
 
         {explorar ? <Circle radius={1000} center={position} /> : null}
+
+        {create ? (
+          <Marker
+            position={position}
+            draggable={true}
+            onDragEnd={setNewPositionMarker}
+          />
+        ) : null}
 
         <></>
       </GoogleMap>

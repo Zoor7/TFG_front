@@ -7,6 +7,7 @@ import { login } from "../../services/authService";
 import { errorToast, successToast } from "../../components/toast/customToast";
 
 import "./login.scss";
+import { ADD_USER } from "../../context/reducers/userReducer";
 
 const Login = () => {
   const {
@@ -20,8 +21,6 @@ const Login = () => {
   const history = useHistory();
 
   const onSubmit = async (data) => {
-    console.log(data);
-
     const userInfo = {
       email: data.email,
       password: data.password,
@@ -32,7 +31,7 @@ const Login = () => {
     console.log(user[0]);
     if (user[0]) {
       successToast("Bienvenido bro");
-      userDispatch({ type: "ADD_USER", payload: user[0] });
+      userDispatch({ type: ADD_USER, payload: user[0] });
       history.replace("/");
       return;
     }

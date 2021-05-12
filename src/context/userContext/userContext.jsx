@@ -9,6 +9,8 @@ const initialState = {
   name: "",
   email: "",
   avatar: "",
+  places: [],
+  likes: [],
 };
 
 export const UserProvider = ({ children }) => {

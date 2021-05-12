@@ -13,6 +13,7 @@ import { css } from "@emotion/react";
 import "./App.scss";
 import Login from "./pages/LoginReg/Login.jsx";
 import Register from "./pages/LoginReg/Register.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
 
 const override = css`
   display: block;
@@ -33,17 +34,18 @@ const App = () => {
 
   if (!loading) {
     return (
-      <Router >
-        <div className='main-container'>
-        <Header />
-        <Switch >
-          <Route exact path="/" component={Home} />
-          <Route path="/lugar/:id" component={Detalle} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/create" component={CreatePlace} />
-        </Switch>
-      </div>
+      <Router>
+        <div className="main-container">
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/lugar/:id" component={Detalle} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/create" component={CreatePlace} />
+            <Route component={NotFound} />
+          </Switch>
+        </div>
       </Router>
     );
   } else return <CircleLoader css={override} size="4rem" />;
