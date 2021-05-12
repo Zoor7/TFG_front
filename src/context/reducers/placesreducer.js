@@ -1,4 +1,5 @@
 export const ADD_PLACES = "ADD_PLACES";
+export const ADD_PLACE = "ADD_PLACE";
 export const UPDATE_PLACE = "UPDATE_PLACE";
 
 export function placeReducer(state, action) {
@@ -10,6 +11,8 @@ export function placeReducer(state, action) {
         (place) => place.id !== action.payload.id
       );
       return { ...state, places: [...updatedPlaces, action.payload] };
+    case ADD_PLACE:
+      return { ...state, places: [...state.places, action.payload] };
 
     default:
       throw new Error();

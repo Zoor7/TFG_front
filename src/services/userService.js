@@ -2,14 +2,16 @@
 const baseurl='http://192.168.1.36:3001/api/users'
 
 
-export const addPlace = async (placeId) => {
+export const addPlace = async (obj) => {
   const res = await (
-    await fetch(`${baseurl}/addplace`, {
+    await fetch(`${baseurl}/addPlace`, {
       method: "POST",
-      body: placeId,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
     })
-  ).json;
-  // console.log(res)
+  ).json();
   return res;
 };
 
@@ -20,7 +22,6 @@ export const addLike = async (placeId) => {
       body: placeId,
     })
   ).json();
-  // console.log(res)
   return res;
 };
 
