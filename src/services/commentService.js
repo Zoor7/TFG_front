@@ -1,4 +1,6 @@
-const baseurl='http://localhost:3001/api/comments'
+// const baseurl='http://localhost:3001/api/comments'
+const baseurl='http://192.168.1.36:3001/api/comments'
+
 
 
 
