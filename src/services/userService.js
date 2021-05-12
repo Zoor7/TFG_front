@@ -1,6 +1,5 @@
-//const baseurl = "http://localhost:3001/api/users";
-const baseurl='http://192.168.1.36:3001/api/users'
-
+const baseurl = "http://localhost:3001/api/users";
+// const baseurl='http://192.168.1.36:3001/api/users'
 
 export const addPlace = async (obj) => {
   const res = await (
