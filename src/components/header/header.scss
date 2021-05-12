@@ -13,6 +13,7 @@
     font-family: var(--fm-montserrat);
     padding: 2rem;
     row-gap: 1rem;
+    z-index: 2;
 }
 .item{
     display: flex;
@@ -34,8 +35,8 @@
 }
 
 .header-title{
-    font-size: 2rem;
-    font-weight: 100;
+    font-size: 1.2rem;
+    font-weight: 300;
     font-family: var(--fm-montserrat);
 }
 
@@ -45,14 +46,14 @@
     right: 0;
     left: 0;
     width: 100%;
-    height: 2vh;
-    background-color: var(--color-background);
+    z-index: 2;
+
     div{
         display: flex;
         justify-content: space-between;
-        align-self: center;
         align-items: center;
-        padding: 1rem 1rem;
+        padding: 1.3rem 1rem;
+        font-size: 0.2rem;
     }
 }
 
@@ -60,7 +61,7 @@
 
 @media (max-width: 900px) {
     .header-container{
-        width:100vw;
+        width:40vw;
     }
 
 }

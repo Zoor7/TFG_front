@@ -125,7 +125,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <div className='nose'>
       {width >= 900 ? (
         header()
       ) : (
@@ -133,7 +133,7 @@ const Header = () => {
           <div>
             <p className="header-title">BCURIOUS</p>
             <GiHamburgerMenu
-              size="1.5rem"
+              size="1.3rem"
               onClick={() => setIsClosed(!isClosed)}
             />
           </div>

@@ -8,12 +8,14 @@ body {
   width: 100vw;
   height: 100vh;
   background-color: var(--color-background);
+  overflow-x: hidden;
 
 }
 .main-container{
-  padding: 3rem 0;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
   display: grid;
-  grid-template-columns:20% auto;
+  grid-template-columns:18% auto;
 }
 
 @media (max-width: 900px) {
