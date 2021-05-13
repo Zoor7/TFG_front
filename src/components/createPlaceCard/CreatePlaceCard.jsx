@@ -10,11 +10,13 @@ import cameraPlaceholder from "../../assets/images/camera.jpg";
 import UserContext from "../../context/userContext/userContext";
 import PlacesContext from "../../context/placesContext/placesContext";
 
-import "./createPlaceCard.scss";
 import { errorToast, successToast } from "../toast/customToast";
 import { createPlace } from "../../services/placesService";
 import { addLike } from "../../services/userService";
 import { ADD_PLACE } from "../../context/reducers/placesreducer";
+
+import "../placeCard/placecard.scss"
+import "./createPlaceCard.scss";
 
 const CreatePlaceCard = () => {
   const {
@@ -60,7 +62,6 @@ const CreatePlaceCard = () => {
     };
 
     const placeCreated = await createPlace(newPlace);
-    console.log(placeCreated, "EEEEEEEEEEEEEEEEEEEE");
 
     if (placeCreated.error) {
       errorToast("Ups, algo ha salido mal");
@@ -89,9 +90,10 @@ const CreatePlaceCard = () => {
   };
 
   return (
-    <div className="createPlaceCard-container">
-      <div className="createPlaceCard-header">
-        <div className="user-createPlaceCard">
+    <div className="placecard-container">
+      <div className="placecard-main">
+      <div className="placecard-header">
+        <div className="user-placecard">
           <Avatar
             img={userState.avatar ? userState.avatar : avatarPlaceholder}
           />
@@ -99,7 +101,7 @@ const CreatePlaceCard = () => {
         </div>
       </div>
 
-      <div className="createPlaceCard-image">
+      <div className="placecard-image">
         {url === "/create/ubicacion" ? (
           <Mapa create={true} getPos={getPosFromMapa} />
         ) : (
@@ -170,6 +172,7 @@ const CreatePlaceCard = () => {
           />
         </div>
       </form>
+      </div>
     </div>
   );
 };

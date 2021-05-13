@@ -6,7 +6,7 @@ import UserContext from "../../context/userContext/userContext";
 import { login } from "../../services/authService";
 import { errorToast, successToast } from "../../components/toast/customToast";
 
-import "./login.scss";
+import "./auth.scss";
 import { ADD_USER } from "../../context/reducers/userReducer";
 
 const Login = () => {
@@ -44,10 +44,11 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className="auth-container container">
+      <div className="auth-main">
       <h1>Iniciar Sesion</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="inputs-login">
+        <div className="inputs-auth">
           <input
             {...register("email", { required: true })}
             placeholder="Email..."
@@ -68,14 +69,15 @@ const Login = () => {
 
           <p>Olvidaste tu contraseña?</p>
         </div>
-        <input value="Enviar" className="login-btn" type="submit" />
+        <input value="Enviar" className="auth-btn" type="submit" />
       </form>
 
-      <div className="help-login">
+      <div className="help-auth">
         <p>No tienes cuenta?</p>
-        <p className="login-toRegister" onClick={goToRegister}>
+        <p className="auth-goTo" onClick={goToRegister}>
           Registrate
         </p>
+      </div>
       </div>
     </div>
   );

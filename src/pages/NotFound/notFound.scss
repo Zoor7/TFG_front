@@ -3,14 +3,10 @@
 .notfound-container{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 18vw;
     z-index: 1;
     background-color: white;
     justify-content: center;
-    height: 100vh;
+    flex: 1 0;
     img{
         align-self: center;
         width: 50%;

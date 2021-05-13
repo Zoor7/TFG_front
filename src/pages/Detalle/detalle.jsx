@@ -20,7 +20,7 @@ const Detalle = () => {
 
   if (currentPlace) {
     return (
-      <div style={{ paddingBottom: "2rem" }}>
+      <div className='container'>
         <PlaceCard place={currentPlace} />
       </div>
     );

@@ -138,7 +138,7 @@ const Header = () => {
             />
           </div>
           <Drawer
-            anchor={"right"}
+            anchor={"left"}
             open={isClosed}
             onClose={() => setIsClosed(!isClosed)}
           >

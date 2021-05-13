@@ -1,12 +1,21 @@
 @import "../../styles/main.scss";
 
 .placecard-container {
-  background-color: var(--color-dark);
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
   color: var(--color-light);
   font-family: var(--fm-montserrat);
+}
+.placecard-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
   border-radius: 10px;
-  margin: 2rem auto;
   width: 600px;
+  background-color: var(--color-dark);
+
 }
 .placecard-header {
   display: flex;
@@ -27,6 +36,7 @@
 .placecard-image {
   img {
     width: 100%;
+    object-fit: cover;
   }
 }
 
@@ -46,8 +56,7 @@
 }
 
 @media (max-width: 900px) {
-  .placecard-container {
+  .placecard-main {
     width: 100%;
-    border-radius: 0;
   }
 }

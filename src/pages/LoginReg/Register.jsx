@@ -5,7 +5,7 @@ import { errorToast, successToast } from "../../components/toast/customToast";
 
 import { registeServ } from "../../services/authService";
 
-import "./register.scss";
+import "./auth.scss";
 
 const Register = () => {
   const {
@@ -41,10 +41,11 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
+    <div className="auth-container container">
+      <div className="auth-main">
       <h1>Registrarse</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="inputs-register">
+        <div className="inputs-auth">
           <input
             {...register("email", { required: true })}
             placeholder="Email..."
@@ -72,14 +73,15 @@ const Register = () => {
             <span style={{ color: "red" }}>This field is required</span>
           )}
         </div>
-        <input className="register-btn" type="submit" value="Regístrate" />
+        <input className="auth-btn" type="submit" value="Regístrate" />
       </form>
 
-      <div className="help-register">
+      <div className="help-auth">
         <p>Ya tienes cuenta?</p>
-        <p className="register-toLogin" onClick={goToLogin}>
+        <p className="auth-goTo" onClick={goToLogin}>
           Inicia Sesion
         </p>
+      </div>
       </div>
     </div>
   );

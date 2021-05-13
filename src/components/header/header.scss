@@ -1,14 +1,10 @@
 @import '../../styles/main.scss';
 
 .header-container{
-    position: fixed;
     display: flex;
     flex-direction: column;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    height: 100%;
-    min-width: 15vw;
+    flex: 1 0;
+    width: 16rem;
     background-color: #121212;
     font-family: var(--fm-montserrat);
     padding: 2rem;
@@ -42,11 +38,9 @@
 
 .mobile-header{
     position: fixed;
-    top: 0;
     right: 0;
     left: 0;
-    width: 100%;
-    z-index: 2;
+
 
     div{
         display: flex;
@@ -56,12 +50,16 @@
         font-size: 0.2rem;
     }
 }
+.nose{
+    display: flex;
+}
 
 
 
 @media (max-width: 900px) {
     .header-container{
         width:40vw;
+        
     }
 
 }

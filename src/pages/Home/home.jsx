@@ -9,13 +9,13 @@ const Home = () => {
   const { placesState } = useContext(PlacesContext);
 
   return (
-    <div className="home-container">
+    <section className="home-container container">
       {placesState.places.map((place) => (
-        <li key={place.id} style={{ listStyle: "none" }}>
+        <article key={place.id}>
           <PlaceCard place={place} urlTo={`/lugar/${place.id}/descripcion`} />
-        </li>
+        </article>
       ))}
-    </div>
+    </section>
   );
 };
 

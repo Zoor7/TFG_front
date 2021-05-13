@@ -33,6 +33,7 @@ const PlaceCard = ({ place, urlTo }) => {
 
   return (
     <div className="placecard-container" onClick={navigateTo}>
+      <div className="placecard-main">
       <div className="placecard-header">
         <div className="user-placecard">
           <Avatar
@@ -83,6 +84,7 @@ const PlaceCard = ({ place, urlTo }) => {
       <Route path="/lugar/:id/ubicacion">
         <Ubicacion place={place} />
       </Route>
+      </div>
     </div>
   );
 };
