@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 
 import Avatar from "../../../components/avatar/avatar";
 import PlacesContext from "../../../context/placesContext/placesContext";
+import UserContext from "../../../context/userContext/userContext";
 import { addComment as addComment_place } from "../../../services/placesService";
 // import { addComment as addComment_user } from "../../../services/userService";
 import { createComment } from "../../../services/commentService";
 
 import "./comentarios.scss";
+import { useHistory } from "react-router";
 
 const Comentarios = ({ place }) => {
   const {
@@ -15,7 +17,9 @@ const Comentarios = ({ place }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { placesState, placesDispatch } = useContext(PlacesContext);
+  const { placesDispatch } = useContext(PlacesContext);
+  const { userState } = useContext(UserContext);
+  const history = useHistory();
 
   const onSubmit = (data) => console.log(data);
 
@@ -65,20 +69,39 @@ const Comentarios = ({ place }) => {
         </li>
       ))}
       <form onSubmit={handleSubmit(makeComment)}>
-        <div className="textarea-container">
-          <Avatar img={place.author.avatar} />
-          <textarea
-            {...register("comentario", { maxLength: 200 })}
-            className="comment-textarea"
-            placeholder="Comenta aqui...."
-          ></textarea>
-          {errors?.comentario?.type === "maxLength" && (
-            <span style={{ color: "red" }}>Mucho texto</span>
-          )}
-        </div>
-        <div className="btn-container">
-          <button>Enviar</button>
-        </div>
+        {!userState.username ? (
+          <div className="login-required-container">
+            <p
+              onClick={() => history.push("/login")}
+              // style={{
+              //   fontSize: "1rem",
+              //   textAlign: "center",
+              //   fontWeight: 600,
+              //   width: "100%",
+              //   padding: "1rem",
+              // }}
+            >
+              Haz login para comentar
+            </p>
+          </div>
+        ) : (
+          <div className="">
+            <div className="textarea-container">
+              <Avatar img={place.author.avatar} />
+              <textarea
+                {...register("comentario", { maxLength: 200 })}
+                className="comment-textarea"
+                placeholder="Comenta aqui...."
+              ></textarea>
+              {errors?.comentario?.type === "maxLength" && (
+                <span style={{ color: "red" }}>Mucho texto</span>
+              )}
+            </div>
+            <div className="btn-container">
+              <button>Enviar</button>
+            </div>
+          </div>
+        )}
       </form>
     </div>
   );

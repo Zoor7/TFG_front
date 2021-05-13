@@ -68,30 +68,42 @@
   text-align: center;
   margin: 0.9rem 0;
   font-size: 0.9rem;
-}
-.fancy span {
-  display: inline-block;
-  position: relative;
-}
-.fancy span:before,
-.fancy span:after {
-  content: "";
-  position: absolute;
-  height: 5px;
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
-  top: 0;
-  width: 100%;
-}
-.fancy span:before {
-  right: 100%;
-  margin-right: 15px;
-}
-.fancy span:after {
-  left: 100%;
-  margin-left: 15px;
+  span {
+    display: inline-block;
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      border-bottom: 1px solid white;
+      border-top: 1px solid white;
+      top: 0;
+      width: 100%;
+    }
+    &::before {
+      right: 100%;
+      margin-right: 15px;
+    }
+    &::after {
+      left: 100%;
+      margin-left: 15px;
+    }
+  }
 }
 //Fin-Barras-----------------------------------------------
+.login-required-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem;
+    cursor: pointer;
+    border-bottom: 2px #fff solid;
+  }
+}
 
 @media (max-width: 900px) {
   .btn-container {
