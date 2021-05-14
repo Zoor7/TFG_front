@@ -1,6 +1,7 @@
 export const ADD_PLACES = "ADD_PLACES";
 export const ADD_PLACE = "ADD_PLACE";
 export const UPDATE_PLACE = "UPDATE_PLACE";
+export const UPDATE_PLACE_LIKES = "UPDATE_PLACE_LIKES";
 
 export function placeReducer(state, action) {
   switch (action.type) {

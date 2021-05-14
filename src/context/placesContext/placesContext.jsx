@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { placeReducer } from "../reducers/placesreducer";
+import { ADD_PLACES, placeReducer } from "../reducers/placesreducer";
 
 import { getPlaces } from "../../services/placesService";
 
@@ -17,7 +17,7 @@ export const PlacesProvider = ({ children }) => {
     (async () => {
       // console.log('object')
       const places = await getPlaces();
-      placesDispatch({ type: "ADD_PLACES", payload: places });
+      placesDispatch({ type: ADD_PLACES, payload: places });
     })();
   }, []);
 

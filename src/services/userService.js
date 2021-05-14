@@ -26,7 +26,6 @@ export const addLike = async (obj) => {
 };
 
 export const addComment = async (obj) => {
-  console.log(obj);
   const res = await (
     await fetch(`${baseurl}/addComment`, {
       method: "PUT",

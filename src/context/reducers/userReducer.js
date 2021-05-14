@@ -1,6 +1,7 @@
 export const ADD_USER = "ADD_USER";
 export const ADD_USER_PLACE = "ADD_USER_PLACE";
 export const ADD_USER_COMMENT = "ADD_USER_COMMENT";
+export const ADD_USER_LIKE = "ADD_USER_LIKE";
 
 export function userReducer(state, action) {
   switch (action.type) {
