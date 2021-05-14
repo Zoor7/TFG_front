@@ -4,7 +4,7 @@ const baseurl = "http://localhost:3001/api/users";
 export const addPlace = async (obj) => {
   const res = await (
     await fetch(`${baseurl}/addPlace`, {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -14,24 +14,26 @@ export const addPlace = async (obj) => {
   return res;
 };
 
-export const addLike = async (placeId) => {
+export const addLike = async (obj) => {
   const res = await (
     await fetch(`${baseurl}/addplace`, {
       method: "PUT",
-      body: placeId,
+      body: JSON.stringify(obj),
     })
   ).json();
+
   return res;
 };
 
-export const addComment = async (comment_user) => {
+export const addComment = async (obj) => {
+  console.log(obj);
   const res = await (
     await fetch(`${baseurl}/addComment`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(comment_user),
+      body: JSON.stringify(obj),
     })
   ).json();
   return res;

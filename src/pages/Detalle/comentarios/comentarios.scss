@@ -10,12 +10,20 @@
 .comment {
   display: flex;
   align-items: center;
-  column-gap: 2rem;
-  .comentario-comentario {
+  column-gap: 1rem;
+  .comentario-text {
     word-wrap: normal;
     overflow-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .comment-text-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    .comment-username {
+      font-weight: 600;
+    }
   }
 }
 .textarea-container {

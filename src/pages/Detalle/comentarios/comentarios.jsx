@@ -5,11 +5,14 @@ import Avatar from "../../../components/avatar/avatar";
 import PlacesContext from "../../../context/placesContext/placesContext";
 import UserContext from "../../../context/userContext/userContext";
 import { addComment as addComment_place } from "../../../services/placesService";
-// import { addComment as addComment_user } from "../../../services/userService";
+import { addComment as addComment_user } from "../../../services/userService";
 import { createComment } from "../../../services/commentService";
 
 import "./comentarios.scss";
 import { useHistory } from "react-router";
+import { errorToast } from "../../../components/toast/customToast";
+import { ADD_USER_COMMENT } from "../../../context/reducers/userReducer";
+import { UPDATE_PLACE } from "../../../context/reducers/placesreducer";
 
 const Comentarios = ({ place }) => {
   const {
@@ -18,15 +21,13 @@ const Comentarios = ({ place }) => {
     formState: { errors },
   } = useForm();
   const { placesDispatch } = useContext(PlacesContext);
-  const { userState } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
   const history = useHistory();
-
-  const onSubmit = (data) => console.log(data);
 
   const makeComment = async (data) => {
     const comment = {
-      author: "6091c207fe3ed61b10fde239",
-      author_username: "zoor",
+      author: userState.id,
+      author_username: userState.username,
       text: data.comentario,
       isResponse: false,
       place: place.id,
@@ -35,6 +36,7 @@ const Comentarios = ({ place }) => {
     const newComment = await createComment(comment);
 
     if (newComment.error) {
+      errorToast("Ups, no se ha podido comentar.");
       return;
     }
     const commentPlaceIds = {
@@ -44,10 +46,24 @@ const Comentarios = ({ place }) => {
 
     const updatedPlace = await addComment_place(commentPlaceIds);
 
+    const commentUserIds = {
+      commentId: newComment.id,
+      userId: userState.id,
+    };
+    const updatedUser = await addComment_user(commentUserIds);
+    console.log(updatedUser);
+
     placesDispatch({
-      type: "UPDATE_PLACE",
+      type: UPDATE_PLACE,
       payload: {
         ...updatedPlace,
+      },
+    });
+
+    userDispatch({
+      type: ADD_USER_COMMENT,
+      payload: {
+        ...newComment.id,
       },
     });
   };
@@ -57,11 +73,11 @@ const Comentarios = ({ place }) => {
       {place.comments.map((comment) => (
         <li style={{ padding: "0.7rem 0" }} key={comment.id}>
           <div className="comment">
-            {/* <Avatar img={comment.author.avatar}/> */}
-            <p style={{ fontWeight: 600, fontSize: "0.9rem" }}>
-              {comment.author_username}
-            </p>
-            <p className="comentario-comentario">{comment.text}</p>
+            <Avatar img={comment.author.avatar} />
+            <div className="comment-text-container">
+              <p className="comment-username">{comment.author_username}</p>
+              <p className="comment-text">{comment.text}</p>
+            </div>
           </div>
           <p className="fancy">
             <span>Respuestas: {comment.responses.length}</span>
@@ -71,16 +87,7 @@ const Comentarios = ({ place }) => {
       <form onSubmit={handleSubmit(makeComment)}>
         {!userState.username ? (
           <div className="login-required-container">
-            <p
-              onClick={() => history.push("/login")}
-              // style={{
-              //   fontSize: "1rem",
-              //   textAlign: "center",
-              //   fontWeight: 600,
-              //   width: "100%",
-              //   padding: "1rem",
-              // }}
-            >
+            <p onClick={() => history.push("/login")}>
               Haz login para comentar
             </p>
           </div>
