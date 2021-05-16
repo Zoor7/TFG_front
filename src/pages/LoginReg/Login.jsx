@@ -46,38 +46,38 @@ const Login = () => {
   return (
     <div className="auth-container container">
       <div className="auth-main">
-      <h1>Iniciar Sesion</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="inputs-auth">
-          <input
-            {...register("email", { required: true })}
-            placeholder="Email..."
-            type="email"
-          />
-          {errors?.email?.type === "required" && (
-            <span style={{ color: "red" }}>This field is required</span>
-          )}
+        <h1>Iniciar Sesion</h1>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="inputs-auth">
+            <input
+              {...register("email", { required: true })}
+              placeholder="Email..."
+              type="email"
+            />
+            {errors?.email?.type === "required" && (
+              <span style={{ color: "red" }}>This field is required</span>
+            )}
 
-          <input
-            {...register("password", { required: true })}
-            placeholder="Contraseña..."
-            type="password"
-          />
-          {errors?.password?.type === "required" && (
-            <span style={{ color: "red" }}>This field is required</span>
-          )}
+            <input
+              {...register("password", { required: true })}
+              placeholder="Contraseña..."
+              type="password"
+            />
+            {errors?.password?.type === "required" && (
+              <span style={{ color: "red" }}>This field is required</span>
+            )}
 
-          <p>Olvidaste tu contraseña?</p>
-        </div>
-        <input value="Enviar" className="auth-btn" type="submit" />
-      </form>
+            <p>Olvidaste tu contraseña?</p>
+          </div>
+          <input value="Enviar" className="auth-btn" type="submit" />
+        </form>
 
-      <div className="help-auth">
-        <p>No tienes cuenta?</p>
-        <p className="auth-goTo" onClick={goToRegister}>
-          Registrate
+        <div className="help-auth">
+          <p>No tienes cuenta?</p>
+          <p className="auth-goTo" onClick={goToRegister}>
+            Registrate
         </p>
-      </div>
+        </div>
       </div>
     </div>
   );
