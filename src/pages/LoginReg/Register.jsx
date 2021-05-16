@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
 
 import { errorToast, successToast } from "../../components/toast/customToast";
 import AvatarUpload from "../../components/AvatarUpload/AvatarUpload";
