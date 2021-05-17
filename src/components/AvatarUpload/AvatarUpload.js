@@ -1,9 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from "react";
 
-import Button from '../Button/Button';
-import './ImageUpload.css';
+import Button from "../Button/Button";
+import "./ImageUpload.css";
 
-const AvatarUpload = props => {
+const AvatarUpload = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
   const [isValid, setIsValid] = useState(false);
@@ -21,7 +21,8 @@ const AvatarUpload = props => {
     fileReader.readAsDataURL(file);
   }, [file]);
 
-  const pickedHandler = event => {
+  const pickedHandler = (event) => {
+    props.handlePhoto(event.target.files[0]);
     let pickedFile;
     let fileIsValid = isValid;
     if (event.target.files && event.target.files.length === 1) {
@@ -45,12 +46,12 @@ const AvatarUpload = props => {
       <input
         id={props.id}
         ref={filePickerRef}
-        style={{ display: 'none' }}
+        style={{ display: "none" }}
         type="file"
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
       />
-      <div className={`image-upload ${props.center && 'center'}`}>
+      <div className={`image-upload ${props.center && "center"}`}>
         <div className="image-upload__preview">
           {previewUrl && <img src={previewUrl} alt="Preview" />}
           {!previewUrl && <p>Seleccione una imagen, por favor.</p>}

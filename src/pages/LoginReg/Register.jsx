@@ -7,8 +7,12 @@ import AvatarUpload from "../../components/AvatarUpload/AvatarUpload";
 import { registeServ } from "../../services/authService";
 
 import "./auth.scss";
+import { useState } from "react";
+import { uploadPhoto } from "../../services/firebaseStorageService";
 
 const Register = () => {
+  const [photo, setPhoto] = useState();
+
   const {
     register,
     handleSubmit,
@@ -17,13 +21,24 @@ const Register = () => {
 
   const history = useHistory();
 
+  const handlePhoto = (image) => {
+    setPhoto(image);
+  };
+
   const onSubmit = async (data) => {
-    console.log(data);
+    let url;
+
+    try {
+      url = await uploadPhoto(photo, "/images/avatar/");
+    } catch (error) {
+      console.log(error);
+    }
 
     const userInfo = {
       email: data.email,
       username: data.username,
-      passwordHash: data.password,
+      password: data.password,
+      avatar: url,
     };
 
     const newUser = await registeServ(userInfo);
@@ -75,8 +90,12 @@ const Register = () => {
             )}
           </div>
           <div className="avatar-picker">
-
-            <AvatarUpload center id="image" onInput={() => { }} />
+            <AvatarUpload
+              handlePhoto={handlePhoto}
+              center
+              id="image"
+              onInput={() => {}}
+            />
           </div>
 
           <input className="auth-btn" type="submit" value="Regístrate" />
@@ -86,7 +105,7 @@ const Register = () => {
           <p>Ya tienes cuenta?</p>
           <p className="auth-goTo" onClick={goToLogin}>
             Inicia Sesion
-        </p>
+          </p>
         </div>
       </div>
     </div>

@@ -19,7 +19,6 @@ const Login = () => {
   const { userDispatch } = useContext(UserContext);
 
   const history = useHistory();
-
   const onSubmit = async (data) => {
     const userInfo = {
       email: data.email,

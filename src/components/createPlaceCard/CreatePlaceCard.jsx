@@ -49,7 +49,7 @@ const CreatePlaceCard = () => {
   const onSubmit = async (data) => {
     try {
       if (url === "/create") {
-        const foto = await uploadPhoto(data.image[0]);
+        const foto = await uploadPhoto(data.image[0], "images/");
         setUrlImage(foto);
         history.push("/create/ubicacion");
         return;

@@ -1,30 +1,21 @@
-import firebase from "firebase/app";
-import {firebaseConfig} from '../config'
-import "firebase/storage"
+import { v4 as uuidv4 } from "uuid";
 
-firebase.initializeApp(firebaseConfig)
-let storage = firebase.storage();
+import firebase from "firebase/app";
+import { firebaseConfig } from "../config";
+import "firebase/storage";
+
+firebase.initializeApp(firebaseConfig);
 
 let storageRef = firebase.storage().ref();
 
-var placeRef = storageRef.child('places.jpg')
-var placeImagesRef = storageRef.child('images/places.jpg');
-
-
-
-
-export const uploadPhoto = async(foto) => {
-    let file = foto
-
-    let metadata = {
-        contentType: 'image/jpeg'
-    };
-
-    let uploadTask = await storageRef.child('images/' + file.name).put(file, metadata);
-
-    let url= await uploadTask.ref.getDownloadURL()
-
-    return url
-
-   
-  }
+export const uploadPhoto = async (foto, path) => {
+  let file = foto;
+  let metadata = {
+    contentType: "image/jpeg",
+  };
+  let uploadTask = await storageRef
+    .child(path + file.name + uuidv4())
+    .put(file, metadata);
+  let url = await uploadTask.ref.getDownloadURL();
+  return url;
+};
