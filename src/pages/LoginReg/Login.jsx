@@ -28,10 +28,11 @@ const Login = () => {
 
     const user = await login(userInfo);
 
-    console.log(user[0]);
-    if (user[0]) {
+    console.log(user);
+
+    if (user) {
       successToast("Bienvenido bro");
-      userDispatch({ type: ADD_USER, payload: user[0] });
+      userDispatch({ type: ADD_USER, payload: user });
       history.replace("/");
       return;
     }
@@ -76,7 +77,7 @@ const Login = () => {
           <p>No tienes cuenta?</p>
           <p className="auth-goTo" onClick={goToRegister}>
             Registrate
-        </p>
+          </p>
         </div>
       </div>
     </div>

@@ -69,11 +69,14 @@ const PlaceCard = ({ place, urlTo }) => {
         </div>
 
         <div className="placecard-footer">
-          <div onClick={(e) => handleChildClick(e)} className=" placecard-like">
+          <div
+            onClick={(e) => handleChildClick(e)}
+            className=" placecard-like interaction"
+          >
             <BsHeart size="1.3rem" />
             {place.likes.length}
           </div>
-          <div className="placecard-comment">
+          <div className="placecard-comment interaction">
             <FaRegComment size="1.3rem" />
             {place.comments.length}
           </div>

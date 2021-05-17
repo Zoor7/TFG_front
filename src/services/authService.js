@@ -3,7 +3,7 @@ const baseurl = "http://localhost:3001/api/users";
 
 export const login = async (userInfo) => {
   const user = await (
-    await fetch(`${baseurl}/byEmail`, {
+    await fetch(`${baseurl}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -12,15 +12,15 @@ export const login = async (userInfo) => {
     })
   ).json();
 
-  if (user[0]) {
-    return user;
+  if (user.error) {
+    return false;
   }
-  return "";
+  return user;
 };
 
 export const registeServ = async (userInfo) => {
   const user = await (
-    await fetch(`${baseurl}/create`, {
+    await fetch(`${baseurl}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,10 +29,8 @@ export const registeServ = async (userInfo) => {
     })
   ).json();
 
-  console.log(user);
-
-  if (user) {
-    return true;
+  if (user.error) {
+    return false;
   }
-  return false;
+  return true;
 };
