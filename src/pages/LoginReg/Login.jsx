@@ -16,7 +16,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { userDispatch } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
 
   const history = useHistory();
   const onSubmit = async (data) => {
@@ -30,8 +30,8 @@ const Login = () => {
     console.log(user);
 
     if (user) {
-      successToast("Bienvenido bro");
       userDispatch({ type: ADD_USER, payload: user });
+      successToast(`Bienvenido ${userState.name}`);
       history.replace("/");
       return;
     }
