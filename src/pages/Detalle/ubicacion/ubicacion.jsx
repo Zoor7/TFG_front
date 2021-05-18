@@ -15,6 +15,7 @@ const Ubicacion = ({ place }) => {
         </a>
       )}
       {!place.web && <p>El lugar no dispone de web.</p>}
+      <p>{`Tipo de lugar: ${place.type}`}</p>
     </div>
   );
 };

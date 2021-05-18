@@ -94,7 +94,7 @@ const Comentarios = ({ place }) => {
         ) : (
           <div className="">
             <div className="textarea-container">
-              <Avatar img={place.author.avatar} />
+              <Avatar img={userState.avatar} />
               <textarea
                 {...register("comentario", { maxLength: 200 })}
                 className="comment-textarea"

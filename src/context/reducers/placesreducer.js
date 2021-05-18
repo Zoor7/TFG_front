@@ -11,9 +11,14 @@ export function placeReducer(state, action) {
       const updatedPlaces = state.places.filter(
         (place) => place.id !== action.payload.id
       );
-      return { ...state, places: [...updatedPlaces, action.payload] };
+      return {
+        ...state,
+        places: [...updatedPlaces, action.payload].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        ),
+      };
     case ADD_PLACE:
-      return { ...state, places: [...state.places, action.payload] };
+      return { ...state, places: [action.payload, ...state.places] };
 
     default:
       throw new Error();

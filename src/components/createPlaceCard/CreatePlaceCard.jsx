@@ -150,10 +150,12 @@ const CreatePlaceCard = () => {
               Tipo de lugar
             </p>
             <select {...register("tipo", { required: true })}>
-              <option>Monumento</option>
               <option>Naturaleza</option>
-              <option>Tipo 3</option>
-              <option>Tipo 4</option>
+              <option>Urbano</option>
+              <option>Rural</option>
+              <option>Deportivo</option>
+              <option>Cultural</option>
+              <option>Misterioso</option>
             </select>
             {errors?.tipo?.type === "required" && (
               <span style={{ color: "red" }}>This field is required</span>
