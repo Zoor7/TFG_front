@@ -1,6 +1,7 @@
+import { useContext, useEffect, useState } from "react";
 import { Route, useLocation, useHistory } from "react-router-dom";
 import { FaMapMarkedAlt, FaRegComment } from "react-icons/fa";
-import { BsHeart } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import Avatar from "../avatar/avatar";
 import NavDetalle from "../navDetalle/navDetalle";
@@ -9,16 +10,73 @@ import Comentarios from "../../pages/Detalle/comentarios/comentarios";
 import Ubicacion from "../../pages/Detalle/ubicacion/ubicacion";
 
 // La idea es hacer aquí el añadir los likes, pasarle una función al icono del me gusta y atacar tanto bbdd como actualizar el contexto, lo he probado pero no funciona, básicamente es lo mismo que haces con los comentarios.
-import { addLike as addPlaceLike } from "../../services/placesService";
-import { addLike as addUserLike } from "../../services/userService";
+import { addPlaceLike, deletePlaceLike } from "../../services/placesService";
+import { addUserLike, deleteUserLike } from "../../services/userService";
 
 import "./placecard.scss";
 import avatarPlaceholder from "../../assets/images/avatarPlaceholder.webp";
 import Mapa from "../Mapa/Mapa";
+import UserContext from "../../context/userContext/userContext";
+import {
+  ADD_USER_LIKE,
+  DELETE_USER_LIKE,
+} from "../../context/reducers/userReducer";
+import {
+  ADD_PLACE_LIKES,
+  DELETE_PLACE_LIKES,
+} from "../../context/reducers/placesreducer";
+import PlacesContext from "../../context/placesContext/placesContext";
+import { errorToast } from "../toast/customToast";
 
 const PlaceCard = ({ place, urlTo }) => {
+  const [like, setLike] = useState();
   let url = useLocation().pathname;
   let history = useHistory();
+  const { userState, userDispatch } = useContext(UserContext);
+  const { placesState, placesDispatch } = useContext(PlacesContext);
+
+  useEffect(() => {
+    const isLiked = userState.likes.filter((userLike) => userLike === place.id);
+    isLiked[0] ? setLike(true) : setLike(false);
+  }, []);
+
+  const handleHeartLike = async () => {
+    if (userState.username === "") {
+      errorToast("Inicie sesión para dar like.");
+      return;
+    }
+    const obj = {
+      userId: userState.id,
+      placeId: place.id,
+    };
+
+    if (!like) {
+      userDispatch({
+        type: ADD_USER_LIKE,
+        payload: place.id,
+      });
+      placesDispatch({
+        type: ADD_PLACE_LIKES,
+        payload: obj,
+      });
+      console.log(placesState);
+      await addPlaceLike(obj);
+      await addUserLike(obj);
+    } else {
+      userDispatch({
+        type: DELETE_USER_LIKE,
+        payload: place.id,
+      });
+      placesDispatch({
+        type: DELETE_PLACE_LIKES,
+        payload: obj,
+      });
+      await deletePlaceLike(obj);
+      await deleteUserLike(obj);
+    }
+
+    setLike(!like);
+  };
 
   const navigateTo = () => {
     if (url === "/") {
@@ -34,8 +92,6 @@ const PlaceCard = ({ place, urlTo }) => {
   function handleChildClick(e) {
     e.stopPropagation();
   }
-
-  // const like = async
 
   return (
     <div className="placecard-container" onClick={navigateTo}>
@@ -70,14 +126,27 @@ const PlaceCard = ({ place, urlTo }) => {
 
         <div className="placecard-footer">
           <div
-            onClick={(e) => handleChildClick(e)}
+            onClick={(e) => {
+              handleHeartLike();
+              handleChildClick(e);
+            }}
             className=" placecard-like interaction"
           >
-            <BsHeart size="1.3rem" />
+            {like ? (
+              <BsHeartFill color="red" size="1.45rem" />
+            ) : (
+              <BsHeart size="1.45rem" />
+            )}
             {place.likes.length}
           </div>
-          <div className="placecard-comment interaction">
-            <FaRegComment size="1.3rem" />
+          <div
+            className="placecard-comment interaction"
+            onClick={(e) => {
+              history.push(`/lugar/${place.id}/comentarios`);
+              handleChildClick(e);
+            }}
+          >
+            <FaRegComment size="1.45rem" />
             {place.comments.length}
           </div>
         </div>

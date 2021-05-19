@@ -7,7 +7,7 @@
   color: var(--color-light);
   font-family: var(--fm-montserrat);
 }
-.placecard-main{
+.placecard-main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,7 +15,6 @@
   border-radius: 10px;
   width: 600px;
   background-color: var(--color-dark);
-
 }
 .placecard-header {
   display: flex;
@@ -49,8 +48,15 @@
     align-items: center;
     column-gap: 0.3rem;
     cursor: pointer;
+  }
+  .placecard-comment {
     &:hover {
-      color: lighten($color: red, $amount: 1);
+      color: var(--color-background);
+    }
+  }
+  .placecard-like {
+    &:hover {
+      color: red;
     }
   }
 }

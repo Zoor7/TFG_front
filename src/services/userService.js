@@ -14,10 +14,29 @@ export const addPlace = async (obj) => {
   return res;
 };
 
-export const addLike = async (obj) => {
+export const addUserLike = async (obj) => {
   const res = await (
-    await fetch(`${baseurl}/addplace`, {
+    await fetch(`${baseurl}/addLike`, {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    })
+  ).json();
+
+  return res;
+};
+
+export const deleteUserLike = async (obj) => {
+  console.log(obj);
+
+  const res = await (
+    await fetch(`${baseurl}/deleteLike`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(obj),
     })
   ).json();

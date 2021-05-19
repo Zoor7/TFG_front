@@ -6,13 +6,30 @@ export const getPlaces = async () => {
   return res;
 };
 
-export const addLike = async (userId) => {
+export const addPlaceLike = async (obj) => {
   const res = await (
     await fetch(`${baseurl}/addLike`, {
       method: "PUT",
-      body: userId,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
     })
   ).json();
+  return res;
+};
+
+export const deletePlaceLike = async (obj) => {
+  const res = await (
+    await fetch(`${baseurl}/deleteLike`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    })
+  ).json();
+
   return res;
 };
 
