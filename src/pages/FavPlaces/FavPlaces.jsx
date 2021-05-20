@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import PlaceCard from "../../components/placeCard/placeCard";
 import UserContext from "../../context/userContext/userContext";
@@ -9,24 +9,29 @@ import "./favPlaces.scss";
 const FavPlaces = () => {
   const { userState } = useContext(UserContext);
 
-  //   ESTO NO FUNCIONA, he intentado obtener desde el backend pero no atinaba con el populate
   const favoritePlaces = [];
+
   const favPlace = async (userId) => {
     const test = await favUserPlaces(userId);
-    console.log(test.likes);
 
-    // const favoritePlaces = [];
+    const forLoop = async () => {
 
-    test.forEach(async (favPlaceId) => {
-      const place = await getPlaceById(favPlaceId);
-      favoritePlaces.push(place);
-    });
+      for (let index = 0; index < test.likes.length; index++) {
+        const favoritePlaceId = test.likes[index];
+        favoritePlaces[index] = await getPlaceById(favoritePlaceId);
+      }
+
+    };
+
+    forLoop();
 
     console.log(favoritePlaces);
   };
+
   return (
     <section className="container">
-      <button onClick={() => favPlace(userState.id)}>CLICK</button>
+      <button onClick={() => favPlace(userState.id)}>Cargar lugares favoritos</button>
+
       {/* {userState.likes.map((place) => (
         <article key={place.id}>
           <PlaceCard place={place} urlTo={`/lugar/${place.id}/descripcion`} />
