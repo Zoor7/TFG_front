@@ -55,7 +55,9 @@ const Login = () => {
               type="email"
             />
             {errors?.email?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
 
             <input
@@ -64,7 +66,9 @@ const Login = () => {
               type="password"
             />
             {errors?.password?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
 
             <p>Olvidaste tu contraseña?</p>

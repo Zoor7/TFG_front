@@ -118,7 +118,9 @@ const CreatePlaceCard = () => {
                 onChange={(e) => previewFile(e)}
               />
               {errors?.image?.type === "required" && (
-                <span style={{ color: "red" }}>This field is required</span>
+                <span style={{ color: "red" }}>
+                  Introduzca el campo, por favor.
+                </span>
               )}
             </div>
           )}
@@ -136,7 +138,9 @@ const CreatePlaceCard = () => {
               placeholder="Añade la descripción aquí..."
             />
             {errors?.description?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
             {errors?.description?.type === "minLength" && (
               <span style={{ color: "red" }}>Minimo 10 caracteres</span>
@@ -158,7 +162,9 @@ const CreatePlaceCard = () => {
               <option>Misterioso</option>
             </select>
             {errors?.tipo?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
           </div>
           <div className="createPlaceCard-web">

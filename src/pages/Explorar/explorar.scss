@@ -1,0 +1,45 @@
+@import "../../styles/main.scss";
+
+.explorar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  margin: 0 auto;
+  border: 1px solid white;
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    padding: 4rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  select,
+  input {
+    font-size: 1rem;
+    width: 80%;
+    margin: 0 auto;
+    font-family: var(--fm-montserrat);
+    padding: 1rem;
+    border: 1px solid rgba($color: #fff, $alpha: 0.4);
+    background-color: rgba($color: #fff, $alpha: 0.4);
+    outline: none;
+  }
+
+  input {
+    margin: 0 auto;
+    margin-top: 2rem;
+  }
+  button {
+    margin-top: 2rem !important;
+    background-color: var(--color-background);
+    padding: 1rem 2rem;
+    border: 1px solid white;
+    width: 50%;
+    margin: 0 auto;
+  }
+}

@@ -61,6 +61,18 @@ const Header = () => {
           )}
           Home
         </NavLink>
+
+        <NavLink
+          onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+          activeClassName="item-active"
+          className="item"
+          replace={goTo("/explorar")}
+          to="/explorar"
+        >
+          <AiOutlineSearch size="1.8rem" />
+          Explorar
+        </NavLink>
+
         {!isLogged ? (
           <NavLink
             onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
@@ -80,17 +92,6 @@ const Header = () => {
           <div
             style={{ display: "flex", flexDirection: "column", rowGap: "1rem" }}
           >
-            <NavLink
-              onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
-              activeClassName="item-active"
-              className="item"
-              replace={goTo("/explorar")}
-              to="/explorar"
-            >
-              <AiOutlineSearch size="1.8rem" />
-              Explorar
-            </NavLink>
-
             <NavLink
               onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
               activeClassName="item-active"
@@ -125,7 +126,7 @@ const Header = () => {
   };
 
   return (
-    <div className='nose'>
+    <div className="nose">
       {width >= 900 ? (
         header()
       ) : (

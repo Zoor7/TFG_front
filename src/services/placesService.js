@@ -58,3 +58,17 @@ export const addComment = async (comment) => {
 
   return res;
 };
+
+export const getNearbyPlaces = async (obj) => {
+  const res = await (
+    await fetch(`${baseurl}/findPlacesByRadius`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    })
+  ).json();
+
+  return res;
+};

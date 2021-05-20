@@ -14,6 +14,7 @@ import "./App.scss";
 import Login from "./pages/LoginReg/Login.jsx";
 import Register from "./pages/LoginReg/Register.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
+import Explorar from "./pages/Explorar/Explorar.jsx";
 
 const override = css`
   display: block;
@@ -43,6 +44,7 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/create" component={CreatePlace} />
+            <Route path="/explorar" component={Explorar} />
             <Route component={NotFound} />
           </Switch>
         </div>

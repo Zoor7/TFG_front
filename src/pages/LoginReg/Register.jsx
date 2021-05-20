@@ -68,7 +68,9 @@ const Register = () => {
               type="email"
             />
             {errors?.email?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
 
             <input
@@ -77,7 +79,9 @@ const Register = () => {
               type="text"
             />
             {errors?.username?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
 
             <input
@@ -86,7 +90,9 @@ const Register = () => {
               type="password"
             />
             {errors?.password?.type === "required" && (
-              <span style={{ color: "red" }}>This field is required</span>
+              <span style={{ color: "red" }}>
+                Introduzca el campo, por favor.
+              </span>
             )}
           </div>
           <div className="avatar-picker">
