@@ -117,6 +117,20 @@ const Header = () => {
               )}
               Configuración
             </NavLink>
+            <NavLink
+              onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+              activeClassName="item-active"
+              className="item"
+              replace={goTo("/config")}
+              to="/favPlaces"
+            >
+              {active === "/config" ? (
+                <AiFillSetting size="1.8rem" />
+              ) : (
+                <AiOutlineSetting size="1.8rem" />
+              )}
+              Lugares favoritos
+            </NavLink>
           </div>
         )}
 

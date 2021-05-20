@@ -6,6 +6,11 @@ export const getPlaces = async () => {
   return res;
 };
 
+export const getPlaceById = async (placeId) => {
+  const res = await (await fetch(`${baseurl}/${placeId}`)).json();
+  return res;
+};
+
 export const addPlaceLike = async (obj) => {
   const res = await (
     await fetch(`${baseurl}/addLike`, {

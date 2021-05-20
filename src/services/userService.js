@@ -14,6 +14,11 @@ export const addPlace = async (obj) => {
   return res;
 };
 
+export const favUserPlaces = async (userId) => {
+  const res = await (await fetch(`${baseurl}/${userId}`)).json();
+  return res;
+};
+
 export const addUserLike = async (obj) => {
   const res = await (
     await fetch(`${baseurl}/addLike`, {
