@@ -28,8 +28,8 @@ const Login = () => {
     const user = await login(userInfo);
 
     if (user) {
-      userDispatch({ type: ADD_USER, payload: user });
-      successToast(`Bienvenido ${userState.name}`);
+      await userDispatch({ type: ADD_USER, payload: user });
+      successToast(`Bienvenido ${user.username}`);
       history.replace("/");
       return;
     }

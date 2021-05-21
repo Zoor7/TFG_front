@@ -7,7 +7,7 @@ export const DELETE_USER_LIKE = "DELETE_USER_LIKE";
 export function userReducer(state, action) {
   switch (action.type) {
     case ADD_USER:
-      return { ...action.payload };
+      return { ...state,...action.payload };
     case ADD_USER_PLACE:
       return { ...state, places: [...state.places, action.payload] };
     case ADD_USER_COMMENT:
