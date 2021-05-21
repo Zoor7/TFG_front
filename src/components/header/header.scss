@@ -58,7 +58,11 @@
 
 @media (max-width: 900px) {
     .header-container{
-        width:40vw;
+        width:50vw;
+        *{
+            font-size: 1rem;
+
+        }
         
     }
 

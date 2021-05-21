@@ -34,7 +34,6 @@ export const addUserLike = async (obj) => {
 };
 
 export const deleteUserLike = async (obj) => {
-  console.log(obj);
 
   const res = await (
     await fetch(`${baseurl}/deleteLike`, {

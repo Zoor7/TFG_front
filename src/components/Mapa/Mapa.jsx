@@ -31,7 +31,6 @@ const Mapa = ({ place, explorar, create, getPos }) => {
     }
   }, []);
   useEffect(() => {
-    console.log(explorar);
     if (explorar) {
       setPosition(explorar.position);
     }

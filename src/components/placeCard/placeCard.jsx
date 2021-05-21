@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Route, useLocation, useHistory } from "react-router-dom";
-import { FaMapMarkedAlt, FaRegComment } from "react-icons/fa";
+import { FaCreativeCommonsSampling, FaMapMarkedAlt, FaRegComment } from "react-icons/fa";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import Avatar from "../avatar/avatar";
@@ -36,7 +36,7 @@ const PlaceCard = ({ place, urlTo }) => {
   const { placesState, placesDispatch } = useContext(PlacesContext);
 
   useEffect(() => {
-    const isLiked = userState.likes.filter((userLike) => userLike === place.id);
+    const isLiked = userState.likes.filter((userLike) => userLike.id === place.id);
     isLiked[0] ? setLike(true) : setLike(false);
   }, []);
 
@@ -49,19 +49,19 @@ const PlaceCard = ({ place, urlTo }) => {
       userId: userState.id,
       placeId: place.id,
     };
-
+    
     if (!like) {
-      userDispatch({
+      await addPlaceLike(obj);
+     const infoLike = await addUserLike(obj);
+     await userDispatch({
         type: ADD_USER_LIKE,
-        payload: place.id,
+        payload: infoLike,
       });
-      placesDispatch({
+     await placesDispatch({
         type: ADD_PLACE_LIKES,
         payload: obj,
       });
-      console.log(placesState);
-      await addPlaceLike(obj);
-      await addUserLike(obj);
+
     } else {
       userDispatch({
         type: DELETE_USER_LIKE,
@@ -74,6 +74,7 @@ const PlaceCard = ({ place, urlTo }) => {
       await deletePlaceLike(obj);
       await deleteUserLike(obj);
     }
+
 
     setLike(!like);
   };
@@ -92,7 +93,6 @@ const PlaceCard = ({ place, urlTo }) => {
   function handleChildClick(e) {
     e.stopPropagation();
   }
-
   return (
     <div className="placecard-container" onClick={navigateTo}>
       <div className="placecard-main">
@@ -100,7 +100,7 @@ const PlaceCard = ({ place, urlTo }) => {
           <div className="user-placecard">
             <Avatar
               img={
-                place.author.avatar ? place.author.avatar : avatarPlaceholder
+                place?.author?.avatar ? place.author.avatar : avatarPlaceholder
               }
             />
             <p>{place.author.username}</p>

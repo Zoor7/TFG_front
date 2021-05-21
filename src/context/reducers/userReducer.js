@@ -13,10 +13,10 @@ export function userReducer(state, action) {
     case ADD_USER_COMMENT:
       return { ...state, comments: [...state.comments, action.payload] };
     case ADD_USER_LIKE:
-      return { ...state, likes: [...state.likes, action.payload] };
+      return { ...state, likes: [...action.payload.likes] };
     case DELETE_USER_LIKE:
       const likesUpdated = state.likes.filter(
-        (like) => like !== action.payload
+        (like) => like.id !== action.payload
       );
       return { ...state, likes: [...likesUpdated] };
 

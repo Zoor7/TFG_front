@@ -8,6 +8,7 @@ import {
   AiFillSetting,
   AiOutlinePlus,
 } from "react-icons/ai";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiUser3Fill, RiUser3Line } from "react-icons/ri";
 
@@ -117,24 +118,27 @@ const Header = () => {
               )}
               Configuración
             </NavLink>
-            <NavLink
-              onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
-              activeClassName="item-active"
-              className="item"
-              replace={goTo("/config")}
-              to="/favPlaces"
-            >
-              {active === "/config" ? (
-                <AiFillSetting size="1.8rem" />
-              ) : (
-                <AiOutlineSetting size="1.8rem" />
-              )}
-              Lugares favoritos
-            </NavLink>
           </div>
         )}
 
-        <hr style={{ width: "30%", alignSelf: "center" }}></hr>
+        <hr style={{ width: "50%", alignSelf: "center" }}></hr>
+
+
+        {isLogged &&
+         <NavLink
+          onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+          activeClassName="item-active"
+          className="item"
+          replace={goTo("/favPlaces")}
+          to="/favPlaces"
+        >
+          {active === "/favPlaces" ? (
+            <BsHeartFill size="1.8rem" />
+          ) : (
+            <BsHeart size="1.8rem" />
+          )}
+              Lugares favoritos
+            </NavLink>}
       </div>
     );
   };

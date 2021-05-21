@@ -51,7 +51,6 @@ const Comentarios = ({ place }) => {
       userId: userState.id,
     };
     const updatedUser = await addComment_user(commentUserIds);
-    console.log(updatedUser);
 
     placesDispatch({
       type: UPDATE_PLACE,
