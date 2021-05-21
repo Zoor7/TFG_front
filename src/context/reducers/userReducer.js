@@ -16,7 +16,7 @@ export function userReducer(state, action) {
       return { ...state, likes: [...action.payload.likes] };
     case DELETE_USER_LIKE:
       const likesUpdated = state.likes.filter(
-        (like) => like.id !== action.payload
+        (like) => like.id !== action.payload 
       );
       return { ...state, likes: [...likesUpdated] };
 
