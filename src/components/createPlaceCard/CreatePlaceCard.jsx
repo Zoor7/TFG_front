@@ -76,7 +76,6 @@ const CreatePlaceCard = () => {
       };
 
       const res = await addPlace(obj);
-      console.log(res);
 
       placesDispatch({ type: ADD_PLACE, payload: placeCreated });
       userDispatch({ type: ADD_USER_PLACE, payload: placeCreated.id });

@@ -6,7 +6,6 @@ const UserContext = React.createContext();
 const initialState = {
   id: "",
   username: "",
-  name: "",
   email: "",
   avatar: "",
   places: [],

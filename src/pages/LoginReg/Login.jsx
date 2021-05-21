@@ -27,8 +27,6 @@ const Login = () => {
 
     const user = await login(userInfo);
 
-    console.log(user);
-
     if (user) {
       userDispatch({ type: ADD_USER, payload: user });
       successToast(`Bienvenido ${userState.name}`);

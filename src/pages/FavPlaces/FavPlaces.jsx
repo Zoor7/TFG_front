@@ -8,35 +8,45 @@ import { favUserPlaces } from "../../services/userService";
 import "./favPlaces.scss";
 const FavPlaces = () => {
   const { userState } = useContext(UserContext);
+  const [likes, setLikes] = useState([])
 
-  const favoritePlaces = [];
 
-  const favPlace = async (userId) => {
-    const test = await favUserPlaces(userId);
+  // const favoritePlaces = [];
 
-    const forLoop = async () => {
+  useEffect(() => {
+    setLikes(userState.likes)
+  }, [userState])
 
-      for (let index = 0; index < test.likes.length; index++) {
-        const favoritePlaceId = test.likes[index];
-        favoritePlaces[index] = await getPlaceById(favoritePlaceId);
-      }
+  // const favPlace = async (userId) => {
+  //   const test = await favUserPlaces(userId);
 
-    };
+  //   const forLoop = async () => {
 
-    forLoop();
+  //     for (let index = 0; index < test.likes.length; index++) {
+  //       const favoritePlaceId = test.likes[index];
+  //       favoritePlaces[index] = await getPlaceById(favoritePlaceId);
+  //     }
 
-    console.log(favoritePlaces);
-  };
+  //   };
+
+  //   forLoop();
+
+  //   console.log(favoritePlaces);
+  // };
 
   return (
     <section className="container">
-      <button onClick={() => favPlace(userState.id)}>Cargar lugares favoritos</button>
+      {/* <button onClick={() => favPlace(userState.id)}>Cargar lugares favoritos</button> */}
 
       {/* {userState.likes.map((place) => (
         <article key={place.id}>
           <PlaceCard place={place} urlTo={`/lugar/${place.id}/descripcion`} />
         </article>
       ))} */}
+      {likes.map(place=>
+      <article key={place.id}>
+        <PlaceCard  place={place}/>
+      </article>)}
     </section>
   );
 };
