@@ -28,7 +28,6 @@ const styles = {
     bottom: "null",
     border: "2px solid #5B6675",
     background: "#fff",
-    padding: "28px 15px",
     height: "40vh",
     padding: 0,
   },

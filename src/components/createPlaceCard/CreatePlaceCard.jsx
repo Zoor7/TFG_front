@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory, Route } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Avatar from "../avatar/avatar";
 import Mapa from "../Mapa/Mapa";
@@ -12,7 +12,7 @@ import PlacesContext from "../../context/placesContext/placesContext";
 
 import { errorToast, successToast } from "../toast/customToast";
 import { createPlace } from "../../services/placesService";
-import { addLike, addPlace } from "../../services/userService";
+import { addPlace } from "../../services/userService";
 import { ADD_PLACE } from "../../context/reducers/placesreducer";
 
 import "../placeCard/placecard.scss";
@@ -30,7 +30,7 @@ const CreatePlaceCard = () => {
   const [position, setPosition] = useState();
 
   const { userState, userDispatch } = useContext(UserContext);
-  const { placesState, placesDispatch } = useContext(PlacesContext);
+  const { placesDispatch } = useContext(PlacesContext);
   const history = useHistory();
   const url = history.location.pathname;
 
@@ -40,7 +40,7 @@ const CreatePlaceCard = () => {
         history.replace("/");
       }
     }, 200);
-  }, []);
+  }, [userState, history]);
 
   const getPosFromMapa = (coords) => {
     setPosition(coords);

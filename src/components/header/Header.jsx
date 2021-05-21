@@ -3,14 +3,13 @@ import { useState, useEffect, useContext } from "react";
 import {
   AiOutlineHome,
   AiFillHome,
-  AiOutlineSetting,
   AiOutlineSearch,
-  AiFillSetting,
   AiOutlinePlus,
 } from "react-icons/ai";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiUser3Fill, RiUser3Line } from "react-icons/ri";
+import { IoStatsChartOutline, IoStatsChartSharp } from 'react-icons/io5';
 
 import Drawer from "@material-ui/core/Drawer";
 import useWindowDimensions from "../../hooks/useWindowDimension";
@@ -108,15 +107,15 @@ const Header = () => {
               onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
               activeClassName="item-active"
               className="item"
-              replace={goTo("/config")}
-              to="/config"
+              replace={goTo("/stats")}
+              to="/stats"
             >
-              {active === "/config" ? (
-                <AiFillSetting size="1.8rem" />
+              {active === "/stats" ? (
+                <IoStatsChartSharp size="1.8rem" />
               ) : (
-                <AiOutlineSetting size="1.8rem" />
+                <IoStatsChartOutline size="1.8rem" />
               )}
-              Configuración
+              Stats
             </NavLink>
           </div>
         )}
@@ -125,18 +124,18 @@ const Header = () => {
 
 
         {isLogged &&
-         <NavLink
-          onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
-          activeClassName="item-active"
-          className="item"
-          replace={goTo("/favPlaces")}
-          to="/favPlaces"
-        >
-          {active === "/favPlaces" ? (
-            <BsHeartFill size="1.8rem" />
-          ) : (
-            <BsHeart size="1.8rem" />
-          )}
+          <NavLink
+            onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+            activeClassName="item-active"
+            className="item"
+            replace={goTo("/favPlaces")}
+            to="/favPlaces"
+          >
+            {active === "/favPlaces" ? (
+              <BsHeartFill size="1.8rem" />
+            ) : (
+              <BsHeart size="1.8rem" />
+            )}
               Lugares favoritos
             </NavLink>}
       </div>

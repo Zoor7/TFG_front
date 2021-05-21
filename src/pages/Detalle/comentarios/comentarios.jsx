@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 
 import Avatar from "../../../components/avatar/avatar";

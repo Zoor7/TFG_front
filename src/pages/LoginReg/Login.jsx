@@ -16,7 +16,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const { userState, userDispatch } = useContext(UserContext);
+  const { userDispatch } = useContext(UserContext);
 
   const history = useHistory();
   const onSubmit = async (data) => {

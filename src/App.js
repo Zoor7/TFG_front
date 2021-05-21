@@ -16,6 +16,7 @@ import Register from "./pages/LoginReg/Register.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import Explorar from "./pages/Explorar/Explorar.jsx";
 import FavPlaces from "./pages/FavPlaces/FavPlaces.jsx";
+import Stats from "./pages/Stats/Stats.jsx";
 
 const override = css`
   display: block;
@@ -47,6 +48,7 @@ const App = () => {
             <Route path="/create" component={CreatePlace} />
             <Route path="/explorar" component={Explorar} />
             <Route path="/favPlaces" component={FavPlaces} />
+            <Route path="/stats" component={Stats} />
             <Route component={NotFound} />
           </Switch>
         </div>
