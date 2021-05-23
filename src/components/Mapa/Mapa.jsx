@@ -11,7 +11,7 @@ const containerStyle = {
 };
 
 const Mapa = ({ place, explorar, create, getPos }) => {
-  const GM_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+  const GM_KEY = `${process.env.REACT_APP_GOOGLE_API_KEY}`;
   const [position, setPosition] = useState();
 
   const history = useHistory();
