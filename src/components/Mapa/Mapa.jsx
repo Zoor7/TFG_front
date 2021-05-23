@@ -57,7 +57,7 @@ const Mapa = ({ place, explorar, create, getPos }) => {
   };
 
   return (
-    <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_API_KEY}>
+    <LoadScript googleMapsApiKey={GM_KEY}>
       <GoogleMap mapContainerStyle={containerStyle} center={position} zoom={15}>
         {place ? <Marker position={position} /> : null}
 

@@ -1,4 +1,5 @@
-const baseurl = "http://localhost:3001/api/places";
+// const baseurl = "http://localhost:3001/api/places";
+const baseurl= "https://bcurious-api.herokuapp.com/api/places"
 // const baseurl='http://192.168.1.36:3001/api/places'
 
 export const getPlaces = async () => {
