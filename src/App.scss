@@ -1,28 +1,36 @@
-@import './styles/main.scss';
-*{
-    margin: 0;
-    padding: 0;
+@import "./styles/main.scss";
+* {
+  margin: 0;
+  padding: 0;
+}
+#root{
+  display: flex;
+  height: 100%;
 }
 
-body{
-    position: absolute;
-    left: 15vw;
-    right: 0;
-    height: 100vh;
-    max-width: 60vw;
-    min-width: 60vw;
-    margin: 0 auto;
-    background-color: var(--color-background);
-    
+body {
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-background);
+  overflow-x: hidden;
+
+}
+.main-container{
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.container{
+  display: flex;
+    flex-direction: column;
+    flex: 1 0;
+    overflow-y: auto;
 }
 
 @media (max-width: 900px) {
-    body{
-        left: 0;
-        width: 100%;
-        max-width: 100%;
-        min-width: 100%;
-        padding: 3rem 0;
+  .container{
+    margin-top: 3rem;
+  }
 
-    }
 }

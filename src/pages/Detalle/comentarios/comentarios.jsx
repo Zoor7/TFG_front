@@ -1,40 +1,42 @@
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
-  useMemo,
-} from "react";
-import { useHistory } from "react-router";
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+
 import Avatar from "../../../components/avatar/avatar";
 import PlacesContext from "../../../context/placesContext/placesContext";
+import UserContext from "../../../context/userContext/userContext";
 import { addComment as addComment_place } from "../../../services/placesService";
 import { addComment as addComment_user } from "../../../services/userService";
 import { createComment } from "../../../services/commentService";
 
 import "./comentarios.scss";
+import { useHistory } from "react-router";
+import { errorToast } from "../../../components/toast/customToast";
+import { ADD_USER_COMMENT } from "../../../context/reducers/userReducer";
+import { UPDATE_PLACE } from "../../../context/reducers/placesreducer";
 
 const Comentarios = ({ place }) => {
-  const [message, setMessage] = useState("");
-  const { dispatch } = useContext(PlacesContext);
-  let history = useHistory();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { placesDispatch } = useContext(PlacesContext);
+  const { userState, userDispatch } = useContext(UserContext);
+  const history = useHistory();
 
-  const handleComment = (str) => {
-    setMessage(str);
-  };
-
-  const makeComment = async () => {
+  const makeComment = async (data) => {
     const comment = {
-      author: "6091c207fe3ed61b10fde239",
-      author_username: "zoor",
-      text: message,
+      author: userState.id,
+      author_username: userState.username,
+      text: data.comentario,
       isResponse: false,
       place: place.id,
     };
+
     const newComment = await createComment(comment);
-    console.log(newComment);
 
     if (newComment.error) {
+      errorToast("Ups, no se ha podido comentar.");
       return;
     }
     const commentPlaceIds = {
@@ -43,27 +45,24 @@ const Comentarios = ({ place }) => {
     };
 
     const updatedPlace = await addComment_place(commentPlaceIds);
-    console.log(updatedPlace);
 
     const commentUserIds = {
       commentId: newComment.id,
-      Id: place.id,
+      userId: userState.id,
     };
+    const updatedUser = await addComment_user(commentUserIds);
 
-    const updatedUser = await addComment_user();
-
-    dispatch({
-      type: "UPDATE_PLACE",
+    placesDispatch({
+      type: UPDATE_PLACE,
       payload: {
         ...updatedPlace,
       },
     });
-    history.push({
-      to: `/lugar/comentarios/${place.id}`,
-      state: {
-        place: {
-          ...updatedPlace,
-        },
+
+    userDispatch({
+      type: ADD_USER_COMMENT,
+      payload: {
+        ...newComment.id,
       },
     });
   };
@@ -71,30 +70,45 @@ const Comentarios = ({ place }) => {
   return (
     <div className="comentario-container">
       {place.comments.map((comment) => (
-        <li key={comment.id}>
+        <li style={{ padding: "0.7rem 0" }} key={comment.id}>
           <div className="comment">
-            {/* <Avatar img={comment.author.avatar}/> */}
-            <p style={{ fontWeight: 600, fontSize: "0.9rem" }}>
-              {comment.author_username}
-            </p>
-            <p>{comment.text}</p>
+            <Avatar img={comment.author.avatar} />
+            <div className="comment-text-container">
+              <p className="comment-username">{comment.author_username}</p>
+              <p className="comment-text">{comment.text}</p>
+            </div>
           </div>
           <p className="fancy">
             <span>Respuestas: {comment.responses.length}</span>
           </p>
         </li>
       ))}
-      <div className="textarea-container">
-        <textarea
-          className="comment-textarea"
-          onChange={(e) => handleComment(e.target.value)}
-          maxLength="200"
-          placeholder="Comenta aqui...."
-        ></textarea>
-        <button className="textarea-btn" onClick={makeComment}>
-          Enviar
-        </button>
-      </div>
+      <form onSubmit={handleSubmit(makeComment)}>
+        {!userState.username ? (
+          <div className="login-required-container">
+            <p onClick={() => history.push("/login")}>
+              Haz login para comentar
+            </p>
+          </div>
+        ) : (
+          <div className="">
+            <div className="textarea-container">
+              <Avatar img={userState.avatar} />
+              <textarea
+                {...register("comentario", { maxLength: 200 })}
+                className="comment-textarea"
+                placeholder="Comenta aqui...."
+              ></textarea>
+              {errors?.comentario?.type === "maxLength" && (
+                <span style={{ color: "red" }}>Mucho texto</span>
+              )}
+            </div>
+            <div className="btn-container">
+              <button>Enviar</button>
+            </div>
+          </div>
+        )}
+      </form>
     </div>
   );
 };

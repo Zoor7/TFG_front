@@ -1,21 +1,30 @@
-
-import { useLocation, useHistory } from 'react-router'
-import PlaceCard from '../../components/placeCard/placeCard'
-import './detalle.scss'
+import { useContext, useState, useEffect } from "react";
+import { useParams } from "react-router";
+import PlaceCard from "../../components/placeCard/placeCard";
+import PlacesContext from "../../context/placesContext/placesContext";
+import "./detalle.scss";
 
 const Detalle = () => {
-    const location = useLocation()
-    const history = useHistory()
+  const [currentPlace, setCurrentPlace] = useState();
+  const { placesState } = useContext(PlacesContext);
+  let params = useParams();
 
-    if (!location.state) {
-        history.push('/')
-        window.location.reload()
-    }else{
-        return (
-            <PlaceCard place={location.state.place} />
-            )
-        }
+  useEffect(() => {
+    (async () => {
+      const place = await placesState.places.find(
+        (place) => place.id === params.id
+      );
+      setCurrentPlace(place);
+    })();
+  }, [placesState]);
 
-}
+  if (currentPlace) {
+    return (
+      <div className='container'>
+        <PlaceCard place={currentPlace} />
+      </div>
+    );
+  } else return <h1>Loading</h1>;
+};
 
-export default Detalle
+export default Detalle;

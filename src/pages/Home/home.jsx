@@ -6,17 +6,16 @@ import PlacesContext from "../../context/placesContext/placesContext";
 import "./home.scss";
 
 const Home = () => {
-  const { state } = useContext(PlacesContext);
+  const { placesState } = useContext(PlacesContext);
 
-  console.log(state.places);
   return (
-    <div className="home-container">
-      {state.places.map((place) => (
-        <li key={place.id} style={{ listStyle: "none" }}>
-          <PlaceCard place={place} urlTo={`/lugar/descripcion/${place.id}`} />
-        </li>
+    <section className="home-container container">
+      {placesState.places.map((place) => (
+        <article key={place.id}>
+          <PlaceCard place={place} urlTo={`/lugar/${place.id}/descripcion`} />
+        </article>
       ))}
-    </div>
+    </section>
   );
 };
 

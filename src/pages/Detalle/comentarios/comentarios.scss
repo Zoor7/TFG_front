@@ -1,58 +1,122 @@
-@import '../../../styles/main.scss';
+@import "../../../styles/main.scss";
 
-.comentario-container{
-    padding: 2rem;
-    color: #fff;
-    list-style: none;
-    line-height: 1.2rem;
-}
-.comment{
-  display: flex;
-  align-items:center ;
-  column-gap: 1rem;
-}
-.comment-textarea{
-  margin-top: 2rem !important;
-  border: 1px solid #888;
-  font-family: var(--fm-montserrat);
-  resize: none;
-  width: 100%;
-  align-self: center;
-  font-size: 1.1rem;
-  background-color: darken($color: #fff, $amount: 80%);
-  padding: 0.2rem;
+.comentario-container {
+  position: relative;
+  padding: 2rem;
   color: #fff;
-  
+  list-style: none;
+  line-height: 1.2rem;
 }
+.comment {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
 
+  .comment-text-container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    overflow: hidden;
+    .comment-username {
+      font-weight: 600;
+    }
+    .comment-text {
+      overflow-wrap: break-word;
+    }
+    
+  }
+}
+.textarea-container {
+  display: flex;
+  padding: 2rem 0;
+  align-items: center;
+  column-gap: 1.5rem;
+  justify-content: center;
+  p {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 6rem;
+    font-size: 0.9rem;
+    line-height: normal;
+  }
+  textarea {
+    color: white;
+    border: 1px solid white;
+    width: 90%;
+    overflow: hidden;
+    padding: 1rem;
+    background-color: #181818;
+    resize: none;
+    font-size: 1rem;
+    font-family: var(--fm-montserrat);
+  }
+}
+.btn-container {
+  button {
+    position: absolute;
+    padding: 0.3rem 1rem;
+    bottom: 2.6rem;
+    right: 4rem;
+    border: 1px solid white;
+    background-color: #181818;
+    color: #fff;
+    font-size: 0.9rem;
+    font-family: var(--fm-montserrat);
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-0.2rem);
+    }
+  }
+}
 
 //Barras-----------------------------------------------
 .fancy {
-    line-height: 0.5;
-    text-align: center;
-    margin: 0.9rem 0;
-    font-size: 0.9rem;
-  }
-  .fancy span {
+  line-height: 0.5;
+  text-align: center;
+  margin: 0.9rem 0;
+  font-size: 0.9rem;
+  span {
     display: inline-block;
-    position: relative;  
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      border-bottom: 1px solid white;
+      border-top: 1px solid white;
+      top: 0;
+      width: 100%;
+    }
+    &::before {
+      right: 100%;
+      margin-right: 15px;
+    }
+    &::after {
+      left: 100%;
+      margin-left: 15px;
+    }
   }
-  .fancy span:before,
-  .fancy span:after {
-    content: "";
-    position: absolute;
-    height: 5px;
-    border-bottom: 1px solid white;
-    border-top: 1px solid white;
-    top: 0;
-    width: 100%;
+}
+//Fin-Barras-----------------------------------------------
+.login-required-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem;
+    cursor: pointer;
+    border-bottom: 2px #fff solid;
   }
-  .fancy span:before {
-    right: 100%;
-    margin-right: 15px;
+}
+
+@media (max-width: 900px) {
+  .btn-container {
+    button {
+      right: 1rem;
+    }
   }
-  .fancy span:after {
-    left: 100%;
-    margin-left: 15px;
-  }
-  //Fin-Barras-----------------------------------------------
+}

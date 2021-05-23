@@ -1,0 +1,47 @@
+@import '../../styles//main.scss';
+
+.notfound-container{
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    background-color: white;
+    justify-content: center;
+    flex: 1 0;
+    img{
+        align-self: center;
+        width: 50%;
+    }
+}
+.notfound-btn{
+    align-self: center;
+    padding: 0.5rem 2rem;
+    border: 1px solid green;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    z-index: 99 !important;
+    font-size: 1rem;
+    font-family: var(--fm-montserrat) ;
+    font-weight: 400;
+
+    &:hover{
+        transform: translateX(0.2rem);
+        background-color: green;
+        color: white;
+        transition: 500ms all;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .notfound-container{
+        left: 0;
+        img{
+            align-self: center;
+            width: 100%;
+    
+        }
+
+    }
+
+}

@@ -1,54 +1,68 @@
-@import '../../styles/main.scss';
+@import "../../styles/main.scss";
 
-.placecard-container{
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    font-family: var(--fm-montserrat);
-    border-radius: 10px;
-    margin: 2rem auto;
-    width: 600px;
+.placecard-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+  color: var(--color-light);
+  font-family: var(--fm-montserrat);
 }
-.placecard-header{
+.placecard-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  border-radius: 10px;
+  width: 600px;
+  background-color: var(--color-dark);
+}
+.placecard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.user-placecard {
+  display: flex;
+  width: 40%;
+  column-gap: 0.6rem;
+  font-size: 1.1rem;
+  align-items: center;
+  font-weight: 600;
+}
+
+.placecard-image {
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.placecard-footer {
+  display: flex;
+  column-gap: 2rem;
+  padding: 1rem 2rem;
+  .interaction {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-}
-
-
-.user-placecard{
-    display: flex;
-    width: 40%;
-    column-gap: 0.6rem;
-    font-size: 1.1rem;
-    align-items: center;
-    font-weight: 600;
-}
-
-.placecard-image{
-    img{
-        width: 100%;
+    column-gap: 0.3rem;
+    cursor: pointer;
+  }
+  .placecard-comment {
+    &:hover {
+      color: var(--color-background);
     }
-}
-
-.placecard-footer{
-    display: flex;
-    column-gap: 2rem;
-    padding: 1rem 2rem;
-    .interaction{
-        display: flex;
-        align-items: center;
-        column-gap: 0.3rem;
-        cursor: pointer;
-        &:hover{
-            color: lighten($color: red, $amount: 1);
-        }
+  }
+  .placecard-like {
+    &:hover {
+      color: red;
     }
+  }
 }
 
 @media (max-width: 900px) {
-    .placecard-container{
-        width: 100%;
-        border-radius: 0;
-    }
+  .placecard-main {
+    width: 100%;
+  }
 }

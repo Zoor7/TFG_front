@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { placeReducer } from "../reducers/placesreducer";
+import { ADD_PLACES, placeReducer } from "../reducers/placesreducer";
 
 import { getPlaces } from "../../services/placesService";
 
@@ -11,19 +11,18 @@ const initialState = {
 };
 
 export const PlacesProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(placeReducer, initialState);
+  const [placesState, placesDispatch] = useReducer(placeReducer, initialState);
 
   useEffect(() => {
     (async () => {
-      console.log("AAAAAAAAAAA");
       const places = await getPlaces();
-      dispatch({ type: "ADD_PLACES", payload: places });
+      placesDispatch({ type: ADD_PLACES, payload: places });
     })();
   }, []);
 
   const values = {
-    state,
-    dispatch,
+    placesState,
+    placesDispatch,
   };
 
   return (
