@@ -29,7 +29,6 @@ const App = () => {
 
   const { placesState } = useContext(PlacesContext);
 
-  console.log(state.places);
 
   useEffect(() => {
     if (placesState.places) {
