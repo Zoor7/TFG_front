@@ -10,7 +10,10 @@ const FavPlaces = () => {
 
 
   useEffect(() => {
-    setLikes(userState.likes);
+    setTimeout(() => {
+      setLikes(userState.likes);
+      
+    }, 300);
   }, [userState]);
 
 
