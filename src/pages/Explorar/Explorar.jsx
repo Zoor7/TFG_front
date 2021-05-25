@@ -50,23 +50,24 @@ const Explorar = () => {
   };
 
   const askPosition = () => {
-    navigator.geolocation.getCurrentPosition((res) => {
-      const coords = {
-        lat: res.coords.latitude,
-        lng: res.coords.longitude,
-      };
-      setPosition(coords);
-    });
+    if (!position) {
+      navigator.geolocation.getCurrentPosition((res) => {
+        const coords = {
+          lat: res.coords.latitude,
+          lng: res.coords.longitude,
+        };
+        setPosition(coords);
+      });
+    }
   };
 
   const onSubmit = async (data) => {
-    if ((data.position = "ubicacion" && position)) {
+    if (data.position === "ubicacion" && position) {
       const info = {
         kms: Number(data.kms),
         coordinates: [position.lat, position.lng],
       };
       const nearbyPlaces = await getNearbyPlaces(info);
-      console.log(nearbyPlaces);
       const obj = {
         position,
         kms: Number(data.kms),
@@ -74,6 +75,13 @@ const Explorar = () => {
       };
       setExplorar(obj);
       handleModal();
+    } else {
+      const info = {
+        kms: Number(data.kms),
+        coordinates: [position.lat, position.lng],
+      };
+      const nearbyPlaces = await getNearbyPlaces(info);
+      const random = Math.floor(Math.random() * nearbyPlaces.length);
     }
   };
 
@@ -99,6 +107,9 @@ const Explorar = () => {
         {errors?.position?.type === "required" && (
           <span style={{ color: "red" }}>Introduzca el campo, por favor.</span>
         )}
+        {errors?.position?.type === "required" && (
+          <span style={{ color: "red" }}>Introduzca el campo, por favor.</span>
+        )}
         <input
           {...register("kms", { required: true })}
           type="number"
@@ -108,7 +119,12 @@ const Explorar = () => {
         {errors?.kms?.type === "required" && (
           <span style={{ color: "red" }}>Introduzca el campo, por favor.</span>
         )}
-        <button>Buscar</button>
+        <button
+          className={position ? "search-button" : "disabled-button"}
+          disabled={!position}
+        >
+          Buscar
+        </button>
       </form>
     </div>
   );

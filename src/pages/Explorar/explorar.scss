@@ -41,9 +41,17 @@
     border: 1px solid white;
     width: 50%;
     margin: 0 auto;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .search-button {
+  }
+  .disabled-button {
+    border: 1px solid darken($color: #fff, $amount: 30);
   }
 }
-
 
 @media (max-width: 900px) {
   .explorar-container {

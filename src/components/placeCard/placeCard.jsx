@@ -1,6 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Route, useLocation, useHistory } from "react-router-dom";
-import { FaCreativeCommonsSampling, FaMapMarkedAlt, FaRegComment } from "react-icons/fa";
+import {
+  FaCreativeCommonsSampling,
+  FaMapMarkedAlt,
+  FaRegComment,
+} from "react-icons/fa";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 import Avatar from "../avatar/avatar";
@@ -36,7 +40,9 @@ const PlaceCard = ({ place, urlTo }) => {
   const { placesState, placesDispatch } = useContext(PlacesContext);
 
   useEffect(() => {
-    const isLiked = userState.likes.filter((userLike) => userLike.id === place.id);
+    const isLiked = userState.likes.filter(
+      (userLike) => userLike.id === place.id
+    );
     isLiked[0] ? setLike(true) : setLike(false);
   }, []);
 
@@ -49,19 +55,18 @@ const PlaceCard = ({ place, urlTo }) => {
       userId: userState.id,
       placeId: place.id,
     };
-    
+
     if (!like) {
       await addPlaceLike(obj);
-     const infoLike = await addUserLike(obj);
-     await userDispatch({
+      const infoLike = await addUserLike(obj);
+      await userDispatch({
         type: ADD_USER_LIKE,
         payload: infoLike,
       });
-     await placesDispatch({
+      await placesDispatch({
         type: ADD_PLACE_LIKES,
         payload: obj,
       });
-
     } else {
       userDispatch({
         type: DELETE_USER_LIKE,
@@ -74,7 +79,6 @@ const PlaceCard = ({ place, urlTo }) => {
       await deletePlaceLike(obj);
       await deleteUserLike(obj);
     }
-
 
     setLike(!like);
   };
