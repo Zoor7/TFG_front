@@ -8,6 +8,7 @@ import { errorToast, successToast } from "../../components/toast/customToast";
 
 import "./auth.scss";
 import { ADD_USER } from "../../context/reducers/userReducer";
+import { saveUser } from "../../services/userStorage";
 
 const Login = () => {
   const {
@@ -28,6 +29,7 @@ const Login = () => {
     const user = await login(userInfo);
 
     if (user) {
+      await saveUser(data.email);
       await userDispatch({ type: ADD_USER, payload: user });
       successToast(`Bienvenido ${user.username}`);
       history.replace("/");

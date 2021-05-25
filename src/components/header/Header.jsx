@@ -9,7 +9,9 @@ import {
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiUser3Fill, RiUser3Line } from "react-icons/ri";
-import { IoStatsChartOutline, IoStatsChartSharp } from 'react-icons/io5';
+import { IoStatsChartOutline, IoStatsChartSharp } from "react-icons/io5";
+
+import { BiLogOut } from "react-icons/bi";
 
 import Drawer from "@material-ui/core/Drawer";
 import useWindowDimensions from "../../hooks/useWindowDimension";
@@ -17,6 +19,7 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import "./header.scss";
 import UserContext from "../../context/userContext/userContext";
+import { cleanUserStorage } from "../../services/userStorage";
 
 const Header = () => {
   const [active, setActive] = useState();
@@ -43,6 +46,10 @@ const Header = () => {
       return true;
     }
     return false;
+  };
+
+  const handleLogout = () => {
+    // Aquí irá la forma de salir...
   };
 
   const header = () => {
@@ -122,8 +129,7 @@ const Header = () => {
 
         <hr style={{ width: "50%", alignSelf: "center" }}></hr>
 
-
-        {isLogged &&
+        {isLogged && (
           <NavLink
             onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
             activeClassName="item-active"
@@ -136,8 +142,21 @@ const Header = () => {
             ) : (
               <BsHeart size="1.8rem" />
             )}
-              Lugares favoritos
-            </NavLink>}
+            Lugares favoritos
+          </NavLink>
+        )}
+        {isLogged && (
+          <NavLink
+            onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+            activeClassName="item-active"
+            className="item"
+            replace={goTo("/")}
+            to="/"
+          >
+            <BiLogOut size="1.8rem" />
+            Logout
+          </NavLink>
+        )}
       </div>
     );
   };

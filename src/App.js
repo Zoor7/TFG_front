@@ -17,6 +17,8 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 import Explorar from "./pages/Explorar/Explorar.jsx";
 import FavPlaces from "./pages/FavPlaces/FavPlaces.jsx";
 import Stats from "./pages/Stats/Stats.jsx";
+import UserContext from "./context/userContext/userContext.jsx";
+import { getUserStorage } from "./services/userStorage.js";
 
 const override = css`
   display: block;
@@ -28,7 +30,7 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   const { placesState } = useContext(PlacesContext);
-
+  // const { userState,userDispatch } = useContext(UserContext);
 
   useEffect(() => {
     if (placesState.places) {
