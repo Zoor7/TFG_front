@@ -50,7 +50,7 @@ const Comentarios = ({ place }) => {
       commentId: newComment.id,
       userId: userState.id,
     };
-    const updatedUser = await addComment_user(commentUserIds);
+    await addComment_user(commentUserIds);
 
     placesDispatch({
       type: UPDATE_PLACE,
@@ -65,6 +65,10 @@ const Comentarios = ({ place }) => {
         ...newComment.id,
       },
     });
+
+    const textArea = document.querySelector("textarea");
+
+    textArea.value = "";
   };
 
   return (
