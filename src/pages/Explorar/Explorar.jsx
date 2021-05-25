@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import "./explorar.scss";
 import Mapa from "../../components/Mapa/Mapa";
 import { getNearbyPlaces } from "../../services/placesService";
+import { useHistory } from "react-router";
 
 const styles = {
   overlay: {
@@ -40,6 +41,7 @@ const Explorar = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const history=useHistory()
 
   const [position, setPosition] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -82,11 +84,15 @@ const Explorar = () => {
       };
       const nearbyPlaces = await getNearbyPlaces(info);
       const random = Math.floor(Math.random() * nearbyPlaces.length);
+      
+      history.push(`/lugar/${nearbyPlaces[random].id}`)
     }
   };
 
   return (
-    <div className="explorar-container">
+    <div className="container">
+
+      <div className="explorar-container">
       <Modal isOpen={modalIsOpen} onRequestClose={handleModal} style={styles}>
         <Mapa explorar={explorar} />
       </Modal>
@@ -126,6 +132,7 @@ const Explorar = () => {
           Buscar
         </button>
       </form>
+      </div>
     </div>
   );
 };

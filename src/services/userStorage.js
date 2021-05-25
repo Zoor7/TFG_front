@@ -9,6 +9,5 @@ export const getUserStorage = async () => {
 
 export const cleanUserStorage = async () => {
   localStorage.removeItem("user");
-  console.log("Llega");
   localStorage.clear();
 };

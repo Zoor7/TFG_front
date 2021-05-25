@@ -70,7 +70,6 @@ const Comentarios = ({ place }) => {
 
     textArea.value = "";
   };
-  console.log(place.comments);
   return (
     <div className="comentario-container">
       {place.comments.map((comment) => (

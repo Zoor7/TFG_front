@@ -1,11 +1,12 @@
 @import "../../styles/main.scss";
 
+
 .explorar-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-self: center;
-  margin: 0 auto;
+  align-items: center;
+  margin: auto auto;
   border: 1px solid white;
   padding: 2rem;
   text-align: center;

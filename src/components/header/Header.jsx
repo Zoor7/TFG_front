@@ -20,6 +20,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./header.scss";
 import UserContext from "../../context/userContext/userContext";
 import { cleanUserStorage } from "../../services/userStorage";
+import { CLEAN_USER } from "../../context/reducers/userReducer";
 
 const Header = () => {
   const [active, setActive] = useState();
@@ -27,7 +28,7 @@ const Header = () => {
   const [isLogged, setIsLogged] = useState();
   const { width } = useWindowDimensions();
   const { pathname } = useLocation();
-  const { userState } = useContext(UserContext);
+  const { userState,userDispatch } = useContext(UserContext);
 
   useEffect(() => {
     setActive(pathname);
@@ -49,14 +50,20 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    // Aquí irá la forma de salir...
+    cleanUserStorage()
+    userDispatch({type:CLEAN_USER})
   };
+  const handleCloseNav=()=>{
+    if(width<=900){
+      setIsClosed(!isClosed)
+    }
+  }
 
   const header = () => {
     return (
       <div className="header-container">
         <NavLink
-          onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+          onClick={()=>{handleCloseNav()}}
           className={active === "/" ? "item item-active" : "item"}
           to={"/"}
           replace={goTo("/")}
@@ -70,7 +77,7 @@ const Header = () => {
         </NavLink>
 
         <NavLink
-          onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+          onClick={()=>{handleCloseNav()}}
           activeClassName="item-active"
           className="item"
           replace={goTo("/explorar")}
@@ -82,7 +89,7 @@ const Header = () => {
 
         {!isLogged ? (
           <NavLink
-            onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+            onClick={()=>{handleCloseNav()}}
             activeClassName="item-active"
             className="item"
             replace={goTo("/login")}
@@ -99,8 +106,9 @@ const Header = () => {
           <div
             style={{ display: "flex", flexDirection: "column", rowGap: "1rem" }}
           >
+              <hr style={{ width: "50%", alignSelf: "center" }}></hr>
             <NavLink
-              onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+              onClick={()=>{handleCloseNav()}}
               activeClassName="item-active"
               className="item"
               replace={goTo("/create")}
@@ -111,7 +119,7 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-              onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+              onClick={()=>{handleCloseNav()}}
               activeClassName="item-active"
               className="item"
               replace={goTo("/stats")}
@@ -124,14 +132,9 @@ const Header = () => {
               )}
               Stats
             </NavLink>
-          </div>
-        )}
 
-        <hr style={{ width: "50%", alignSelf: "center" }}></hr>
-
-        {isLogged && (
-          <NavLink
-            onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
+            <NavLink
+            onClick={()=>{handleCloseNav()}}
             activeClassName="item-active"
             className="item"
             replace={goTo("/favPlaces")}
@@ -144,11 +147,9 @@ const Header = () => {
             )}
             Lugares favoritos
           </NavLink>
-        )}
-        {isLogged && (
+
           <NavLink
-            onClick={width <= 900 ? () => setIsClosed(!isClosed) : () => ""}
-            activeClassName="item-active"
+            onClick={()=>{handleCloseNav();handleLogout()}}
             className="item"
             replace={goTo("/")}
             to="/"
@@ -156,7 +157,11 @@ const Header = () => {
             <BiLogOut size="1.8rem" />
             Logout
           </NavLink>
+          </div>
+
         )}
+        {!isLogged? <hr style={{ width: "50%", alignSelf: "center" }}></hr>:null}
+        
       </div>
     );
   };
