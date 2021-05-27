@@ -3,7 +3,7 @@ export const ADD_USER_PLACE = "ADD_USER_PLACE";
 export const ADD_USER_COMMENT = "ADD_USER_COMMENT";
 export const ADD_USER_LIKE = "ADD_USER_LIKE";
 export const DELETE_USER_LIKE = "DELETE_USER_LIKE";
-export const CLEAN_USER = "CLEAN_USER"
+export const CLEAN_USER = "CLEAN_USER";
 
 export function userReducer(state, action) {
   switch (action.type) {
@@ -28,9 +28,9 @@ export function userReducer(state, action) {
         avatar: "",
         places: [],
         likes: [],
+        comments: [],
       };
-      return { ...initialState}
-
+      return { ...initialState };
 
     default:
       throw new Error();

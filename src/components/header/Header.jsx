@@ -15,7 +15,7 @@ import { BiLogOut } from "react-icons/bi";
 
 import Drawer from "@material-ui/core/Drawer";
 import useWindowDimensions from "../../hooks/useWindowDimension";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 
 import "./header.scss";
 import UserContext from "../../context/userContext/userContext";
@@ -28,7 +28,8 @@ const Header = () => {
   const [isLogged, setIsLogged] = useState();
   const { width } = useWindowDimensions();
   const { pathname } = useLocation();
-  const { userState,userDispatch } = useContext(UserContext);
+  const { userState, userDispatch } = useContext(UserContext);
+  const history = useHistory();
 
   useEffect(() => {
     setActive(pathname);
@@ -50,20 +51,21 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    cleanUserStorage()
-    userDispatch({type:CLEAN_USER})
+    history.replace("/logout");
   };
-  const handleCloseNav=()=>{
-    if(width<=900){
-      setIsClosed(!isClosed)
+  const handleCloseNav = () => {
+    if (width <= 900) {
+      setIsClosed(!isClosed);
     }
-  }
+  };
 
   const header = () => {
     return (
       <div className="header-container">
         <NavLink
-          onClick={()=>{handleCloseNav()}}
+          onClick={() => {
+            handleCloseNav();
+          }}
           className={active === "/" ? "item item-active" : "item"}
           to={"/"}
           replace={goTo("/")}
@@ -77,7 +79,9 @@ const Header = () => {
         </NavLink>
 
         <NavLink
-          onClick={()=>{handleCloseNav()}}
+          onClick={() => {
+            handleCloseNav();
+          }}
           activeClassName="item-active"
           className="item"
           replace={goTo("/explorar")}
@@ -89,7 +93,9 @@ const Header = () => {
 
         {!isLogged ? (
           <NavLink
-            onClick={()=>{handleCloseNav()}}
+            onClick={() => {
+              handleCloseNav();
+            }}
             activeClassName="item-active"
             className="item"
             replace={goTo("/login")}
@@ -106,9 +112,11 @@ const Header = () => {
           <div
             style={{ display: "flex", flexDirection: "column", rowGap: "1rem" }}
           >
-              <hr style={{ width: "50%", alignSelf: "center" }}></hr>
+            <hr style={{ width: "50%", alignSelf: "center" }}></hr>
             <NavLink
-              onClick={()=>{handleCloseNav()}}
+              onClick={() => {
+                handleCloseNav();
+              }}
               activeClassName="item-active"
               className="item"
               replace={goTo("/create")}
@@ -119,7 +127,9 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-              onClick={()=>{handleCloseNav()}}
+              onClick={() => {
+                handleCloseNav();
+              }}
               activeClassName="item-active"
               className="item"
               replace={goTo("/stats")}
@@ -134,34 +144,37 @@ const Header = () => {
             </NavLink>
 
             <NavLink
-            onClick={()=>{handleCloseNav()}}
-            activeClassName="item-active"
-            className="item"
-            replace={goTo("/favPlaces")}
-            to="/favPlaces"
-          >
-            {active === "/favPlaces" ? (
-              <BsHeartFill size="1.3rem" />
-            ) : (
-              <BsHeart size="1.3rem" />
-            )}
-            Lugares favoritos
-          </NavLink>
+              onClick={() => {
+                handleCloseNav();
+              }}
+              activeClassName="item-active"
+              className="item"
+              replace={goTo("/favPlaces")}
+              to="/favPlaces"
+            >
+              {active === "/favPlaces" ? (
+                <BsHeartFill size="1.3rem" />
+              ) : (
+                <BsHeart size="1.3rem" />
+              )}
+              Lugares favoritos
+            </NavLink>
 
-          <NavLink
-            onClick={()=>{handleCloseNav();handleLogout()}}
-            className="item"
-            replace={goTo("/")}
-            to="/"
-          >
-            <BiLogOut size="1.3rem" />
-            Logout
-          </NavLink>
+            <span
+              onClick={() => {
+                handleCloseNav();
+                handleLogout();
+              }}
+              className="item"
+            >
+              <BiLogOut size="1.3rem" />
+              Logout
+            </span>
           </div>
-
         )}
-        {!isLogged? <hr style={{ width: "50%", alignSelf: "center" }}></hr>:null}
-        
+        {!isLogged ? (
+          <hr style={{ width: "50%", alignSelf: "center" }}></hr>
+        ) : null}
       </div>
     );
   };
