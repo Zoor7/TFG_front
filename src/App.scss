@@ -3,34 +3,86 @@
   margin: 0;
   padding: 0;
 }
-#root{
+#root {
   display: flex;
   height: 100%;
 }
+//SCROLLBAR----------------
+::-webkit-scrollbar{
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: #68a190; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #181818; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #151515; 
+}
+//SCROLLBAR----------------
 
 body {
   width: 100%;
   height: 100vh;
   background-color: var(--color-background);
   overflow-x: hidden;
-
 }
-.main-container{
+.main-container {
   display: flex;
   height: 100%;
   width: 100%;
 }
 
-.container{
+.container {
+  position: relative;
   display: flex;
-    flex-direction: column;
-    flex: 1 0;
-    overflow-y: auto;
+  flex-direction: column;
+  flex: 1 0;
+  overflow-y: auto;
 }
 
+//PAGE
+.page {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top:0;
+  bottom: 0;
+}
+
+.page-enter {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+//////////////////
+
 @media (max-width: 900px) {
-  .container{
-    margin-top: 3rem;
+  ::-webkit-scrollbar{
+    width: 0;
   }
 
 }

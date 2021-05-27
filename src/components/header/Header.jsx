@@ -69,9 +69,9 @@ const Header = () => {
           replace={goTo("/")}
         >
           {active === "/" ? (
-            <AiFillHome size="1.8rem" />
+            <AiFillHome size="1.3rem" />
           ) : (
-            <AiOutlineHome size="1.8rem" />
+            <AiOutlineHome size="1.3rem" />
           )}
           Home
         </NavLink>
@@ -83,7 +83,7 @@ const Header = () => {
           replace={goTo("/explorar")}
           to="/explorar"
         >
-          <AiOutlineSearch size="1.8rem" />
+          <AiOutlineSearch size="1.3rem" />
           Explorar
         </NavLink>
 
@@ -96,9 +96,9 @@ const Header = () => {
             to="/login"
           >
             {active === "/login" ? (
-              <RiUser3Fill size="1.8rem" />
+              <RiUser3Fill size="1.3rem" />
             ) : (
-              <RiUser3Line size="1.8rem" />
+              <RiUser3Line size="1.3rem" />
             )}
             Login
           </NavLink>
@@ -114,7 +114,7 @@ const Header = () => {
               replace={goTo("/create")}
               to="/create"
             >
-              <AiOutlinePlus size="1.8rem" />
+              <AiOutlinePlus size="1.3rem" />
               Create
             </NavLink>
 
@@ -126,9 +126,9 @@ const Header = () => {
               to="/stats"
             >
               {active === "/stats" ? (
-                <IoStatsChartSharp size="1.8rem" />
+                <IoStatsChartSharp size="1.3rem" />
               ) : (
-                <IoStatsChartOutline size="1.8rem" />
+                <IoStatsChartOutline size="1.3rem" />
               )}
               Stats
             </NavLink>
@@ -141,9 +141,9 @@ const Header = () => {
             to="/favPlaces"
           >
             {active === "/favPlaces" ? (
-              <BsHeartFill size="1.8rem" />
+              <BsHeartFill size="1.3rem" />
             ) : (
-              <BsHeart size="1.8rem" />
+              <BsHeart size="1.3rem" />
             )}
             Lugares favoritos
           </NavLink>
@@ -154,7 +154,7 @@ const Header = () => {
             replace={goTo("/")}
             to="/"
           >
-            <BiLogOut size="1.8rem" />
+            <BiLogOut size="1.3rem" />
             Logout
           </NavLink>
           </div>

@@ -90,7 +90,7 @@ const Explorar = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container main-container">
 
       <div className="explorar-container">
       <Modal isOpen={modalIsOpen} onRequestClose={handleModal} style={styles}>

@@ -1,6 +1,8 @@
 @import "../../styles/main.scss";
 
-
+.main-container{
+  height: 100vh;
+}
 .explorar-container {
   display: flex;
   flex-direction: column;
@@ -56,6 +58,8 @@
 
 @media (max-width: 900px) {
   .explorar-container {
+    display: flex;
+    margin-top: 4rem;
     width: 80%;
   }
 }

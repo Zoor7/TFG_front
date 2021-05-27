@@ -10,7 +10,7 @@ const NotFound = () => {
   const history = useHistory();
 
   return (
-    <div className="notfound-container">
+    <div className="notfound-container a">
       <img src={width <= 900 ? pulpNotFound : notFound} alt="404" />
       <button onClick={() => history.replace("/")} className="notfound-btn">
         HOME

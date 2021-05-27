@@ -1,6 +1,8 @@
 import React from "react";
 import CreatePlaceCard from "../../components/createPlaceCard/CreatePlaceCard";
 
+import './createPlace.scss'
+
 
 
 const CreatePlace = () => {

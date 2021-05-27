@@ -3,6 +3,9 @@
 .auth-container {
     font-family: var(--fm-montserrat);
     justify-content: center;
+    
+    align-self: center;
+    height: 100vh;
     h1 {
         margin-top: 2rem;
         text-align: center;
@@ -90,8 +93,7 @@
 @media (max-width: 900px) {
     .auth-container {
         overflow-x: hidden;
-        margin-top: 4rem;
-        justify-content: flex-start;
+        margin-top: 2rem;
     }
 
     .auth-main {

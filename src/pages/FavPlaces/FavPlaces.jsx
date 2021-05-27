@@ -15,6 +15,7 @@ const FavPlaces = () => {
   }, [userState]);
 
   return (
+    <div className="fav-main">
     <section className="container">
       {likes.map((place) => (
         <article key={place.id}>
@@ -22,6 +23,7 @@ const FavPlaces = () => {
         </article>
       ))}
     </section>
+    </div>
   );
 };
 

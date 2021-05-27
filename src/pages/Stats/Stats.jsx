@@ -34,45 +34,49 @@ const Stats = () => {
   }, [userState, history]);
 
   return (
-    <div className="flex-container-stats">
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt={`Avatar ${userState.username}`}
-            height="160"
-            image={userState.avatar || avatarPlaceholder}
-            title={`Avatar ${userState.username}`}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {userState.username}
+    <div className="main-stats">
+
+      <div className="flex-container-stats">
+        <Card className={classes.root}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt={`Avatar ${userState.username}`}
+              height="160"
+              image={userState.avatar || avatarPlaceholder}
+              title={`Avatar ${userState.username}`}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {userState.username}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <b> Likes:</b> {userState.likes.length}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <b> Email:</b> {userState.email}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <b> Lugares:</b> {userState.places.length}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                <b> Comentarios:</b> {userState.comments.length}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Typography
+              className="stats-info"
+              variant="body2"
+              color="textPrimary"
+              component="h5"
+            >
+              <b>Estadísticas</b>
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <b> Likes:</b> {userState.likes.length}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <b> Email:</b> {userState.email}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <b> Lugares:</b> {userState.places.length}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              <b> Comentarios:</b> {userState.comments.length}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Typography
-            className="stats-info"
-            variant="body2"
-            color="textPrimary"
-            component="h5"
-          >
-            <b>Estadísticas</b>
-          </Typography>
-        </CardActions>
-      </Card>
+          </CardActions>
+        </Card>
+      </div>
+
     </div>
   );
 };
