@@ -20,12 +20,12 @@ const routes = [
     { path: '/explorar', name: 'Explorar', Component: Explorar },
     { path: '/favPlaces', name: 'FavPlaces', Component: FavPlaces },
     { path: '/stats', name: 'Stats', Component: Stats },
-    // { path: '*', name: 'notFound', Component: NotFound },
   ]
   
   export function SiteRoutes() {
+      
     const routeComponents = routes.map(({ path, Component }) => (
-      <Route key={path} exact path={path}>
+      <Route key={path} exact={path=='/'} path={path}>
         {({ match }) => (
           <CSSTransition
             in={match != null}
@@ -41,28 +41,8 @@ const routes = [
         )}
       </Route>
     ));
-  
-    routeComponents.push(
-      <Route>
-        {routeProps => {
-          console.log(routeProps);
-          if ( routes.filter(r => r.path === routeProps.location.pathname).length === 0 ) {
-            return (
-              <CSSTransition
-                in={routeProps.match != null}
-                timeout={300}
-                classNames="fade"
-                unmountOnExit
-              >
-                <NotFound/>
-              </CSSTransition>
-            );
-          } else {
-            return <div></div>;
-          }
-        }}
-      </Route>
-    );
+    console.log(routeComponents)
+
   
     return routeComponents;
   }
