@@ -13,6 +13,7 @@ const initialState = {
   avatar: "",
   places: [],
   likes: [],
+  comments: [],
 };
 
 export const UserProvider = ({ children }) => {

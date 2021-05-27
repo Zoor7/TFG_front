@@ -16,13 +16,22 @@ const FavPlaces = () => {
 
   return (
     <div className="fav-main">
-    <section className="container">
-      {likes.map((place) => (
-        <article key={place.id}>
-          <PlaceCard place={place} />
-        </article>
-      ))}
-    </section>
+      {likes.length > 0 ? (
+        <section className="container">
+          {likes.map((place) => (
+            <article key={place.id}>
+              <PlaceCard place={place} />
+            </article>
+          ))}
+        </section>
+      ) : (
+        <div className="title-fav-container">
+          <h2>
+            Todavía no tienes lugares favoritos, prueba a dar like a algún
+            lugar!
+          </h2>
+        </div>
+      )}
     </div>
   );
 };

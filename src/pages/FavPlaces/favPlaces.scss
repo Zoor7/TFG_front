@@ -1,6 +1,16 @@
+.title-fav-container {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+  }
+}
 @media (max-width: 900px) {
-    .fav-main{
-        margin-top: 2.5rem;
-    }
-
+  .fav-main {
+    margin-top: 2.5rem;
+  }
 }

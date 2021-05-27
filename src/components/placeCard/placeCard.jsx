@@ -98,8 +98,8 @@ const PlaceCard = ({ place, urlTo }) => {
     e.stopPropagation();
   }
   return (
-    <div className="placecard-container" onClick={navigateTo}>
-      <div className="placecard-main">
+    <div className="placecard-container">
+      <div className="placecard-main" onClick={navigateTo}>
         <div className="placecard-header">
           <div className="user-placecard">
             <Avatar
