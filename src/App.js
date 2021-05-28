@@ -55,29 +55,13 @@ const App = () => {
                           <Switch>
                             <Route exact path="/" component={Home} />
                             <Route path="/lugar/:id" component={Detalle} />
-                            <Route exact path="/login" component={Login} />
-                            <Route
-                              exact
-                              path="/register"
-                              component={Register}
-                            />
-                            <Route
-                              exact
-                              path="/create"
-                              component={CreatePlace}
-                            />
-                            <Route
-                              exact
-                              path="/explorar"
-                              component={Explorar}
-                            />
-                            <Route
-                              exact
-                              path="/favPlaces"
-                              component={FavPlaces}
-                            />
-                            <Route exact path="/logout" component={Logout} />
-                            <Route exact path="/stats" component={Stats} />
+                            <Route path="/login" component={Login} />
+                            <Route path="/register" component={Register} />
+                            <Route path="/create" component={CreatePlace} />
+                            <Route path="/explorar" component={Explorar} />
+                            <Route path="/favPlaces" component={FavPlaces} />
+                            <Route path="/logout" component={Logout} />
+                            <Route path="/stats" component={Stats} />
                             <Route component={NotFound} />
                           </Switch>
                         )}
