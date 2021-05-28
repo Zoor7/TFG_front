@@ -7,8 +7,6 @@ import CreatePlace from "./pages/CreatePlace/CreatePlace.jsx";
 import Header from "./components/header/Header.jsx";
 import PlacesContext from "./context/placesContext/placesContext.jsx";
 
-import ClockLoader from "react-spinners/ClockLoader";
-import { css } from "@emotion/react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Login from "./pages/LoginReg/Login.jsx";
@@ -20,18 +18,13 @@ import Stats from "./pages/Stats/Stats.jsx";
 import Logout from "./pages/Logout/Logout.jsx";
 
 import "./App.scss";
-
-const override = css`
-  display:flex
-  margin: auto auto;
-  border-color: #181818;
-`;
-
+import UserContext from "./context/userContext/userContext.jsx";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
 
   const { placesState } = useContext(PlacesContext);
+  const { userState } = useContext(UserContext);
 
   useEffect(() => {
     if (placesState.places) {
@@ -39,26 +32,23 @@ const App = () => {
     }
   }, [placesState]);
 
-  const supportsHistory = 'pushState' in window.history;
-
-
   if (!loading) {
     return (
-      <Router forceRefresh={!supportsHistory} >
+      <Router>
         <div className="main-container">
           <Header />
           <Route
             render={({ location }) => {
               const { pathname } = location;
               return (
-                <TransitionGroup className='container'>
+                <TransitionGroup className="container">
                   <CSSTransition
                     key={pathname}
                     classNames="page"
                     timeout={300}
                     unmountOnExit
                   >
-                    <div className='page'>
+                    <div className="page">
                       <Route
                         location={location}
                         render={() => (
@@ -66,10 +56,26 @@ const App = () => {
                             <Route exact path="/" component={Home} />
                             <Route path="/lugar/:id" component={Detalle} />
                             <Route exact path="/login" component={Login} />
-                            <Route exact path="/register" component={Register} />
-                            <Route exact path="/create" component={CreatePlace} />
-                            <Route exact path="/explorar" component={Explorar} />
-                            <Route exact path="/favPlaces" component={FavPlaces} />
+                            <Route
+                              exact
+                              path="/register"
+                              component={Register}
+                            />
+                            <Route
+                              exact
+                              path="/create"
+                              component={CreatePlace}
+                            />
+                            <Route
+                              exact
+                              path="/explorar"
+                              component={Explorar}
+                            />
+                            <Route
+                              exact
+                              path="/favPlaces"
+                              component={FavPlaces}
+                            />
                             <Route exact path="/logout" component={Logout} />
                             <Route exact path="/stats" component={Stats} />
                             <Route component={NotFound} />
@@ -85,12 +91,12 @@ const App = () => {
         </div>
       </Router>
     );
-  } else return (
-    <div className='loading'>
-      <ClockLoader css={override} size="4rem" />;
-
-    </div>
-  )
+  } else
+    return (
+      <div className="loading">
+        <h2>Loading</h2>
+      </div>
+    );
 };
 
 export default App;
