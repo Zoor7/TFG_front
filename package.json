@@ -2,7 +2,7 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://bcurious.herokuapp.com/",
   "engines": {
     "node": "14.x"
   },
