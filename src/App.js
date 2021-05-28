@@ -39,12 +39,11 @@ const App = () => {
     }
   }, [placesState]);
 
-  const supportsHistory = 'pushState' in window.history;
 
 
   if (!loading) {
     return (
-      <Router forceRefresh={!supportsHistory} >
+      <Router>
         <div className="main-container">
           <Header />
           <Route
@@ -67,7 +66,7 @@ const App = () => {
                             <Route path="/lugar/:id" component={Detalle} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/register" component={Register} />
-                            <Route exact path="/create" component={CreatePlace} />
+                            <Route path="/create" component={CreatePlace} />
                             <Route exact path="/explorar" component={Explorar} />
                             <Route exact path="/favPlaces" component={FavPlaces} />
                             <Route exact path="/logout" component={Logout} />

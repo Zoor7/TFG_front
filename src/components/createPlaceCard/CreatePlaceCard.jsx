@@ -145,6 +145,7 @@ const CreatePlaceCard = () => {
                 minLength: 10,
                 maxLength: 200,
               })}
+              value={data.description}
               placeholder="Añade la descripción aquí..."
             />
             {errors?.description?.type === "required" && (
