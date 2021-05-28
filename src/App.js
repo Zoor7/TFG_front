@@ -9,9 +9,8 @@ import PlacesContext from "./context/placesContext/placesContext.jsx";
 
 import ClockLoader from "react-spinners/ClockLoader";
 import { css } from "@emotion/react";
-import { CSSTransition,TransitionGroup } from "react-transition-group";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import "./App.scss";
 import Login from "./pages/LoginReg/Login.jsx";
 import Register from "./pages/LoginReg/Register.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
@@ -19,6 +18,8 @@ import Explorar from "./pages/Explorar/Explorar.jsx";
 import FavPlaces from "./pages/FavPlaces/FavPlaces.jsx";
 import Stats from "./pages/Stats/Stats.jsx";
 import Logout from "./pages/Logout/Logout.jsx";
+
+import "./App.scss";
 
 const override = css`
   display:flex
@@ -38,51 +39,58 @@ const App = () => {
     }
   }, [placesState]);
 
+  const supportsHistory = 'pushState' in window.history;
+
 
   if (!loading) {
     return (
-      <Router >
+      <Router forceRefresh={!supportsHistory} >
         <div className="main-container">
           <Header />
-        <Route
-          render={({ location }) => {
-            const { pathname } = location;
-            return (
-              <TransitionGroup className='container'>
-                <CSSTransition 
-                  key={pathname}
-                  classNames="page"
-                  timeout={300}
-                  unmountOnExit
-                >
-                  <div className='page'>
-                  <Route
-                    location={location}
-                    render={() => (
-                      <Switch>
-                      <Route exact path="/" component={Home} />
-                      <Route  path="/lugar/:id" component={Detalle} />
-                      <Route exact path="/login" component={Login} />
-                      <Route exact path="/register" component={Register} />
-                      <Route exact path="/create" component={CreatePlace} />
-                      <Route exact path="/explorar" component={Explorar} />
-                      <Route exact path="/favPlaces" component={FavPlaces} />
-                      <Route exact path="/logout" component={Logout} />
-                      <Route exact path="/stats" component={Stats} />
-                      <Route component={NotFound} />
-                    </Switch>
-                    )}
-                  />
-                  </div>
-                </CSSTransition>
-              </TransitionGroup>
-            );
-          }}
-        />
-      </div>
+          <Route
+            render={({ location }) => {
+              const { pathname } = location;
+              return (
+                <TransitionGroup className='container'>
+                  <CSSTransition
+                    key={pathname}
+                    classNames="page"
+                    timeout={300}
+                    unmountOnExit
+                  >
+                    <div className='page'>
+                      <Route
+                        location={location}
+                        render={() => (
+                          <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/lugar/:id" component={Detalle} />
+                            <Route exact path="/login" component={Login} />
+                            <Route exact path="/register" component={Register} />
+                            <Route exact path="/create" component={CreatePlace} />
+                            <Route exact path="/explorar" component={Explorar} />
+                            <Route exact path="/favPlaces" component={FavPlaces} />
+                            <Route exact path="/logout" component={Logout} />
+                            <Route exact path="/stats" component={Stats} />
+                            <Route component={NotFound} />
+                          </Switch>
+                        )}
+                      />
+                    </div>
+                  </CSSTransition>
+                </TransitionGroup>
+              );
+            }}
+          />
+        </div>
       </Router>
     );
-  } else return <ClockLoader css={override} size="4rem" />;
+  } else return (
+    <div className='loading'>
+      <ClockLoader css={override} size="4rem" />;
+
+    </div>
+  )
 };
 
 export default App;

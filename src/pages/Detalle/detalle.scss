@@ -1,0 +1,12 @@
+.loading{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+    .detalle-main {
+      margin-top: 2.5rem;
+    }
+  }

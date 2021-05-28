@@ -168,7 +168,7 @@ const Header = () => {
               className="item"
             >
               <BiLogOut size="1.3rem" />
-              Logout
+              Cerrar sesión
             </span>
           </div>
         )}
