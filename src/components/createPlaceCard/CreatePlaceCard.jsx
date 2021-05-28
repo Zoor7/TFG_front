@@ -25,13 +25,13 @@ const CreatePlaceCard = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [ubicacion, setUbicacion] = useState(false)
   const [loadImage, setLoadImage] = useState();
   const [position, setPosition] = useState();
   const [create, setCreate] = useState(true)
   const { userState, userDispatch } = useContext(UserContext);
   const { placesDispatch } = useContext(PlacesContext);
   const history = useHistory();
-  const url = history.location.pathname;
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,10 +47,7 @@ const CreatePlaceCard = () => {
 
   const onSubmit = async (data) => {
     try {
-      if (url === "/create") {
-        history.push("/create/ubicacion");
-        return;
-      }else{
+      if(!ubicacion) setUbicacion(true)
         if(!position){
           setCreate(false)
           setCreate(true)
@@ -85,7 +82,6 @@ const CreatePlaceCard = () => {
         userDispatch({ type: ADD_USER_PLACE, payload: placeCreated.id });
         successToast("Lugar Creado", 3000);
         history.replace("/");
-      }
       } catch (error) {
         console.log(error.message);
       }
@@ -115,7 +111,7 @@ const CreatePlaceCard = () => {
         </div>
 
         <div className="placecard-image">
-          {url === "/create/ubicacion" ? (
+          {ubicacion ? (
             <Mapa create={create} getPos={getPosFromMapa} />
           ) : (
             <div>
@@ -145,7 +141,6 @@ const CreatePlaceCard = () => {
                 minLength: 10,
                 maxLength: 200,
               })}
-              value={data.description}
               placeholder="Añade la descripción aquí..."
             />
             {errors?.description?.type === "required" && (
@@ -190,7 +185,7 @@ const CreatePlaceCard = () => {
             <input
               type="submit"
               className="createPlaceCard-btn"
-              value={url === "/create/ubicacion" ? "Terminar" : "Siguiente"}
+              value={ubicacion ? "Terminar" : "Siguiente"}
             />
           </div>
         </form>
