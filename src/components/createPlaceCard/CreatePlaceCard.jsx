@@ -26,9 +26,8 @@ const CreatePlaceCard = () => {
     formState: { errors },
   } = useForm();
   const [loadImage, setLoadImage] = useState();
-  const [urlImage, setUrlImage] = useState();
   const [position, setPosition] = useState();
-
+  const [create, setCreate] = useState(true)
   const { userState, userDispatch } = useContext(UserContext);
   const { placesDispatch } = useContext(PlacesContext);
   const history = useHistory();
@@ -49,46 +48,58 @@ const CreatePlaceCard = () => {
   const onSubmit = async (data) => {
     try {
       if (url === "/create") {
-        const foto = await uploadPhoto(data.image[0], "images/");
-        setUrlImage(foto);
         history.push("/create/ubicacion");
         return;
+      }else{
+        if(!position){
+          setCreate(false)
+          setCreate(true)
+          errorToast('Es necesario el acceso a la ubicación para continuar')
+          return;
+        }
+        const foto = await uploadPhoto(data.image[0], "images/");
+        const newPlace = {
+          author: userState.id,
+          description: data.description,
+          image_url: foto,
+          location: { type: "Point", coordinates: [position.lat, position.lng] },
+          web: data?.web,
+          type: data.tipo,
+        };
+        console.log(newPlace)
+        const placeCreated = await createPlace(newPlace);
+        
+        if (placeCreated.error) {
+          errorToast("Ups, algo ha salido mal");
+          return;
+        }
+        
+        const obj = {
+          userId: userState.id,
+          placeId: placeCreated.id,
+        };
+        
+        await addPlace(obj);
+        
+        placesDispatch({ type: ADD_PLACE, payload: placeCreated });
+        userDispatch({ type: ADD_USER_PLACE, payload: placeCreated.id });
+        successToast("Lugar Creado", 3000);
+        history.replace("/");
       }
-      const newPlace = {
-        author: userState.id,
-        description: data.description,
-        image_url: urlImage,
-        location: { type: "Point", coordinates: [position.lat, position.lng] },
-        web: data?.web,
-        type: data.tipo,
-      };
-
-      const placeCreated = await createPlace(newPlace);
-
-      if (placeCreated.error) {
-        errorToast("Ups, algo ha salido mal");
-        return;
+      } catch (error) {
+        console.log(error.message);
       }
-
-      const obj = {
-        userId: userState.id,
-        placeId: placeCreated.id,
-      };
-
-      const res = await addPlace(obj);
-
-      placesDispatch({ type: ADD_PLACE, payload: placeCreated });
-      userDispatch({ type: ADD_USER_PLACE, payload: placeCreated.id });
-      successToast("Lugar Creado", 3000);
-      history.replace("/");
-    } catch (error) {
-      console.log(error.message);
-    }
+    
   };
-
+  
   const previewFile = (event) => {
-    const img = URL.createObjectURL(event.target.files[0]);
-    setLoadImage(img);
+    if(event.target.files[0]){
+      const img = URL.createObjectURL(event.target.files[0]);
+      setLoadImage(img);
+    }else{
+      setLoadImage('');
+
+    }
   };
 
   return (
@@ -105,7 +116,7 @@ const CreatePlaceCard = () => {
 
         <div className="placecard-image">
           {url === "/create/ubicacion" ? (
-            <Mapa create={true} getPos={getPosFromMapa} />
+            <Mapa create={create} getPos={getPosFromMapa} />
           ) : (
             <div>
               <img src={loadImage || cameraPlaceholder} alt="addPhoto" />

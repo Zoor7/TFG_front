@@ -1,11 +1,14 @@
 import { useState } from "react";
-import Modal from "react-modal";
-
 import { useForm } from "react-hook-form";
-import "./explorar.scss";
+
+import Modal from "react-modal";
 import Mapa from "../../components/Mapa/Mapa";
+
+import { errorToast} from "../../components/toast/customToast";
 import { getNearbyPlaces } from "../../services/placesService";
 import { useHistory } from "react-router";
+
+import "./explorar.scss";
 
 const styles = {
   overlay: {
@@ -62,9 +65,17 @@ const Explorar = () => {
       });
     }
   };
+  const showErrorPosition=()=>{
+    if(!position){
+      askPosition()
+      errorToast('Es necesario el acceso a la ubicación para continuar')
+
+    }
+  }
 
   const onSubmit = async (data) => {
-    if (data.position === "ubicacion" && position) {
+    if (data.position === "ubicacion") {
+
       const info = {
         kms: Number(data.kms),
         coordinates: [position.lat, position.lng],
@@ -78,6 +89,7 @@ const Explorar = () => {
       setExplorar(obj);
       handleModal();
     } else {
+
       const info = {
         kms: Number(data.kms),
         coordinates: [position.lat, position.lng],
@@ -97,7 +109,7 @@ const Explorar = () => {
         <Mapa explorar={explorar} />
       </Modal>
 
-      <h1>Explora tus lugares favoritos</h1>
+      <h1>Descubre lugares de otros usuarios</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <select
           {...register("position", { required: true })}
@@ -113,9 +125,7 @@ const Explorar = () => {
         {errors?.position?.type === "required" && (
           <span style={{ color: "red" }}>Introduzca el campo, por favor.</span>
         )}
-        {errors?.position?.type === "required" && (
-          <span style={{ color: "red" }}>Introduzca el campo, por favor.</span>
-        )}
+   
         <input
           {...register("kms", { required: true })}
           type="number"
@@ -126,8 +136,8 @@ const Explorar = () => {
           <span style={{ color: "red" }}>Introduzca el campo, por favor.</span>
         )}
         <button
-          className={position ? "search-button" : "disabled-button"}
-          disabled={!position}
+          className="search-button"
+          onClick={showErrorPosition}
         >
           Buscar
         </button>

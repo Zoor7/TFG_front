@@ -44,8 +44,8 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container container">
-      <div className="auth-main">
+    <div className="container auth-container">
+      <div className=" auth-main">
         <h1>Iniciar Sesion</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="inputs-auth">

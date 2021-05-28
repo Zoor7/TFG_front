@@ -17,5 +17,5 @@ export const uploadPhoto = async (foto, path) => {
     .child(path + file.name + uuidv4())
     .put(file, metadata);
   let url = await uploadTask.ref.getDownloadURL();
-  return url;
+  return await url;
 };

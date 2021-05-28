@@ -75,7 +75,7 @@ const Header = () => {
           ) : (
             <AiOutlineHome size="1.3rem" />
           )}
-          Home
+          Inicio
         </NavLink>
 
         <NavLink
@@ -106,7 +106,7 @@ const Header = () => {
             ) : (
               <RiUser3Line size="1.3rem" />
             )}
-            Login
+            Iniciar sesión
           </NavLink>
         ) : (
           <div
@@ -123,7 +123,7 @@ const Header = () => {
               to="/create"
             >
               <AiOutlinePlus size="1.3rem" />
-              Create
+              Crear
             </NavLink>
 
             <NavLink
@@ -140,7 +140,7 @@ const Header = () => {
               ) : (
                 <IoStatsChartOutline size="1.3rem" />
               )}
-              Stats
+              Estadísticas
             </NavLink>
 
             <NavLink

@@ -34,7 +34,7 @@ const Stats = () => {
   }, [userState, history]);
 
   return (
-    <div className="main-stats">
+    <div className="main-stats container">
 
       <div className="flex-container-stats">
         <Card className={classes.root}>

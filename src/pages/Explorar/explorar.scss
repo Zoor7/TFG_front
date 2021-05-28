@@ -1,20 +1,17 @@
 @import "../../styles/main.scss";
 
 .main-container{
-  height: 100vh;
+  height: 100%;
 }
 .explorar-container {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  align-items: center;
   margin: auto auto;
   border: 1px solid white;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
+  max-width: 600px;
 
   h1 {
-    padding: 4rem;
+    padding: 3rem;
   }
 
   form {
@@ -23,7 +20,7 @@
   }
   select,
   input {
-    font-size: 1rem;
+    font-size: 0.9rem;
     width: 80%;
     margin: 0 auto;
     font-family: var(--fm-montserrat);
@@ -34,11 +31,11 @@
   }
 
   input {
-    margin: 0 auto;
     margin-top: 2rem;
   }
   button {
     margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
     background-color: var(--color-background);
     padding: 1rem 2rem;
     border: 1px solid white;
@@ -49,17 +46,11 @@
     }
   }
 
-  .search-button {
-  }
-  .disabled-button {
-    border: 1px solid darken($color: #fff, $amount: 30);
-  }
 }
 
 @media (max-width: 900px) {
   .explorar-container {
-    display: flex;
     margin-top: 4rem;
-    width: 80%;
+    width: 90%;
   }
 }

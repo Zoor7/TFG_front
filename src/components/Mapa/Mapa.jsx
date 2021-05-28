@@ -28,8 +28,9 @@ const Mapa = ({ place, explorar, create, getPos }) => {
   useEffect(() => {
     if (create) {
       getCurrentPosition();
+      console.log('object')
     }
-  }, []);
+  }, [create]);
   useEffect(() => {
     if (explorar) {
       setPosition(explorar.position);
@@ -51,7 +52,7 @@ const Mapa = ({ place, explorar, create, getPos }) => {
         lat: res.coords.latitude,
         lng: res.coords.longitude,
       };
-      getPos(coords);
+    getPos(coords);
       setPosition(coords);
     });
   };

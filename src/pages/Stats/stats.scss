@@ -1,18 +1,23 @@
-
 .main-stats{
-    display: flex;
-    height: 100vh;
-    align-self: center;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+
 }
 .flex-container-stats {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: fit-content;
+    align-self: center;
+    align-items: center;
+    margin: auto auto;
     padding: 1rem;
     border: 1px solid white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
 }
+
+@media (max-width: 900px) {
+    .main-stats{
+        width: 90%;
+        margin-top: 1rem;
+    }
+  }

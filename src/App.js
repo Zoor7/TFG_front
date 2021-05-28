@@ -7,9 +7,9 @@ import CreatePlace from "./pages/CreatePlace/CreatePlace.jsx";
 import Header from "./components/header/Header.jsx";
 import PlacesContext from "./context/placesContext/placesContext.jsx";
 
-import CircleLoader from "react-spinners/CircleLoader";
+import ClockLoader from "react-spinners/ClockLoader";
 import { css } from "@emotion/react";
-import { CSSTransition } from "react-transition-group";
+import { CSSTransition,TransitionGroup } from "react-transition-group";
 
 import "./App.scss";
 import Login from "./pages/LoginReg/Login.jsx";
@@ -21,22 +21,11 @@ import Stats from "./pages/Stats/Stats.jsx";
 import Logout from "./pages/Logout/Logout.jsx";
 
 const override = css`
-  margin: 0 auto;
+  display:flex
+  margin: auto auto;
   border-color: #181818;
 `;
 
-const routes = [
-  { path: "/", name: "Home", Component: Home },
-  { path: "/lugar/:id", name: "Detalle", Component: Detalle },
-  { path: "/login", name: "Login", Component: Login },
-  { path: "/register", name: "Register", Component: Register },
-  { path: "/create", name: "Create", Component: CreatePlace },
-  { path: "/explorar", name: "Explorar", Component: Explorar },
-  { path: "/favPlaces", name: "FavPlaces", Component: FavPlaces },
-  { path: "/stats", name: "Stats", Component: Stats },
-  { path: "/logout", name: "Logout", Component: Logout },
-  // { path: '*', name: 'notFound', Component: NotFound },
-];
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -49,44 +38,51 @@ const App = () => {
     }
   }, [placesState]);
 
+
   if (!loading) {
     return (
-      <Router>
+      <Router >
         <div className="main-container">
           <Header />
-          <div className="container">
-            {routes.map(({ path, Component }) => (
-              <Route key={path} exact={path == "/"} path={path}>
-                {({ match }) => (
-                  <CSSTransition
-                    in={match != null}
-                    timeout={300}
-                    classNames="page"
-                    unmountOnExit
-                  >
-                    <div className="page">
-                      <Component />
-                    </div>
-                  </CSSTransition>
-                )}
-              </Route>
-            ))}
-          </div>
-          {/* <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/lugar/:id" component={Detalle} />
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/create" component={CreatePlace} />
-            <Route path="/explorar" component={Explorar} />
-            <Route path="/favPlaces" component={FavPlaces} />
-            <Route path="/stats" component={Stats} />
-            <Route component={NotFound} />
-          </Switch> */}
-        </div>
+        <Route
+          render={({ location }) => {
+            const { pathname } = location;
+            return (
+              <TransitionGroup className='container'>
+                <CSSTransition 
+                  key={pathname}
+                  classNames="page"
+                  timeout={300}
+                  unmountOnExit
+                >
+                  <div className='page'>
+                  <Route
+                    location={location}
+                    render={() => (
+                      <Switch>
+                      <Route exact path="/" component={Home} />
+                      <Route  path="/lugar/:id" component={Detalle} />
+                      <Route exact path="/login" component={Login} />
+                      <Route exact path="/register" component={Register} />
+                      <Route exact path="/create" component={CreatePlace} />
+                      <Route exact path="/explorar" component={Explorar} />
+                      <Route exact path="/favPlaces" component={FavPlaces} />
+                      <Route exact path="/logout" component={Logout} />
+                      <Route exact path="/stats" component={Stats} />
+                      <Route component={NotFound} />
+                    </Switch>
+                    )}
+                  />
+                  </div>
+                </CSSTransition>
+              </TransitionGroup>
+            );
+          }}
+        />
+      </div>
       </Router>
     );
-  } else return <CircleLoader css={override} size="4rem" />;
+  } else return <ClockLoader css={override} size="4rem" />;
 };
 
 export default App;
